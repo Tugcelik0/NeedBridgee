@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Problem Gazetesi — NeedBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{background:var(--ink);padding:56px 48px;color:var(--paper)}
+.page-hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
+.page-eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,245,240,.4);margin-bottom:12px}
+h1.page-h{font-family:'DM Serif Display',serif;font-size:44px;line-height:1.1;letter-spacing:-.02em;color:var(--paper);margin-bottom:10px}
+h1.page-h em{font-style:italic;color:var(--green-m)}
+.page-desc{font-size:15px;color:rgba(247,245,240,.6);line-height:1.7;max-width:500px}
+.page-stats{display:flex;gap:32px}
+.pstat-n{font-family:'DM Serif Display',serif;font-size:28px;color:var(--paper)}
+.pstat-l{font-size:11px;color:rgba(247,245,240,.4);margin-top:2px}
+.filter-bar{background:var(--white);border-bottom:1px solid var(--line);padding:16px 48px;position:sticky;top:60px;z-index:50}
+.filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.filter-input{padding:8px 14px;border:1px solid var(--line);border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--white);outline:none;width:240px}
+.filter-input:focus{border-color:var(--green)}
+.filter-sep{width:1px;height:20px;background:var(--line);flex-shrink:0}
+.fchip{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:none;color:var(--ink3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fchip-type{font-size:12px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:none;color:var(--ink3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fchip-type.on{background:var(--green-l);color:var(--green);border-color:rgba(26,107,74,.3)}
+.filter-count{font-size:12px;color:var(--ink3);margin-left:auto;white-space:nowrap}
+.gazette-layout{max-width:1200px;margin:0 auto;padding:28px 48px;display:grid;grid-template-columns:1fr 300px;gap:28px}
+.listing{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:22px 24px;margin-bottom:12px;transition:border-color .2s,transform .15s;cursor:pointer}
+.listing:hover{border-color:rgba(15,14,12,.2);transform:translateY(-1px)}
+.lst-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.lst-co{display:flex;gap:11px;align-items:center}
+.co-av{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0}
+.lst-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.lst-sec{font-size:12px;color:var(--ink3)}
+.lst-badges{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.type-pill{font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:9px}
+.tp-clean{background:var(--green-l);color:var(--green)}
+.tp-hw{background:var(--amber-l);color:var(--amber)}
+.tp-sw{background:var(--blue-l);color:var(--blue)}
+.tp-mach{background:#fff0eb;color:#a0441a}
+.tp-water{background:#e8f6ff;color:#0c6087}
+.tp-savunma{background:#EEEDFE;color:#3C3489}
+.tp-regtech{background:#FAEEDA;color:#633806}
+.lst-title{font-size:15px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:10px}
+.lst-desc{font-size:13px;color:var(--ink3);line-height:1.65;margin-bottom:14px}
+.lst-meta{display:flex;gap:18px;margin-bottom:12px;flex-wrap:wrap}
+.lm{font-size:12px;color:var(--ink3)}.lm strong{color:var(--ink)}
+.lst-foot{display:flex;gap:8px;align-items:center;padding-top:14px;border-top:1px solid var(--line)}
+.lst-apps{font-size:12px;color:var(--ink3);margin-left:auto;display:flex;align-items:center;gap:4px}
+.pilot-tag{font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:4px}
+.sidebar-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:18px 20px;margin-bottom:14px}
+.sc-title{font-size:12px;font-weight:500;color:var(--ink3);letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
+.sc-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
+.sc-item:last-child{border-bottom:none}
+.sc-label{color:var(--ink2)}.sc-count{color:var(--ink3);font-size:12px}.sc-count strong{color:var(--ink)}
+.region-chips{display:flex;flex-wrap:wrap;gap:6px}
+.rchip{font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid var(--line);cursor:pointer;color:var(--ink3);background:none;transition:all .15s}
+.rchip.on{background:var(--green-l);color:var(--green);border-color:rgba(26,107,74,.3)}
+.nl-mini{background:var(--ink);border-radius:var(--rl);padding:20px}
+.nl-mini-h{font-family:'DM Serif Display',serif;font-size:18px;color:var(--paper);margin-bottom:8px}
+.nl-mini-d{font-size:12px;color:rgba(247,245,240,.55);margin-bottom:14px;line-height:1.6}
+.nl-mini-input{width:100%;padding:8px 12px;border-radius:var(--r);border:none;font-size:12px;font-family:'DM Sans',sans-serif;margin-bottom:8px;outline:none}
+.nl-mini-btn{width:100%;padding:8px;border-radius:var(--r);border:none;background:var(--green-m);color:#fff;font-size:12px;font-weight:500;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="page-eyebrow">Problem Gazetesi</div>
+      <h1 class="page-h">Gerçek problemler.<br><em>Çözüme açık.</em></h1>
+      <p class="page-desc">Şirketler gerçek satın alma ihtiyaçlarını anonim ilan olarak yayınlar. Her ilanın bütçesi, son tarihi ve çözüm tipi bellidir. Gereksiz detay yok.</p>
+    </div>
+    <div class="page-stats">
+      <div><div class="pstat-n">214</div><div class="pstat-l">Açık ilan</div></div>
+      <div><div class="pstat-n">€31,4M</div><div class="pstat-l">Toplam bütçe</div></div>
+      <div><div class="pstat-n">47</div><div class="pstat-l">Ülke</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <input class="filter-input" placeholder="İlan, şirket veya teknoloji ara..." id="search-input" oninput="filterListings()">
+    <div class="filter-sep"></div>
+    <button class="fchip on" onclick="setCat('all',this)">Tümü</button>
+    <button class="fchip" onclick="setCat('cleantech',this)">🌱 Cleantech</button>
+    <button class="fchip" onclick="setCat('machine',this)">⚙️ Makina</button>
+    <button class="fchip" onclick="setCat('hardware',this)">🔧 Donanım</button>
+    <button class="fchip" onclick="setCat('software',this)">💻 Yazılım</button>
+    <button class="fchip" onclick="setCat('water',this)">💧 Su</button>
+    <button class="fchip" onclick="setCat('savunma',this)">🛡️ Savunma</button>
+    <button class="fchip" onclick="setCat('regtech',this)">⚖️ RegTech</button>
+    <div class="filter-sep"></div>
+    <button class="fchip-type" onclick="togglePilot(this)">Pilot OK</button>
+    <button class="fchip-type" onclick="toggleUrgent(this)">Sadece acil</button>
+    <span class="filter-count" id="filter-count">214 ilan</span>
+  </div>
+</div>
+
+<div class="gazette-layout">
+  <div>
+    <div style="background:var(--green-l);border:1px solid rgba(26,107,74,.15);border-radius:var(--r);padding:10px 15px;font-size:12px;color:#085041;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+      🎉 <strong>İlk 3 ay tamamen ücretsiz</strong> — tüm özellikler açık, kredi kartı gerekmez.
+    </div>
+    <div id="listings-wrap"></div>
+  </div>
+  <div>
+    <div class="sidebar-card">
+      <div class="sc-title">Kategoriye göre</div>
+      <div class="sc-item"><span class="sc-label">🌱 Cleantech & Enerji</span><span class="sc-count"><strong>41</strong></span></div>
+      <div class="sc-item"><span class="sc-label">⚙️ Makina</span><span class="sc-count"><strong>48</strong></span></div>
+      <div class="sc-item"><span class="sc-label">🔧 Donanım / IoT</span><span class="sc-count"><strong>35</strong></span></div>
+      <div class="sc-item"><span class="sc-label">💻 Yazılım / SaaS</span><span class="sc-count"><strong>67</strong></span></div>
+      <div class="sc-item"><span class="sc-label">💧 Su & Atık</span><span class="sc-count"><strong>19</strong></span></div>
+      <div class="sc-item"><span class="sc-label">🛡️ Savunma</span><span class="sc-count"><strong>28</strong></span></div>
+      <div class="sc-item"><span class="sc-label">⚖️ RegTech</span><span class="sc-count"><strong>19</strong></span></div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-title">Bölge</div>
+      <div class="region-chips">
+        <button class="rchip on">Global</button><button class="rchip">EMEA</button>
+        <button class="rchip">Türkiye</button><button class="rchip">Almanya</button>
+        <button class="rchip">İngiltere</button><button class="rchip">Orta Doğu</button>
+        <button class="rchip">APAC</button><button class="rchip">ABD</button>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="sc-title">Bütçe aralığı</div>
+      <div style="padding:8px 0">
+        <input type="range" min="10" max="500" value="500" id="budget-slider" style="width:100%;margin-bottom:6px" oninput="updateBudget(this.value)">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink3)"><span>€10K</span><span id="budget-val">€500K+</span></div>
+      </div>
+    </div>
+    <div class="nl-mini">
+      <div class="nl-mini-h">Haftalık özet</div>
+      <div class="nl-mini-d">Her Pazartesi kategorinizdeki yeni ilanlar gelen kutunuza gelsin.</div>
+      <input class="nl-mini-input" type="email" placeholder="ornek@sirket.com">
+      <button class="nl-mini-btn">Ücretsiz abone ol →</button>
+    </div>
+    <div class="sidebar-card" style="background:var(--ink);border-color:var(--ink)">
+      <div class="sc-title" style="color:rgba(247,245,240,.4)">İlan açmak ister misiniz?</div>
+      <div style="font-size:13px;color:rgba(247,245,240,.7);margin-bottom:14px;line-height:1.6">Tedarik probleminizi yayınlayın. 47 ülkede 1.840 girişime ücretsiz ulaşın.</div>
+      <button class="btn-primary" style="width:100%;font-size:13px;padding:10px">İlan aç →</button>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('gazette');
+document.getElementById('footer-root').innerHTML = FOOTER();
+
+const LISTINGS = [
+  {id:1,cat:'cleantech',title:'Fabrika sahasında 500 kW solar + depolama hibrit sistemi',desc:'Mersin fabrikamızın günlük 2.400 kWh tüketiminin %40\'ını yenilenebilirden karşılamak istiyoruz. EPC+O&M teklifi bekliyoruz.',company:'Anonim · Cam & Ambalaj',sector:'Üretim · Türkiye',avatar:'ŞC',ac:'#e8f2ec',at:'#1a6b4a',type:'cleantech',tl:'🌱 Cleantech',tc:'tp-clean',status:'urgent',budget:280000,deadline:'15 Haz 2026',region:'TR',apps:14,pilot:true,tags:['Solar PV','BESS','EPC','Şebeke Entegrasyonu','O&M']},
+  {id:2,cat:'hardware',title:'Kaynak hattı için görüntü tabanlı inline kalite kontrol cihazı',desc:'Gölcük gövde hattımızda mikron hassasiyetinde inline geometri ve kaynak kalitesi ölçümü yapan kamera/lazer tabanlı sistem istiyoruz. OPC-UA entegrasyon zorunlu.',company:'Anonim · Otomotiv',sector:'Otomotiv · Türkiye / Almanya',avatar:'FO',ac:'#eef1fe',at:'#2b5cc8',type:'hardware',tl:'🔧 Donanım / IoT',tc:'tp-hw',status:'open',budget:95000,deadline:'30 Haz 2026',region:'TR/DE',apps:21,pilot:true,tags:['Machine Vision','Lazer Metroloji','OPC-UA','Endüstri 4.0']},
+  {id:3,cat:'software',title:'Soğuk zincir lojistiğinde ısı sapması erken uyarı SaaS\'ı',desc:'72 araçlık filomuzda -18°C ürün taşımasında anlık anomali tespiti ve otomatik uyarı sistemi. TMS entegrasyonu gerekiyor.',company:'Anonim · Gıda & FMCG',sector:'FMCG · Türkiye',avatar:'ÜL',ac:'#fdf3e3',at:'#c47c1a',type:'software',tl:'💻 Yazılım / SaaS',tc:'tp-sw',status:'open',budget:48000,deadline:'1 Tem 2026',region:'TR',apps:9,pilot:false,tags:['IoT','Soğuk Zincir','SaaS','Anomali Tespiti']},
+  {id:4,cat:'machine',title:'Atık tekstil için otomatik elyaf ayrıştırma makinası',desc:'NIR spektroskopi tabanlı endüstriyel makina ile naylon/polyester karışık atık tekstili elyaf tipine göre sınıflandırıp ayırıyoruz. Min 800 kg/sa kapasite şart.',company:'Anonim · Tekstil & Kompozit',sector:'Kompozit · EMEA',avatar:'KR',ac:'#f0eeff',at:'#5b3fbe',type:'machine',tl:'⚙️ Makina',tc:'tp-mach',status:'open',budget:175000,deadline:'15 Tem 2026',region:'EMEA',apps:6,pilot:true,tags:['NIR Spektroskopi','Tekstil Geri Dönüşüm','Döngüsel Ekonomi','Otomasyon']},
+  {id:5,cat:'water',title:'Arıtma tesisi çıkış suyu mikrokontaminant sensörü',desc:'İçme suyu arıtma tesisimiz çıkışında ilaç kalıntısı ve mikroplastikleri ppb seviyesinde online ölçen sabit sensör. Veri SCADA\'ya aktarılmalı.',company:'Anonim · Kamu / Su Yönetimi',sector:'Su Yönetimi · Türkiye',avatar:'İS',ac:'#e8f6ff',at:'#0c6087',type:'water',tl:'💧 Su & Atık',tc:'tp-water',status:'review',budget:62000,deadline:'20 Haz 2026',region:'TR',apps:11,pilot:false,tags:['Mikrokontaminant','Sensör','SCADA','Online İzleme']},
+  {id:6,cat:'cleantech',title:'Sera ısıtması için atık ısı geri kazanım sistemi',desc:'Soğuk hava depo kompresörlerimizin atık ısısını ısı pompası veya eşanjörle sera ısıtmasında kullanmak istiyoruz. Fizibilite + tasarım + EPC teklifi.',company:'Anonim · AgriTech',sector:'Seracılık · Türkiye / Hollanda',avatar:'BF',ac:'#eaf6e0',at:'#3b6d11',type:'cleantech',tl:'🌱 Cleantech',tc:'tp-clean',status:'open',budget:130000,deadline:'1 Ağu 2026',region:'TR/NL',apps:4,pilot:true,tags:['Atık Isı','Isı Pompası','AgriTech','Enerji Verimliliği']},
+  {id:7,cat:'software',title:'BIM tabanlı gerçek zamanlı inşaat sahası ilerleme takibi',desc:'Drone + sabit kamera görüntüsünü BIM modeline karşı otomatik karşılaştıran, sapmaları ilerleme raporuna dönüştüren SaaS.',company:'Anonim · İnşaat',sector:'Altyapı · Global',avatar:'LM',ac:'#fff0eb',at:'#a0441a',type:'software',tl:'💻 Yazılım / SaaS',tc:'tp-sw',status:'open',budget:55000,deadline:'10 Tem 2026',region:'Global',apps:17,pilot:false,tags:['BIM','Drone Analitik','İnşaat Teknolojisi','İlerleme Takibi']},
+  {id:8,cat:'hardware',title:'Hastane çamaşırhanesinde RFID tekstil takip sistemi',desc:'8 hastanemizde tekstil kayıp oranını %80 azaltacak RFID sistemi. Yıkamaya dayanıklı etiket + okuyucu altyapısı + yönetim yazılımı paketi.',company:'Anonim · Sağlık',sector:'Sağlık · Türkiye',avatar:'AC',ac:'#fdeaea',at:'#b83232',type:'hardware',tl:'🔧 Donanım / IoT',tc:'tp-hw',status:'open',budget:38000,deadline:'30 Tem 2026',region:'TR',apps:8,pilot:true,tags:['RFID','Sağlık','Tekstil Takibi']},
+  {id:9,cat:'savunma',title:'İnsansız kara aracı için GPS bağımsız otonom navigasyon yazılımı',desc:'Kentsel ortamda GPS olmadan çalışabilen, simülasyon ile test edilebilir otonom navigasyon modülü. İMM ve sertifikasyon desteği bekliyoruz.',company:'Anonim · Savunma & Havacılık',sector:'Savunma Sanayii · Türkiye',avatar:'AS',ac:'#eef1fe',at:'#3C3489',type:'savunma',tl:'🛡️ Savunma',tc:'tp-savunma',status:'open',budget:220000,deadline:'30 Ağu 2026',region:'TR',apps:4,pilot:true,tags:['Otonom','Navigasyon','Savunma','Yazılım']},
+  {id:10,cat:'regtech',title:'Gerçek zamanlı AML işlem izleme motoru',desc:'Mevcut kural tabanlı sistemimizin yerini alacak ML tabanlı kara para aklamayla mücadele motoru. BDDK ve SPK uyumlu olması zorunlu.',company:'Anonim · Bankacılık',sector:'Finans · Türkiye',avatar:'BK',ac:'#FAEEDA',at:'#633806',type:'regtech',tl:'⚖️ RegTech',tc:'tp-regtech',status:'open',budget:85000,deadline:'1 Ağu 2026',region:'TR',apps:8,pilot:false,tags:['AML','ML','RegTech','BDDK']},
+];
+
+const STATUS = {
+  urgent:'<span class="badge badge-urgent">Acil</span>',
+  open:'<span class="badge badge-open">Açık</span>',
+  review:'<span class="badge badge-amber">İncelemede</span>'
+};
+
+let activeCat='all', showPilot=false, showUrgent=false, budgetMax=500;
+
+function renderListings(){
+  let data = LISTINGS.filter(l=>{
+    if(activeCat!=='all'&&l.cat!==activeCat)return false;
+    if(showPilot&&!l.pilot)return false;
+    if(showUrgent&&l.status!=='urgent')return false;
+    if(l.budget/1000>budgetMax&&budgetMax<500)return false;
+    const q=document.getElementById('search-input').value.toLowerCase();
+    if(q&&![l.title,l.company,...l.tags].some(x=>x.toLowerCase().includes(q)))return false;
+    return true;
+  });
+  document.getElementById('filter-count').textContent=data.length+' ilan bulundu';
+  document.getElementById('listings-wrap').innerHTML=data.map(l=>`
+    <div class="listing">
+      <div class="lst-top">
+        <div class="lst-co">
+          <div class="co-av" style="background:${l.ac};color:${l.at}">${l.avatar}</div>
+          <div><div class="lst-name">${l.company}</div><div class="lst-sec">${l.sector}</div></div>
+        </div>
+        <div class="lst-badges">${l.pilot?'<span class="pilot-tag">Pilot OK</span>':''}${STATUS[l.status]}</div>
+      </div>
+      <div><span class="type-pill ${l.tc}">${l.tl}</span></div>
+      <div class="lst-title">${l.title}</div>
+      <div class="lst-desc">${l.desc}</div>
+      <div class="lst-meta">
+        <span class="lm">Bütçe: <strong>€${l.budget.toLocaleString('tr-TR')}</strong></span>
+        <span class="lm">Son tarih: <strong>${l.deadline}</strong></span>
+        <span class="lm">Bölge: <strong>${l.region}</strong></span>
+      </div>
+      <div class="tags" style="margin-bottom:0">${l.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="lst-foot">
+        <button class="btn-sm-green">Çözüm öner</button>
+        <button class="btn-sm">Kaydet</button>
+        <span class="lst-apps">👤 ${l.apps} başvuru</span>
+      </div>
+    </div>`).join('');
+}
+
+function setCat(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.fchip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderListings();
+}
+function filterListings(){renderListings();}
+function togglePilot(btn){showPilot=!showPilot;btn.classList.toggle('on');renderListings();}
+function toggleUrgent(btn){showUrgent=!showUrgent;btn.classList.toggle('on');renderListings();}
+function updateBudget(v){
+  budgetMax=parseInt(v);
+  document.getElementById('budget-val').textContent=v>=500?'€500K+':'€'+parseInt(v)+'K';
+  renderListings();
+}
+renderListings();
+document.querySelectorAll('.rchip').forEach(c=>c.addEventListener('click',function(){
+  document.querySelectorAll('.rchip').forEach(x=>x.classList.remove('on'));
+  this.classList.add('on');
+}));
+</script>
+</body>
+</html>

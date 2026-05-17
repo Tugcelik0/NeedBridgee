@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Startup Vitrini — NeedBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{background:var(--paper2);border-bottom:1px solid var(--line);padding:56px 48px}
+.page-hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
+.page-eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+h1.page-h{font-family:'DM Serif Display',serif;font-size:44px;line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+h1.page-h em{font-style:italic;color:var(--green)}
+.page-desc{font-size:15px;color:var(--ink3);line-height:1.7;max-width:520px}
+.page-stats{display:flex;gap:28px}
+.pstat{text-align:right}
+.pstat-n{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink)}
+.pstat-l{font-size:11px;color:var(--ink3);margin-top:2px}
+.filter-bar{background:var(--white);border-bottom:1px solid var(--line);padding:14px 48px;position:sticky;top:60px;z-index:50}
+.filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.filter-input{padding:8px 14px;border:1px solid var(--line);border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--white);outline:none;width:220px}
+.filter-input:focus{border-color:var(--green)}
+.fchip{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:none;color:var(--ink3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filter-count{font-size:12px;color:var(--ink3);margin-left:auto}
+.vitrine-grid{max-width:1200px;margin:0 auto;padding:28px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.su-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);overflow:hidden;transition:border-color .2s,transform .15s;cursor:pointer;display:flex;flex-direction:column}
+.su-card:hover{border-color:rgba(15,14,12,.2);transform:translateY(-2px)}
+.su-cover{height:6px}
+.su-body{padding:20px;flex:1}
+.su-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.su-logo{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:16px;font-weight:500;flex-shrink:0}
+.su-badges{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.su-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.su-tagline{font-size:12px;color:var(--ink3);margin-bottom:10px;line-height:1.5}
+.su-cats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.su-cat{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:500}
+.su-desc{font-size:12px;color:var(--ink3);line-height:1.65;margin-bottom:14px}
+.su-meta{display:flex;gap:14px;margin-bottom:14px}
+.su-m{font-size:11px;color:var(--ink3)}.su-m strong{color:var(--ink)}
+.su-foot{padding:14px 20px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center;background:var(--paper)}
+.su-verified{font-size:10px;color:var(--green);font-weight:500;margin-left:auto}
+.new-ring{border:2px solid var(--green-m)}
+.contact-locked{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3)}
+.lock-sm{width:16px;height:16px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--paper2);flex-shrink:0}
+.lock-sm svg{width:9px;height:9px;stroke:var(--ink3);fill:none;stroke-width:2;stroke-linecap:round}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="page-eyebrow">Startup Vitrini</div>
+      <h1 class="page-h">1.840 girişim.<br>Her çözüm tipi.<br><em>Global.</em></h1>
+      <p class="page-desc">Girişimleri çözüm kategorisi, teknoloji ve bölgeye göre inceleyin. Görüntülemek ücretsiz — bağlantı için starter plan gerekli.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end">
+      <div class="page-stats">
+        <div class="pstat"><div class="pstat-n">1.840</div><div class="pstat-l">Girişim</div></div>
+        <div class="pstat"><div class="pstat-n">47</div><div class="pstat-l">Ülke</div></div>
+        <div class="pstat"><div class="pstat-n">48</div><div class="pstat-l">Bu hafta yeni</div></div>
+      </div>
+      <button class="btn-primary">Girişiminizi ekleyin →</button>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <input class="filter-input" placeholder="Girişim, teknoloji ara..." id="su-search" oninput="renderCards()">
+    <button class="fchip on" onclick="setCat('all',this)">Tümü</button>
+    <button class="fchip" onclick="setCat('cleantech',this)">🌱 Cleantech</button>
+    <button class="fchip" onclick="setCat('hardware',this)">🔧 Donanım</button>
+    <button class="fchip" onclick="setCat('software',this)">💻 Yazılım</button>
+    <button class="fchip" onclick="setCat('machine',this)">⚙️ Makina</button>
+    <button class="fchip" onclick="setCat('water',this)">💧 Su</button>
+    <button class="fchip" onclick="setCat('savunma',this)">🛡️ Savunma</button>
+    <button class="fchip" style="background:var(--green-l);color:var(--green);border-color:rgba(26,107,74,.3)" onclick="setCat('new',this)">✨ Bu hafta yeni</button>
+    <span class="filter-count" id="su-count">1.840 girişim</span>
+  </div>
+</div>
+
+<div style="max-width:1200px;margin:16px auto 0;padding:0 48px">
+  <div style="background:var(--green-l);border:1px solid rgba(26,107,74,.15);border-radius:var(--r);padding:10px 16px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:8px">
+    🎉 <strong>Platform 3 ay boyunca tamamen ücretsiz.</strong> Ekim 2026'ya kadar herhangi bir girişimle bağlantı kurun — kredi kartı gerekmez.
+  </div>
+</div>
+
+<div class="vitrine-grid" id="su-grid"></div>
+
+<div id="footer-root"></div>
+
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('startups');
+document.getElementById('footer-root').innerHTML = FOOTER();
+
+const STARTUPS = [
+  {id:1,cat:'cleantech',name:'SolarGrid TR',tagline:'Üretim tesisleri için endüstriyel solar & depolama EPC',logo:'SG',lc:'#e8f2ec',lt:'#1a6b4a',cover:'#1a6b4a',cats:['🌱 Cleantech','⚡ Enerji Depolama'],desc:'Türk endüstriyel tesislerinde 3 tamamlanmış EPC projesi. Tüpraş ve Şişecam referansı. Enerji yoğun üretim için hibrit solar+BESS uzmanlığı.',country:'🇹🇷 Türkiye',founded:'2021',team:'18',region:'TR / EMEA',tags:['Solar PV','BESS','EPC','O&M'],verified:true,isNew:false,open:2},
+  {id:2,cat:'hardware',name:'VisionCore GmbH',tagline:'Hassas üretim için machine vision kalite kontrol sistemleri',logo:'VC',lc:'#eef1fe',lt:'#2b5cc8',cover:'#2b5cc8',cats:['🔧 Donanım','🏭 Üretim'],desc:'Alt mikron hassasiyetinde inline muayene sistemleri. OPC-UA native. Almanya ve Avusturya\'da 14 otomotiv ve havacılık hattında kurulu.',country:'🇩🇪 Almanya',founded:'2019',team:'32',region:'DACH / Global',tags:['Machine Vision','OPC-UA','Otomotiv','Havacılık'],verified:true,isNew:false,open:1},
+  {id:3,cat:'software',name:'ChainTemp',tagline:'Soğuk zincir IoT izleme ve anomali tespiti SaaS',logo:'CT',lc:'#fdf3e3',lt:'#c47c1a',cover:'#c47c1a',cats:['💻 SaaS','❄️ Soğuk Zincir'],desc:'Gıda, ilaç ve perakende lojistiğinde 200+ araçlık filoda gerçek zamanlı sıcaklık izleme. TMS/WMS entegrasyonu hazır. 8 ülkede aktif.',country:'🇳🇱 Hollanda',founded:'2022',team:'12',region:'Avrupa / Global',tags:['IoT','Soğuk Zincir','SaaS','TMS Entegrasyonu'],verified:true,isNew:true,open:3},
+  {id:4,cat:'machine',name:'FiberSort Systems',tagline:'NIR tabanlı otomatik tekstil atık ayrıştırma makinaları',logo:'FS',lc:'#f0eeff',lt:'#5b3fbe',cover:'#5b3fbe',cats:['⚙️ Makina','♻️ Döngüsel Ekonomi'],desc:'NIR spektroskopi ile karma tekstil atıklarını elyaf kompozisyonuna göre sıralayan endüstriyel makinalar. 500–2.000 kg/sa kapasite. AB Döngüsel Ekonomi sertifikalı.',country:'🇧🇪 Belçika',founded:'2020',team:'24',region:'EMEA',tags:['NIR Spektroskopi','Tekstil','Geri Dönüşüm','Döngüsel Ekonomi'],verified:false,isNew:true,open:1},
+  {id:5,cat:'water',name:'AquaSense',tagline:'Arıtma altyapısı için online su kalitesi sensörleri',logo:'AS',lc:'#e8f6ff',lt:'#0c6087',cover:'#0c6087',cats:['💧 Su','📡 Sensörler'],desc:'Mikrokontaminant, mikroplastik ve ilaç kalıntılarını ppb seviyesinde izleyen sabit online sensörler. SCADA/MODBUS uyumlu. 22 arıtma tesisinde kurulu.',country:'🇬🇧 İngiltere',founded:'2018',team:'41',region:'Global',tags:['Su Kalitesi','Sensör','SCADA','Mikrokontaminant'],verified:true,isNew:false,open:2},
+  {id:6,cat:'cleantech',name:'HeatBridge',tagline:'Endüstriyel atık ısı geri kazanım mühendisliği ve EPC',logo:'HB',lc:'#eaf6e0',lt:'#3b6d11',cover:'#3b6d11',cats:['🌱 Cleantech','🌡️ Isı Geri Kazanımı'],desc:'Endüstriyel atık ısı geri kazanım projeleri için fizibilite ve EPC. Isı pompası, eşanjör ve ORC sistem entegrasyonu. Gıda, cam ve seramik sektöründe 11 tamamlanmış proje.',country:'🇹🇷 Türkiye',founded:'2020',team:'15',region:'TR / MENA',tags:['Atık Isı','Isı Pompası','ORC','EPC'],verified:true,isNew:false,open:1},
+  {id:7,cat:'software',name:'SiteEye',tagline:'BIM entegre inşaat sahası ilerleme izleme',logo:'SE',lc:'#fff0eb',lt:'#a0441a',cover:'#a0441a',cats:['💻 SaaS','🏗️ İnşaat Teknolojisi'],desc:'Drone + sabit kamera görüntüsü otomatik olarak BIM modelleriyle karşılaştırılır. Büyük ölçekli altyapı projeleri için sapma tespiti, ilerleme raporları ve gecikme tahmini.',country:'🇸🇬 Singapur',founded:'2021',team:'28',region:'Global',tags:['BIM','Drone','İnşaat','Görüntü İşleme'],verified:true,isNew:true,open:4},
+  {id:8,cat:'hardware',name:'TagFlow',tagline:'Sağlık ve konaklama için RFID varlık takibi',logo:'TF',lc:'#fdeaea',lt:'#b83232',cover:'#b83232',cats:['🔧 Donanım','🏥 Sağlık'],desc:'Hastane, otel ve çamaşırhanelerde tekstil takibi için yıkamaya dayanıklı RFID etiket sistemleri. Tam paket: etiketler + okuyucular + yönetim yazılımı. 40+ kurulum.',country:'🇵🇱 Polonya',founded:'2019',team:'19',region:'EMEA',tags:['RFID','Sağlık','Tekstil Takibi','Çamaşırhane'],verified:false,isNew:false,open:0},
+  {id:9,cat:'cleantech',name:'WattRoute',tagline:'Endüstriyel mikro şebekeler için enerji yönetim platformu',logo:'WR',lc:'#fdf3e3',lt:'#c47c1a',cover:'#1a6b4a',cats:['🌱 Cleantech','💡 Enerji Yönetimi'],desc:'Üretim tesisleri için solar, depolama ve şebeke çekimini dengeleyen gerçek zamanlı mikro şebeke optimizasyon yazılımı. API-first, büyük SCADA ve EMS sistemleriyle entegre.',country:'🇩🇰 Danimarka',founded:'2022',team:'9',region:'Avrupa',tags:['Mikro Şebeke','Enerji Yönetimi','API','SCADA'],verified:false,isNew:true,open:2},
+  {id:10,cat:'savunma',name:'NavSys Defense',tagline:'GPS bağımsız otonom navigasyon yazılımı',logo:'NS',lc:'#eef1fe',lt:'#3C3489',cover:'#534AB7',cats:['🛡️ Savunma','🤖 Otonom Sistemler'],desc:'Kentsel ortamda GPS olmadan çalışan, simülasyon ile test edilebilir otonom navigasyon modülü. 2 ulusal savunma projesi referansı.',country:'🇹🇷 Türkiye',founded:'2020',team:'21',region:'TR / EMEA',tags:['Otonom','Navigasyon','Savunma','Savunma Sanayii'],verified:false,isNew:true,open:1},
+];
+
+let activeCat='all';
+function renderCards(){
+  const q=document.getElementById('su-search').value.toLowerCase();
+  let data=STARTUPS.filter(s=>{
+    if(activeCat==='new')return s.isNew;
+    if(activeCat!=='all'&&s.cat!==activeCat)return false;
+    if(q&&![s.name,s.tagline,...s.tags].some(x=>x.toLowerCase().includes(q)))return false;
+    return true;
+  });
+  document.getElementById('su-count').textContent=data.length+' girişim';
+  document.getElementById('su-grid').innerHTML=data.map(s=>`
+    <div class="su-card${s.isNew?' new-ring':''}">
+      <div class="su-cover" style="background:${s.cover}"></div>
+      <div class="su-body">
+        <div class="su-top">
+          <div class="su-logo" style="background:${s.lc};color:${s.lt}">${s.logo}</div>
+          <div class="su-badges">
+            ${s.isNew?'<span class="badge badge-open" style="font-size:9px">✨ Yeni</span>':''}
+            ${s.verified?'<span class="badge badge-dark" style="font-size:9px">✓ Doğrulanmış</span>':''}
+          </div>
+        </div>
+        <div class="su-name">${s.name}</div>
+        <div class="su-tagline">${s.tagline}</div>
+        <div class="su-cats">${s.cats.map(c=>`<span class="su-cat" style="background:${s.lc};color:${s.lt}">${c}</span>`).join('')}</div>
+        <div class="su-desc">${s.desc}</div>
+        <div class="su-meta">
+          <span class="su-m">${s.country}</span>
+          <span class="su-m">Kur. <strong>${s.founded}</strong></span>
+          <span class="su-m"><strong>${s.team}</strong> kişi</span>
+        </div>
+        <div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="su-foot">
+        <button class="btn-sm">Profili gör</button>
+        ${s.open>0?`<button class="btn-sm-green">Bağlantı kur</button>`:`<span class="contact-locked"><div class="lock-sm"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>Bağlanmak için üye ol</span>`}
+        ${s.verified?'<span class="su-verified">✓ Doğrulanmış tedarikçi</span>':''}
+      </div>
+    </div>`).join('');
+}
+function setCat(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.fchip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderCards();
+}
+renderCards();
+</script>
+</body>
+</html>

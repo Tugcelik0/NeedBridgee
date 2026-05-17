@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NeedBridge — Kurumsal İhtiyaçlar, Girişim Çözümleriyle Buluşuyor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.hero{max-width:1200px;margin:0 auto;padding:100px 48px 80px;display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:start}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--green-l);border:1px solid rgba(26,107,74,.15);padding:5px 13px;border-radius:20px;margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green-m)}
+h1.hero-h{font-size:58px;line-height:1.06;letter-spacing:-.025em;margin-bottom:26px;color:var(--ink)}
+h1.hero-h em{font-style:italic;color:var(--green)}
+.hero-desc{font-size:17px;color:var(--ink3);line-height:1.75;margin-bottom:40px;max-width:500px}
+.hero-actions{display:flex;gap:12px;align-items:center;margin-bottom:52px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--rl);overflow:hidden;background:var(--white)}
+.hstat{padding:18px 20px;border-right:1px solid var(--line)}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink)}
+.hstat-l{font-size:11px;color:var(--ink3);margin-top:3px}
+.hero-right{padding-top:12px}
+.listing-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:18px 20px;margin-bottom:10px;transition:border-color .2s,transform .15s}
+.listing-card:hover{border-color:rgba(15,14,12,.2);transform:translateY(-1px)}
+.lc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.lc-co{display:flex;gap:10px;align-items:center}
+.co-av{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
+.lc-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:1px}
+.lc-sec{font-size:11px;color:var(--ink3)}
+.type-pill{font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.tp-clean{background:var(--green-l);color:var(--green)}
+.tp-hw{background:var(--amber-l);color:var(--amber)}
+.tp-sw{background:var(--blue-l);color:var(--blue)}
+.tp-mach{background:#fff0eb;color:#a0441a}
+.lc-title{font-size:13px;color:var(--ink);line-height:1.45;margin-bottom:11px}
+.lc-meta{display:flex;gap:14px}
+.lm{font-size:11px;color:var(--ink3)}
+.lm strong{color:var(--ink)}
+.lc-foot{display:flex;gap:8px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.lc-apps{font-size:11px;color:var(--ink3);margin-left:auto}
+.how-wrap{background:var(--paper2);padding:1px 0}
+.role-tabs{display:flex;gap:4px;margin-bottom:36px}
+.rtab{padding:8px 20px;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--line);background:none;color:var(--ink3);transition:all .15s}
+.rtab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.how-grid{display:none;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:var(--rl);overflow:hidden}
+.how-grid.on{display:grid}
+.how-cell{background:var(--paper);padding:28px;transition:background .15s}
+.how-cell:hover{background:var(--white)}
+.how-n{font-family:'DM Serif Display',serif;font-size:38px;color:var(--paper3);line-height:1;margin-bottom:14px}
+.how-t{font-size:14px;font-weight:500;margin-bottom:7px}
+.how-b{font-size:12px;color:var(--ink3);line-height:1.7}
+.how-pill{display:inline-block;margin-top:10px;font-size:10px;background:var(--green-l);color:var(--green);padding:3px 9px;border-radius:20px}
+.phase-dark{background:var(--ink);color:var(--paper);padding:80px 48px}
+.phase-inner{max-width:1200px;margin:0 auto}
+.phase-tag{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,245,240,.35);margin-bottom:10px}
+.phase-title{font-family:'DM Serif Display',serif;font-size:38px;letter-spacing:-.02em;margin-bottom:52px;color:var(--paper)}
+.phase-title em{font-style:italic;color:var(--green-m)}
+.phases{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(247,245,240,.06)}
+.phase{padding:28px;background:var(--ink);transition:background .15s}
+.phase:hover{background:#1a1915}
+.phase-step{font-family:'DM Serif Display',serif;font-size:12px;color:var(--green-m);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.phase-step::after{content:'';flex:1;height:1px;background:rgba(247,245,240,.08)}
+.phase-name{font-size:14px;font-weight:500;color:var(--paper);margin-bottom:6px}
+.phase-period{font-size:11px;color:rgba(247,245,240,.35);margin-bottom:14px}
+.phase-desc{font-size:12px;color:rgba(247,245,240,.55);line-height:1.7}
+.phase-kpi{margin-top:20px;padding-top:16px;border-top:1px solid rgba(247,245,240,.07)}
+.kpi-n{font-family:'DM Serif Display',serif;font-size:22px;color:var(--green-m)}
+.kpi-l{font-size:11px;color:rgba(247,245,240,.35);margin-top:2px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cat-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:20px;transition:border-color .15s,transform .15s;cursor:pointer}
+.cat-card:hover{border-color:rgba(15,14,12,.2);transform:translateY(-2px)}
+.cat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.cat-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.cat-count{font-size:11px;color:var(--ink3);margin-bottom:10px}
+.nl-wrap{border-top:1px solid var(--line);padding:80px 48px;text-align:center}
+.nl-inner{max-width:560px;margin:0 auto}
+.nl-pre{font-size:12px;color:var(--ink3);margin-bottom:8px}
+.nl-h{font-family:'DM Serif Display',serif;font-size:36px;letter-spacing:-.01em;margin-bottom:14px;line-height:1.15}
+.nl-desc{font-size:14px;color:var(--ink3);margin-bottom:28px;line-height:1.7}
+.nl-form{display:flex;gap:8px;max-width:400px;margin:0 auto 12px}
+.nl-input{flex:1;padding:10px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);outline:none}
+.nl-input:focus{border-color:var(--green)}
+.nl-note{font-size:11px;color:var(--ink3)}
+.protect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.protect-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:22px;transition:border-color .15s,transform .15s}
+.protect-card:hover{border-color:rgba(15,14,12,.2);transform:translateY(-2px)}
+.pc-icon{width:38px;height:38px;border-radius:9px;background:var(--green-l);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.pc-icon svg{width:19px;height:19px;stroke:var(--green);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pc-t{font-size:13px;font-weight:500;margin-bottom:7px}
+.pc-b{font-size:12px;color:var(--ink3);line-height:1.7}
+.pc-eff{margin-top:12px;font-size:11px;font-weight:500;color:var(--green)}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div style="max-width:1200px;margin:0 auto">
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Global Kurumsal × Girişim Platformu</div>
+    <h1 class="hero-h">Problemler var.<br>Çözümler var.<br><em>Aradaki mesafe biziz.</em></h1>
+    <p class="hero-desc">Orta ve büyük ölçekli şirketler gerçek satın alma ihtiyaçlarını ilan olarak yayınlar. Dünyanın dört bir yanından girişimler — yazılım, donanım, cleantech, makina, savunma, sağlık — çözüm sunar.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="location.href='gazete.html'">Açık problemleri gör →</button>
+      <button class="btn-outline" onclick="location.href='vitrin.html'">Girişimlere göz at</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">214</div><div class="hstat-l">Açık ilan</div></div>
+      <div class="hstat"><div class="hstat-n">1.840</div><div class="hstat-l">Kayıtlı girişim</div></div>
+      <div class="hstat"><div class="hstat-n">€4,2M</div><div class="hstat-l">Bu ay toplam bütçe</div></div>
+      <div class="hstat"><div class="hstat-n">47</div><div class="hstat-l">Ülke</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="listing-card">
+      <div class="lc-top">
+        <div class="lc-co">
+          <div class="co-av" style="background:#e8f2ec;color:#1a6b4a">ŞC</div>
+          <div><div class="lc-name">Şişecam A.Ş.</div><div class="lc-sec">Cam & Ambalaj · Türkiye</div></div>
+        </div>
+        <span class="badge badge-urgent">Acil</span>
+      </div>
+      <div><span class="type-pill tp-clean">🌱 Cleantech</span></div>
+      <div class="lc-title">Fabrika sahasında 500 kW solar + depolama hibrit sistemi</div>
+      <div class="lc-meta"><span class="lm">Bütçe: <strong>€280K</strong></span><span class="lm">Son: <strong>15 Haz</strong></span><span class="lm"><strong>TR</strong></span></div>
+      <div class="lc-foot"><button class="btn-sm-green">Çözüm öner</button><button class="btn-sm">Kaydet</button><span class="lc-apps">14 başvuru</span></div>
+    </div>
+    <div class="listing-card">
+      <div class="lc-top">
+        <div class="lc-co">
+          <div class="co-av" style="background:#eef1fe;color:#2b5cc8">FO</div>
+          <div><div class="lc-name">Ford Otosan</div><div class="lc-sec">Otomotiv · TR/DE</div></div>
+        </div>
+        <span class="badge badge-open">Açık</span>
+      </div>
+      <div><span class="type-pill tp-hw">🔧 Donanım / IoT</span></div>
+      <div class="lc-title">Kaynak hattı için görüntü tabanlı inline kalite kontrol cihazı</div>
+      <div class="lc-meta"><span class="lm">Bütçe: <strong>€95K</strong></span><span class="lm">Son: <strong>30 Haz</strong></span><span class="lm"><strong>TR/DE</strong></span></div>
+      <div class="lc-foot"><button class="btn-sm-green">Çözüm öner</button><button class="btn-sm">Kaydet</button><span class="lc-apps">21 başvuru</span></div>
+    </div>
+    <div class="listing-card">
+      <div class="lc-top">
+        <div class="lc-co">
+          <div class="co-av" style="background:#f0eeff;color:#534AB7">KR</div>
+          <div><div class="lc-name">Kordsa (Sabancı)</div><div class="lc-sec">Kompozit · EMEA</div></div>
+        </div>
+        <span class="badge badge-open">Açık</span>
+      </div>
+      <div><span class="type-pill tp-mach">⚙️ Makina</span></div>
+      <div class="lc-title">Atık tekstil için otomatik elyaf ayrıştırma makinası</div>
+      <div class="lc-meta"><span class="lm">Bütçe: <strong>€175K</strong></span><span class="lm">Son: <strong>15 Tem</strong></span><span class="lm"><strong>EMEA</strong></span></div>
+      <div class="lc-foot"><button class="btn-sm-green">Çözüm öner</button><button class="btn-sm">Kaydet</button><span class="lc-apps">6 başvuru</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="trust-strip">
+  <span class="ts-label">Platformu kullananlar</span>
+  <div class="ts-logos">
+    <span class="ts-logo">Şişecam</span><span class="ts-logo">Ford Otosan</span>
+    <span class="ts-logo">Sabancı Holding</span><span class="ts-logo">Enerjisa</span>
+    <span class="ts-logo">Limak</span><span class="ts-logo">İSKİ</span>
+    <span class="ts-logo">Migros</span><span class="ts-logo">Borusan</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-tag">Her ihtiyaç, her tip</div>
+  <h2 class="section-title" style="margin-bottom:10px">Yazılımdan makinaya.<br><em>Her şey burada.</em></h2>
+  <p class="section-sub" style="margin-bottom:40px">SaaS platformlarından endüstriyel ekipmanlara, cleantech sistemlerinden su arıtma sensörlerine kadar.</p>
+  <div class="cat-grid">
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#e8f2ec">🌱</div><div class="cat-name">Cleantech & Enerji</div><div class="cat-count">41 açık ilan</div><div class="tags"><span class="tag">Solar</span><span class="tag">Atık Isı</span><span class="tag">Emisyon</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#fff0eb">⚙️</div><div class="cat-name">Makina & Ekipman</div><div class="cat-count">48 açık ilan</div><div class="tags"><span class="tag">Endüstriyel</span><span class="tag">Otomasyon</span><span class="tag">Saha</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#fdf3e3">🔧</div><div class="cat-name">Donanım & IoT</div><div class="cat-count">35 açık ilan</div><div class="tags"><span class="tag">Sensör</span><span class="tag">RFID</span><span class="tag">Gömülü</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#eef1fe">💻</div><div class="cat-name">Yazılım & SaaS</div><div class="cat-count">67 açık ilan</div><div class="tags"><span class="tag">ERP</span><span class="tag">YZ/ML</span><span class="tag">Platform</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#e8f2ec">💧</div><div class="cat-name">Su & Atık Yönetimi</div><div class="cat-count">19 açık ilan</div><div class="tags"><span class="tag">Arıtma</span><span class="tag">İzleme</span><span class="tag">Geri Kazanım</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#eef1fe">🛡️</div><div class="cat-name">Savunma Sanayii</div><div class="cat-count">28 açık ilan</div><div class="tags"><span class="tag">İnsansız</span><span class="tag">Elektronik Harp</span><span class="tag">Simülasyon</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#fdf3e3">⚖️</div><div class="cat-name">RegTech & Uyum</div><div class="cat-count">19 açık ilan</div><div class="tags"><span class="tag">KYC</span><span class="tag">AML</span><span class="tag">GDPR</span></div></a>
+    <a href="gazete.html" class="cat-card"><div class="cat-icon" style="background:#FCEBEB">🏥</div><div class="cat-name">HealthTech & Sağlık</div><div class="cat-count">31 açık ilan</div><div class="tags"><span class="tag">MedTech</span><span class="tag">Dijital Sağlık</span></div></a>
+  </div>
+</div>
+
+<div class="how-wrap">
+<div class="section">
+  <div class="section-tag">Nasıl çalışır?</div>
+  <h2 class="section-title" style="margin-bottom:10px">İki taraf için de basit.</h2>
+  <p class="section-sub" style="margin-bottom:36px">Şirketler problem ilanı açar. Girişimler çözüm önerir. Platform her iki taraf için güveni, şeffaflığı ve adil süreci sağlar.</p>
+  <div class="role-tabs">
+    <button class="rtab on" onclick="sw('corp',this)">🏢 Şirket olarak</button>
+    <button class="rtab" onclick="sw('startup',this)">🚀 Girişim olarak</button>
+  </div>
+  <div id="hw-corp" class="how-grid on">
+    <div class="how-cell"><div class="how-n">01</div><div class="how-t">Probleminizi tanımlayın</div><div class="how-b">Çözmek istediğiniz sorunu, beklenen çözüm tipini (yazılım, cihaz, makina, cleantech) ve bütçe aralığını ilan olarak yayınlayın. 15 dakika sürer.</div><span class="how-pill">Ücretsiz ilan</span></div>
+    <div class="how-cell"><div class="how-n">02</div><div class="how-t">Başvuruları inceleyin</div><div class="how-b">Girişimler anonim profilleriyle çözüm önerir. Tekliflerini, fiyatlarını ve referanslarını görürsünüz. Kimi görüşmeye davet edeceğinize siz karar verirsiniz.</div><span class="how-pill">Ort. 8–15 başvuru</span></div>
+    <div class="how-cell"><div class="how-n">03</div><div class="how-t">Görüşün, pilot isteyin</div><div class="how-b">Platform üzerinden görüşme planlayın. Bütçe onaylayıcınızı sürece davet edin. Pilot anlaşmasını escrow güvencesiyle kurun.</div><span class="how-pill">Onaylayıcı rolü dahil</span></div>
+    <div class="how-cell"><div class="how-n">04</div><div class="how-t">Anlaşmayı tamamlayın</div><div class="how-b">Pilot başarıyla tamamlandığında escrow otomatik serbest bırakılır. Tüm süreç kayıt altında, sözleşmeler platformda, inovasyon panelinde raporlanır.</div><span class="how-pill">Şirkete komisyon yok</span></div>
+  </div>
+  <div id="hw-startup" class="how-grid">
+    <div class="how-cell"><div class="how-n">01</div><div class="how-t">Profilinizi oluşturun</div><div class="how-b">Çözüm kategorilerinizi, referans projelerinizi ve sektörlerinizi ekleyin. Profiliniz Google'da indexlenir — ilk günden itibaren organik görünürlük.</div><span class="how-pill">Ücretsiz profil</span></div>
+    <div class="how-cell"><div class="how-n">02</div><div class="how-t">İlanlara göz atın</div><div class="how-b">Kategori, bütçe, bölge ve tedarik tipine göre filtreleyin. Kategorinizdeki yeni ilanlar için haftalık e-posta bildirimi alın.</div><span class="how-pill">Akıllı eşleştirme</span></div>
+    <div class="how-cell"><div class="how-n">03</div><div class="how-t">Teklifinizi gönderin</div><div class="how-b">Yapılandırılmış form aracılığıyla teklifinizi gönderin. Kimliğiniz, şirket resmi görüşme talebini onaylayana kadar gizli kalır.</div><span class="how-pill">Anonimlik koruması</span></div>
+    <div class="how-cell"><div class="how-n">04</div><div class="how-t">Pipeline'ınızı takip edin</div><div class="how-b">Pipeline panelinizde her başvurunun aşamasını gerçek zamanlı görün. Şirket 90 gün sessiz kalırsa sistem otomatik uyarı gönderir.</div><span class="how-pill">Sizi koruyan mekanizma</span></div>
+  </div>
+</div>
+</div>
+
+<div class="phase-dark">
+  <div class="phase-inner">
+    <div class="phase-tag">Büyüme yol haritası</div>
+    <h2 class="phase-title">İçerikle başlar.<br><em>Anlaşmayla büyür.</em></h2>
+    <div class="phases">
+      <div class="phase"><div class="phase-step">01</div><div class="phase-name">Problem Gazetesi</div><div class="phase-period">Ay 1–3</div><div class="phase-desc">Kurumsal satın alma problemlerini anonim ilan olarak yayınla. Google seni bulur. Haftalık bültenle topluluk kur. Para yok — sadece değer.</div><div class="phase-kpi"><div class="kpi-n">500</div><div class="kpi-l">Bülten abonesi hedefi</div></div></div>
+      <div class="phase"><div class="phase-step">02</div><div class="phase-name">Topluluk Büyümesi</div><div class="phase-period">Ay 3–6</div><div class="phase-desc">Hızlandırıcı ortaklığıyla 80+ girişim profili. Holding bağlantısıyla 15+ şirket hesabı. İlk anlaşmayı elle yönet, case study yayınla.</div><div class="phase-kpi"><div class="kpi-n">1</div><div class="kpi-l">Kapanan anlaşma hedefi</div></div></div>
+      <div class="phase"><div class="phase-step">03</div><div class="phase-name">Ücretli Geçiş</div><div class="phase-period">Ay 6–12</div><div class="phase-desc">Girişim premium aboneliği, taahhüt bedeli, pilot escrow. İlk gelir. Komisyon altyapısı devreye giriyor. İlk 3 ay herkese ücretsizdi.</div><div class="phase-kpi"><div class="kpi-n">€20/ay</div><div class="kpi-l">Starter plan</div></div></div>
+      <div class="phase"><div class="phase-step">04</div><div class="phase-name">Flywheel</div><div class="phase-period">Ay 12+</div><div class="phase-desc">Her kapanan anlaşma yeni şirket ve girişim çekiyor. SEO trafiği organik büyüyor. Başarı komisyonu en büyük gelir kalemi oluyor.</div><div class="phase-kpi"><div class="kpi-n">%1,5–2</div><div class="kpi-l">Başarı komisyonu</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-tag">Platform güvencesi</div>
+  <h2 class="section-title" style="margin-bottom:10px">Hiçbir tarafın<br><em>sistemi atlayamayacağı</em> yapı.</h2>
+  <p class="section-sub" style="margin-bottom:40px">Birbirine kilitli beş katman, platformu atlamanın içinde kalmaktan çok daha maliyetli olmasını sağlar.</p>
+  <div class="protect-grid">
+    <div class="protect-card"><div class="pc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M2 20c0-4 4-7 10-7s10 3 10 7"/><line x1="18" y1="2" x2="22" y2="6"/><line x1="22" y1="2" x2="18" y2="6"/></svg></div><div class="pc-t">Başvuru anonimliği</div><div class="pc-b">Şirket, girişimin adını ve web sitesini ancak görüşme talebini resmi olarak onayladıktan sonra görür. Kim olduğunu bilmeden dışarıda bulamazlar.</div><div class="pc-eff">→ Tanışma anı platformda gerçekleşir</div></div>
+    <div class="protect-card"><div class="pc-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div class="pc-t">Görüşme kaydı</div><div class="pc-b">Her görüşme sisteme kayıt edilir — tarih, saat, katılımcılar. Bu hukuki kanıt oluşturur: "Bu girişimi platformumuz aracılığıyla buldunuz." İspat yükü tersine döner.</div><div class="pc-eff">→ 24 aylık sözleşme maddesi</div></div>
+    <div class="protect-card"><div class="pc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="pc-t">Pilot escrow</div><div class="pc-b">Pilot bedeli platform escrow'unda tutulur. Girişim teslimi tamamlayınca otomatik serbest bırakılır. Her iki taraf için ödeme riski sıfır.</div><div class="pc-eff">→ Girişim teslim eder, ödeme takip eder</div></div>
+    <div class="protect-card"><div class="pc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="pc-t">90 gün aksiyon kuralı</div><div class="pc-b">Bütçe görüşmesinin ardından 30/60/90. günlerde otomatik uyarı. 90. günde aksiyonsuz kalırsa ilan askıya alınır ve taahhüt bedeli tutulur.</div><div class="pc-eff">→ Ölü ilan bırakmanın maliyeti var</div></div>
+    <div class="protect-card"><div class="pc-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="pc-t">Girişim değer kilidi</div><div class="pc-b">Doğrulanmış tedarikçi rozeti, referans puanı ve öncelikli eşleşme platforma özgüdür. Sistemi atlayan girişim bu birikimini kaybeder.</div><div class="pc-eff">→ Ayrılmanın uzun vadeli maliyeti</div></div>
+    <div class="protect-card"><div class="pc-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div><div class="pc-t">Anomali tespiti</div><div class="pc-b">Sistem olağandışı örüntüleri işaretler: şirket bir profili 5+ kez görüntüleyip hiç adım atmıyorsa ya da girişim "başarısız" kapanışın ardından o şirketi müşteri olarak ekliyorsa.</div><div class="pc-eff">→ Komisyon talebi tetiklenir</div></div>
+  </div>
+</div>
+
+<div class="nl-wrap">
+  <div class="nl-inner">
+    <div class="nl-pre">Haftalık Problem Raporu</div>
+    <h2 class="nl-h">Bu hafta 3 şirket<br>ne arıyor?</h2>
+    <p class="nl-desc">Her hafta gerçek kurumsal satın alma ihtiyaçlarını, bütçe aralıklarını ve son tarihleri gelen kutunuza gönderiyoruz. 47 ülkede 2.840 inovasyon profesyoneli tarafından okunuyor.</p>
+    <div class="nl-form">
+      <input class="nl-input" type="email" placeholder="ornek@sirket.com">
+      <button class="btn-primary">Ücretsiz abone ol</button>
+    </div>
+    <div class="nl-note">Ücretsiz · İstediğinizde iptal · Spam yok</div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('home');
+document.getElementById('footer-root').innerHTML = FOOTER();
+function sw(role,btn){
+  document.querySelectorAll('.rtab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.how-grid').forEach(g=>g.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('hw-'+role).classList.add('on');
+}
+</script>
+</body>
+</html>
