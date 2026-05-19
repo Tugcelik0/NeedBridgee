@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How It Works — NeedBridge</title>
+<meta name="description" content="Learn how NeedBridge connects corporate Seekers with startup Solvers. Understand the full process, trust mechanisms, and what you get as a member.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{background:var(--ink);padding:64px 48px;color:var(--paper)}
+.ph-inner{max-width:1000px;margin:0 auto;text-align:center}
+h1.ph-h{font-family:'DM Serif Display',serif;font-size:48px;line-height:1.1;letter-spacing:-.025em;margin-bottom:16px;color:var(--paper)}
+h1.ph-h em{font-style:italic;color:var(--green-m)}
+.ph-d{font-size:16px;color:rgba(247,245,240,.6);line-height:1.75;max-width:560px;margin:0 auto 28px}
+.role-switch{display:flex;gap:8px;justify-content:center}
+.rsw{padding:10px 24px;border-radius:var(--r);font-size:14px;font-weight:500;cursor:pointer;border:1px solid rgba(247,245,240,.2);background:none;color:rgba(247,245,240,.6);transition:all .15s;font-family:'DM Sans',sans-serif}
+.rsw.on{background:rgba(247,245,240,.15);color:var(--paper);border-color:rgba(247,245,240,.4)}
+.flow-section{max-width:800px;margin:0 auto;padding:64px 48px;display:none}
+.flow-section.on{display:block}
+.flow-title{font-family:'DM Serif Display',serif;font-size:32px;color:var(--ink);margin-bottom:6px}
+.flow-sub{font-size:15px;color:var(--ink3);margin-bottom:44px;line-height:1.65}
+.step{display:grid;grid-template-columns:56px 1fr;gap:0;position:relative}
+.step-left{display:flex;flex-direction:column;align-items:center;padding-top:2px}
+.step-num{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0;z-index:1}
+.step-line{width:1.5px;flex:1;min-height:20px;background:var(--line);margin-top:3px}
+.step:last-child .step-line{display:none}
+.step-body{padding:0 0 36px 20px}
+.step-label{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
+.step-title{font-size:18px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.step-desc{font-size:14px;color:var(--ink3);line-height:1.75;margin-bottom:12px}
+.step-detail{border-radius:var(--r);padding:14px 16px;margin-top:4px}
+.sd-row{font-size:13px;line-height:1.6;margin-bottom:6px;display:flex;align-items:flex-start;gap:8px}
+.sd-row:last-child{margin-bottom:0}
+.step-pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.spill{font-size:11px;padding:4px 12px;border-radius:20px;font-weight:500}
+/* TRUST */
+.trust-section{background:var(--paper2);padding:64px 48px}
+.trust-inner{max-width:1100px;margin:0 auto}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.tc{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:22px;transition:border-color .15s}
+.tc:hover{border-color:var(--line2)}
+.tc-icon{font-size:22px;margin-bottom:12px}
+.tc-t{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:7px}
+.tc-b{font-size:12px;color:var(--ink3);line-height:1.7}
+.tc-e{font-size:11px;font-weight:500;color:var(--green);margin-top:10px}
+/* FAQ */
+.faq-section{max-width:700px;margin:0 auto;padding:64px 48px}
+/* CTA */
+.cta-section{text-align:center;padding:72px 48px;background:var(--ink)}
+.cta-inner{max-width:560px;margin:0 auto}
+.cta-h{font-family:'DM Serif Display',serif;font-size:36px;color:var(--paper);margin-bottom:12px}
+.cta-h em{font-style:italic;color:var(--green-m)}
+.cta-d{font-size:15px;color:rgba(247,245,240,.6);margin-bottom:28px;line-height:1.7}
+.cta-btns{display:flex;gap:12px;justify-content:center}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <h1 class="ph-h">How NeedBridge<br><em>actually works.</em></h1>
+    <p class="ph-d">Two sides. One platform. A transparent process designed to protect both Seekers and Solvers from first contact to closed deal.</p>
+    <div class="role-switch">
+      <button class="rsw on" id="sw-seeker" onclick="swRole('seeker')">🏢 I'm a Seeker</button>
+      <button class="rsw" id="sw-solver" onclick="swRole('solver')">🚀 I'm a Solver</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEEKER FLOW -->
+<div class="flow-section on" id="flow-seeker">
+  <div class="flow-title">For Seekers</div>
+  <div class="flow-sub">You have a procurement problem that internal teams can't solve alone. NeedBridge connects you with the startups and innovators most likely to have the answer — without the noise of conferences or cold outreach.</div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e8f2ec;color:#1a6b4a">01</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#1a6b4a">Create account</div>
+      <div class="step-title">Sign up as a Seeker</div>
+      <div class="step-desc">Register your company. Define team roles: the Listing Owner (day-to-day) and the Budget Approver (signs off on spend). Free during our early access period — no credit card needed until October 2026.</div>
+      <div class="step-detail" style="background:#e8f2ec">
+        <div class="sd-row" style="color:#1a6b4a">✓ Company identity stays anonymous on all listings</div>
+        <div class="sd-row" style="color:#1a6b4a">✓ Invite team members with different permission levels</div>
+        <div class="sd-row" style="color:#1a6b4a">✓ Innovation dashboard tracks all your listings and deals</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e8f2ec;color:#1a6b4a">02</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#1a6b4a">Post</div>
+      <div class="step-title">Publish your problem listing</div>
+      <div class="step-desc">Describe the problem you want solved — software, hardware, machine, cleantech, defence, water, RegTech, or anything in between. Set your budget range, deadline, solution type, and whether you're open to a pilot. Your company name is never shown to Solvers until you approve a meeting.</div>
+      <div class="step-pills">
+        <span class="spill" style="background:#e8f2ec;color:#1a6b4a">Takes ~15 minutes</span>
+        <span class="spill" style="background:#e8f2ec;color:#1a6b4a">Free to post</span>
+        <span class="spill" style="background:#e8f2ec;color:#1a6b4a">Company name anonymous</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e8f2ec;color:#1a6b4a">03</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#1a6b4a">Review</div>
+      <div class="step-title">Receive and review proposals</div>
+      <div class="step-desc">Solvers apply with a structured proposal: solution summary, pricing, timeline, and reference links. You see all of this — but not their identity. Filter proposals by budget, timeline, and pilot availability.</div>
+      <div class="step-detail" style="background:#e8f2ec">
+        <div class="sd-row" style="color:#1a6b4a">✓ Average 8–15 proposals per listing</div>
+        <div class="sd-row" style="color:#1a6b4a">✓ Solver identity hidden until you send a meeting invite</div>
+        <div class="sd-row" style="color:#1a6b4a">✓ Solver expected to respond within 48 hours</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e8f2ec;color:#1a6b4a">04</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#1a6b4a">Meet</div>
+      <div class="step-title">Schedule meetings on-platform</div>
+      <div class="step-desc">Invite the Solvers you like to a meeting. The meeting is logged on NeedBridge — date, time, participants — creating a legal record of the introduction. Identities are revealed to both sides at this point. Invite your Budget Approver into the process at the budget discussion stage.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e8f2ec;color:#1a6b4a">05</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#1a6b4a">Pilot</div>
+      <div class="step-title">Run a protected pilot</div>
+      <div class="step-desc">Agree on pilot scope, duration, and payment with the Solver. The pilot fee goes into platform escrow and is released automatically when the Solver delivers. If delivery fails, the fee is returned to you. No risk for either side.</div>
+      <div class="step-pills">
+        <span class="spill" style="background:#e8f2ec;color:#1a6b4a">🔒 Escrow protection</span>
+        <span class="spill" style="background:#e8f2ec;color:#1a6b4a">Automatic release on delivery</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#1a6b4a;color:#fff">06</div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#1a6b4a">Close</div>
+      <div class="step-title">Sign the contract and close</div>
+      <div class="step-desc">Manage the final contract through NeedBridge. The full process — listings, meetings, pilots, contracts — is documented in your Innovation Dashboard and can be exported. <strong>Seekers pay zero commission. Ever.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- SOLVER FLOW -->
+<div class="flow-section" id="flow-solver">
+  <div class="flow-title">For Solvers</div>
+  <div class="flow-sub">You have a solution — hardware, software, system, or service — and you want to reach corporate buyers without years of cold outreach. NeedBridge puts your profile in front of companies actively looking for what you build.</div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e6f1fb;color:#185fa5">01</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#185fa5">Create account</div>
+      <div class="step-title">Sign up and build your profile</div>
+      <div class="step-desc">Add your solution categories, industries, and case studies. Your profile is indexed on Google from day one — organic visibility without paid ads. Free during our early access period until October 2026.</div>
+      <div class="step-detail" style="background:#e6f1fb">
+        <div class="sd-row" style="color:#185fa5">✓ Google-indexed profile from day one</div>
+        <div class="sd-row" style="color:#185fa5">✓ Verified Supplier badge earned on closed deals</div>
+        <div class="sd-row" style="color:#185fa5">✓ Starter plan: €20/month after free period</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e6f1fb;color:#185fa5">02</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#185fa5">Discover</div>
+      <div class="step-title">Find matching problems</div>
+      <div class="step-desc">Filter the Problem Board by category, budget, region, and solution type. Every listing includes the full problem description, technical requirements, and a process timeline. Get weekly email alerts for new problems in your categories.</div>
+      <div class="step-pills">
+        <span class="spill" style="background:#e6f1fb;color:#185fa5">Smart category matching</span>
+        <span class="spill" style="background:#e6f1fb;color:#185fa5">Weekly email alerts</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e6f1fb;color:#185fa5">03</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#185fa5">Apply</div>
+      <div class="step-title">Submit your proposal anonymously</div>
+      <div class="step-desc">Send your pricing, timeline, solution summary, and a reference link via the structured application form. Your company name and personal details stay hidden until the Seeker approves a meeting request.</div>
+      <div class="step-detail" style="background:#e6f1fb">
+        <div class="sd-row" style="color:#185fa5">✓ Identity hidden until meeting is approved</div>
+        <div class="sd-row" style="color:#185fa5">✓ Seeker expected to respond within 48 hours</div>
+        <div class="sd-row" style="color:#185fa5">✓ Starter plan: 3 applications/month free</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#e6f1fb;color:#185fa5">04</div><div class="step-line"></div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#185fa5">Track</div>
+      <div class="step-title">Track your pipeline in real time</div>
+      <div class="step-desc">Your pipeline dashboard shows every application's stage: submitted, reviewed, meeting scheduled, budget discussion, pilot, contract. If a Seeker goes silent for 90 days after a budget discussion, the platform sends them an automated warning — protecting you from dead listings.</div>
+      <div class="step-pills">
+        <span class="spill" style="background:#e6f1fb;color:#185fa5">🛡️ 90-day protection rule</span>
+        <span class="spill" style="background:#e6f1fb;color:#185fa5">Real-time Kanban pipeline</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-left"><div class="step-num" style="background:#185fa5;color:#fff">05</div></div>
+    <div class="step-body">
+      <div class="step-label" style="color:#185fa5">Close</div>
+      <div class="step-title">Pilot, deliver, get paid</div>
+      <div class="step-desc">The Seeker places the pilot payment into escrow. You deliver. The payment is released automatically. Every closed deal adds a verified reference to your profile and increases your visibility on the platform. A 1.5% success commission applies on closed deals (1% for Growth plan subscribers).</div>
+      <div class="step-pills">
+        <span class="spill" style="background:#e6f1fb;color:#185fa5">🔒 Escrow payment guarantee</span>
+        <span class="spill" style="background:#e6f1fb;color:#185fa5">Verified badge on closed deal</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trust-section" id="trust">
+  <div class="trust-inner">
+    <div class="sec-tag">Trust & safety</div>
+    <h2 class="sec-h" style="margin-bottom:10px">Why neither side<br><em>can bypass the platform.</em></h2>
+    <p class="sec-d" style="margin-bottom:0">Five interlocking mechanisms make staying on NeedBridge more valuable than leaving it.</p>
+    <div class="trust-grid">
+      <div class="tc"><div class="tc-icon">🎭</div><div class="tc-t">Proposal anonymity</div><div class="tc-b">Seekers see solution pitches — not solver identities. Identities are revealed only after a formal meeting request is approved on-platform. Seekers can't find solvers externally because they don't know who they are.</div><div class="tc-e">→ The introduction happens on NeedBridge</div></div>
+      <div class="tc"><div class="tc-icon">📋</div><div class="tc-t">Meeting records & 24-month clause</div><div class="tc-b">Every meeting is logged — date, time, participants. This creates legal proof of the introduction. The membership agreement includes a 24-month clause: any commercial deal with a NeedBridge-sourced contact is covered.</div><div class="tc-e">→ Bypassing creates legal risk</div></div>
+      <div class="tc"><div class="tc-icon">🔒</div><div class="tc-t">Pilot escrow</div><div class="tc-b">Pilot fees are held in platform escrow. Released automatically when the solver delivers. If delivery fails, the fee returns to the Seeker. Neither side takes payment risk.</div><div class="tc-e">→ Deliver first, payment follows</div></div>
+      <div class="tc"><div class="tc-icon">⏱️</div><div class="tc-t">90-day action rule</div><div class="tc-b">After a budget discussion starts, automated alerts go out at 30, 60, and 90 days. At day 90 without action, the listing suspends and the Seeker's commitment deposit is forfeited.</div><div class="tc-e">→ Dead listings cost money</div></div>
+      <div class="tc"><div class="tc-icon">⭐</div><div class="tc-t">Solver reputation lock</div><div class="tc-b">Verified badge, reference score, and priority matching are platform-exclusive. A solver who closes a deal off-platform permanently loses this reputation — and the compounding advantage it brings to future listings.</div><div class="tc-e">→ Long-term cost of leaving</div></div>
+      <div class="tc"><div class="tc-icon">🔍</div><div class="tc-t">Anomaly detection</div><div class="tc-b">The system flags unusual patterns: a Seeker viewing a profile repeatedly without acting, or a Solver later listing that Seeker as a client after marking an application "unsuccessful". Commission claims are triggered automatically.</div><div class="tc-e">→ Bypassing is harder than staying</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <h2 class="sec-h" style="margin-bottom:24px">Common questions</h2>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Is NeedBridge free to use?<div class="faq-arr">+</div></div><div class="faq-a">Yes — fully free until October 2026 for everyone. After that, Seekers pay nothing (posting problems and reviewing proposals is always free). Solvers have a free Explorer tier with 3 applications/month. Unlimited applications start at €20/month on the Starter plan.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How is my company identity protected?<div class="faq-arr">+</div></div><div class="faq-a">When you post a problem as a Seeker, your company name, logo, and contact information are never shown to Solvers. They see your sector, problem description, and budget — but not who you are. Your identity is revealed only when you formally approve a meeting request for a specific Solver.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What is the commitment deposit?<div class="faq-arr">+</div></div><div class="faq-a">An optional deposit (€500–€2,000) that Seekers can place when posting a problem. If they complete at least 2 meetings with applicants within 90 days, it's fully refunded. If not, NeedBridge retains it — protecting Solvers from investing time in dead listings.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How does escrow work for pilots?<div class="faq-arr">+</div></div><div class="faq-a">When a Seeker and Solver agree on a pilot, the Seeker deposits the agreed pilot fee into NeedBridge escrow. When the Solver delivers the agreed deliverable, the Seeker confirms and the escrow is released automatically. If the Solver fails to deliver, the fee is returned to the Seeker.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What is the success commission?<div class="faq-arr">+</div></div><div class="faq-a">When a deal closes, a 1.5% success commission is charged to the Solver (not the Seeker). Growth plan subscribers pay 1%. For very small deals, a minimum flat fee of €1,500 applies. This only applies to deals sourced through NeedBridge and covered by your membership agreement.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Can I share a problem listing on LinkedIn?<div class="faq-arr">+</div></div><div class="faq-a">Yes. Seekers can share any of their problem listings to LinkedIn with one click. The share posts the problem category, budget range, and a link to the listing — without revealing the company name. This helps Solvers in your network discover the opportunity.</div></div>
+</div>
+
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-h">Ready to get started?<br><em>It's free until October.</em></div>
+    <div class="cta-d">No credit card. No commitment. Join as a Seeker or Solver and see how NeedBridge works for you.</div>
+    <div class="cta-btns">
+      <a href="join.html?role=seeker" class="btn btn-primary" style="font-size:14px;padding:12px 24px">Join as Seeker →</a>
+      <a href="join.html?role=solver" class="btn" style="background:rgba(247,245,240,.12);color:var(--paper);border:1px solid rgba(247,245,240,.2);font-size:14px;padding:12px 24px">Join as Solver →</a>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('how');
+document.getElementById('footer-root').innerHTML = FOOTER();
+function swRole(r){
+  document.getElementById('sw-seeker').classList.toggle('on', r==='seeker');
+  document.getElementById('sw-solver').classList.toggle('on', r==='solver');
+  document.getElementById('flow-seeker').classList.toggle('on', r==='seeker');
+  document.getElementById('flow-solver').classList.toggle('on', r==='solver');
+}
+const urlRole = new URLSearchParams(window.location.search).get('role');
+if(urlRole==='solver') swRole('solver');
+</script>
+</body>
+</html>

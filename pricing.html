@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — NeedBridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.pricing-hero{padding:72px 48px;text-align:center;max-width:640px;margin:0 auto}
+.pr-tag{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.pr-h{font-family:'DM Serif Display',serif;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin-bottom:14px}
+.pr-h em{font-style:italic;color:var(--green)}
+.pr-d{font-size:16px;color:var(--ink3);line-height:1.7}
+.free-alert{background:var(--green);color:#fff;border-radius:var(--rl);padding:14px 22px;display:flex;align-items:center;gap:12px;font-size:13px;max-width:840px;margin:0 auto 40px}
+.fa-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;white-space:nowrap;margin-left:auto;flex-shrink:0}
+.role-switch{display:flex;gap:4px;justify-content:center;margin-bottom:36px}
+.rsw{padding:9px 22px;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--line2);background:none;color:var(--ink3);transition:all .15s;font-family:'DM Sans',sans-serif}
+.rsw.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.plans-wrap{max-width:1000px;margin:0 auto;padding:0 48px 64px}
+.plan-grid{display:none;grid-template-columns:repeat(3,1fr);gap:14px}
+.plan-grid.on{display:grid}
+.compare-section{background:var(--paper2);padding:64px 48px}
+.compare-inner{max-width:1000px;margin:0 auto}
+.compare-h{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:24px}
+table.ct{width:100%;border-collapse:collapse;font-size:13px}
+table.ct th{padding:10px 14px;text-align:left;font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);background:var(--white);border-bottom:1px solid var(--line)}
+table.ct td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--ink2)}
+table.ct tr:last-child td{border-bottom:none}
+table.ct .chk{color:var(--green);font-weight:500}
+table.ct .xmk{color:var(--paper3)}
+.tp-section{background:var(--ink);padding:60px 48px}
+.tp-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.tp-h{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.15;color:var(--paper);margin-bottom:12px}
+.tp-h em{font-style:italic;color:var(--green-m)}
+.tp-d{font-size:13px;color:rgba(247,245,240,.55);line-height:1.7;margin-bottom:20px}
+.tp-perks{display:flex;flex-direction:column;gap:9px}
+.tp-perk{display:flex;gap:11px;background:rgba(247,245,240,.05);border-radius:var(--r);padding:11px 13px}
+.tp-pi{font-size:17px;flex-shrink:0;margin-top:1px}
+.tp-pt{font-size:12px;font-weight:500;color:var(--paper);margin-bottom:2px}
+.tp-pd{font-size:11px;color:rgba(247,245,240,.5);line-height:1.5}
+.faq-section{max-width:680px;margin:0 auto;padding:60px 48px}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="pricing-hero">
+  <div class="pr-tag">Pricing</div>
+  <h1 class="pr-h">Start free.<br><em>Grow together.</em></h1>
+  <p class="pr-d">Free for everyone until October 2026. After that, a simple model: Seekers always post for free. Solvers pay to connect.</p>
+</div>
+
+<div style="padding:0 48px"><div class="free-alert">
+  <div>🎉 <strong>Early access offer:</strong> Every feature is free until October 2026. No credit card required.</div>
+  <span class="fa-pill">Free until Oct 2026</span>
+</div></div>
+
+<div class="toggle-wrap">
+  <span class="toggle-lbl on" id="lbl-monthly">Monthly</span>
+  <button class="toggle-track" onclick="toggleBilling()"><div class="toggle-thumb" id="tog-thumb"></div></button>
+  <span class="toggle-lbl" id="lbl-annual">Annual <span class="save-pill">Save 20%</span></span>
+</div>
+
+<div class="role-switch">
+  <button class="rsw on" onclick="swPlan('solver',this)">🚀 Solver plans</button>
+  <button class="rsw" onclick="swPlan('seeker',this)">🏢 Seeker plans</button>
+</div>
+
+<div class="plans-wrap">
+  <div id="pl-solver" class="plan-grid on">
+    <div class="plan">
+      <div class="plan-tag">Free</div>
+      <div class="plan-name">Explorer</div>
+      <div class="plan-desc">Browse problems and build your profile. No commitment.</div>
+      <div class="plan-price">€0</div>
+      <div class="plan-period">Always free</div>
+      <hr class="plan-divider">
+      <div class="plan-feat"><div class="pfc"></div>Google-indexed public profile</div>
+      <div class="plan-feat"><div class="pfc"></div>Browse all problem listings</div>
+      <div class="plan-feat"><div class="pfc"></div>3 applications per month</div>
+      <div class="plan-feat"><div class="pfc"></div>Weekly bulletin subscription</div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Unlimited applications</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Pipeline dashboard</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Verified supplier badge</span></div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=solver'">Get started free</button></div>
+    </div>
+    <div class="plan featured">
+      <div class="plan-tag">Most popular</div>
+      <div class="plan-name">Starter</div>
+      <div class="plan-desc">Connect with companies. Track your pipeline. Close your first deal.</div>
+      <div class="plan-price" data-monthly="€20" data-annual="€16">€20</div>
+      <div class="plan-period" data-monthly="/ month · billed monthly" data-annual="/ month · billed annually">/ month · billed monthly</div>
+      <hr class="plan-divider">
+      <div class="plan-feat"><div class="pfc"></div>Everything in Explorer</div>
+      <div class="plan-feat"><div class="pfc"></div>Unlimited applications</div>
+      <div class="plan-feat"><div class="pfc"></div>View full company profiles</div>
+      <div class="plan-feat"><div class="pfc"></div>Pipeline tracking dashboard</div>
+      <div class="plan-feat"><div class="pfc"></div>Category match email alerts</div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Priority listing placement</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Verified supplier badge</span></div>
+      <div class="plan-cta"><button class="cta-white" onclick="location.href='join.html?role=solver&plan=starter'">Start free trial →</button></div>
+    </div>
+    <div class="plan">
+      <div class="plan-tag">Premium</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-desc">Maximum visibility. For solvers actively closing corporate deals.</div>
+      <div class="plan-price" data-monthly="€49" data-annual="€39">€49</div>
+      <div class="plan-period" data-monthly="/ month · billed monthly" data-annual="/ month · billed annually">/ month · billed monthly</div>
+      <hr class="plan-divider">
+      <div class="plan-feat"><div class="pfc"></div>Everything in Starter</div>
+      <div class="plan-feat"><div class="pfc"></div>Priority listing placement</div>
+      <div class="plan-feat"><div class="pfc"></div>✓ Verified supplier badge</div>
+      <div class="plan-feat"><div class="pfc"></div>24-hour early access to new listings</div>
+      <div class="plan-feat"><div class="pfc"></div>Success commission reduced to 1%</div>
+      <div class="plan-feat"><div class="pfc"></div>Case study publication support</div>
+      <div class="plan-feat"><div class="pfc"></div>Dedicated onboarding call</div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=solver&plan=growth'">Upgrade to Growth</button></div>
+    </div>
+  </div>
+
+  <div id="pl-seeker" class="plan-grid">
+    <div class="plan">
+      <div class="plan-tag">Free — Always</div>
+      <div class="plan-name">Explorer</div>
+      <div class="plan-desc">Post problems and review proposals. Free forever.</div>
+      <div class="plan-price">€0</div>
+      <div class="plan-period">Always free</div>
+      <hr class="plan-divider">
+      <div class="plan-feat"><div class="pfc"></div>Browse all solver profiles</div>
+      <div class="plan-feat"><div class="pfc"></div>1 active listing at a time</div>
+      <div class="plan-feat"><div class="pfc"></div>3 connection requests per month</div>
+      <div class="plan-feat"><div class="pfc"></div>View all incoming proposals</div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Anonymous listing option</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Unlimited connections</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Innovation dashboard</span></div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=seeker'">Post a problem free</button></div>
+    </div>
+    <div class="plan featured">
+      <div class="plan-tag">Most popular</div>
+      <div class="plan-name">Sourcing</div>
+      <div class="plan-desc">Actively source startups. Manage procurement in one place.</div>
+      <div class="plan-price" data-monthly="€20" data-annual="€16">€20</div>
+      <div class="plan-period" data-monthly="/ month · billed monthly" data-annual="/ month · billed annually">/ month · billed monthly</div>
+      <hr class="plan-divider">
+      <div class="plan-feat"><div class="pfc"></div>Everything in Explorer</div>
+      <div class="plan-feat"><div class="pfc"></div>Unlimited solver connections</div>
+      <div class="plan-feat"><div class="pfc"></div>Unlimited listings</div>
+      <div class="plan-feat"><div class="pfc"></div>Anonymous listing option</div>
+      <div class="plan-feat"><div class="pfc"></div>Innovation dashboard & reporting</div>
+      <div class="plan-feat"><div class="pfc"></div>Role management (Owner + Approver)</div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">API / ERP integration</span></div>
+      <div class="plan-cta"><button class="cta-white" onclick="location.href='join.html?role=seeker&plan=sourcing'">Start free trial →</button></div>
+    </div>
+    <div class="plan">
+      <div class="plan-tag">Enterprise</div>
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-desc">For holding groups with multiple subsidiary accounts.</div>
+      <div class="plan-price">Custom</div>
+      <div class="plan-period">Volume pricing available</div>
+      <hr class="plan-divider">
+      <div class="plan-feat"><div class="pfc"></div>Everything in Sourcing</div>
+      <div class="plan-feat"><div class="pfc"></div>Multiple subsidiary accounts</div>
+      <div class="plan-feat"><div class="pfc"></div>Consolidated holding dashboard</div>
+      <div class="plan-feat"><div class="pfc"></div>API / ERP integration</div>
+      <div class="plan-feat"><div class="pfc"></div>Dedicated account manager</div>
+      <div class="plan-feat"><div class="pfc"></div>White-label option</div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html'">Contact us</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="tp-section">
+  <div class="tp-inner">
+    <div>
+      <div style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,245,240,.35);margin-bottom:10px">Special programmes</div>
+      <h2 class="tp-h">Technopark & accelerator<br><em>partner accounts</em></h2>
+      <p class="tp-d">Technology development zones, university incubators, and accelerator programmes can add their entire portfolio to NeedBridge under a single partner account — free or at heavily subsidised rates.</p>
+      <button class="btn btn-primary" onclick="location.href='join.html?role=partner'">Apply for partner status →</button>
+    </div>
+    <div class="tp-perks">
+      <div class="tp-perk"><div class="tp-pi">🏛️</div><div><div class="tp-pt">Bulk portfolio upload</div><div class="tp-pd">Add all portfolio startups at once. Individual verified profiles + consolidated partner dashboard.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">📊</div><div><div class="tp-pt">Partner analytics</div><div class="tp-pd">See which portfolio startups receive corporate interest, applications, and pipeline activity.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">🌍</div><div><div class="tp-pt">Global exposure</div><div class="tp-pd">Your portfolio is visible to corporate demand across 47 countries.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">📧</div><div><div class="tp-pt">Co-branded bulletin spot</div><div class="tp-pd">Partner startups featured in the weekly bulletin — read by 2,840+ innovators.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="faq-section">
+  <h2 class="sec-h" style="margin-bottom:24px">Frequently asked</h2>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What happens after the 3-month free period?<div class="faq-arr">+</div></div><div class="faq-a">After October 2026, Seekers always post for free. Solvers keep a permanent free Explorer tier (3 applications/month). Paid plans unlock unlimited applications, pipeline tools, and verified badges. All data and profiles are preserved from the free period.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Is there a commission on deals?<div class="faq-arr">+</div></div><div class="faq-a">Yes — a 1.5% success commission paid by the Solver when a deal closes. Growth plan subscribers pay 1%. For deals under €100K, a minimum flat fee of €1,500 applies. Seekers pay zero commission — ever.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How does the commitment deposit work?<div class="faq-arr">+</div></div><div class="faq-a">Seekers can optionally deposit €500–€2,000 when posting a problem. If they complete at least 2 meetings with applicants within 90 days, the deposit is fully refunded. If not, NeedBridge retains it — protecting Solvers from dead listings.</div></div>
+  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Do technopark accounts cost anything?<div class="faq-arr">+</div></div><div class="faq-a">Technopark and accelerator partner accounts are free or heavily subsidised depending on portfolio size and geographic region. Apply through the partner programme — decisions within 5 business days.</div></div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('pricing');
+document.getElementById('footer-root').innerHTML = FOOTER();
+function swPlan(r,btn){
+  document.querySelectorAll('.rsw').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.plan-grid').forEach(g=>g.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('pl-'+r).classList.add('on');
+}
+</script>
+</body>
+</html>

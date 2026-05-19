@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weekly Bulletin — NeedBridge</title>
+<meta name="description" content="NeedBridge Weekly — new corporate problems, solver spotlights, sector insights, and new joiners. Every Monday.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.bul-hero{background:var(--paper2);border-bottom:1px solid var(--line);padding:52px 48px}
+.bh-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
+h1.bh-h{font-family:'DM Serif Display',serif;font-size:42px;line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+h1.bh-h em{font-style:italic;color:var(--green)}
+.bh-d{font-size:14px;color:var(--ink3);line-height:1.7;max-width:480px}
+.sub-box{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:20px 22px;min-width:240px}
+.sub-lbl{font-size:12px;color:var(--ink3);margin-bottom:8px}
+.sub-in{width:100%;padding:9px 12px;border:1px solid var(--line2);border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);outline:none;margin-bottom:8px}
+.sub-in:focus{border-color:var(--green)}
+.sub-note{font-size:10px;color:var(--ink3);text-align:center;margin-top:6px}
+.bul-tabs{display:flex;gap:4px;margin-top:24px}
+.btab{padding:9px 18px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--line2);border-bottom:none;background:none;color:var(--ink3);transition:all .15s;border-radius:var(--r) var(--r) 0 0;margin-bottom:-1px}
+.btab.on{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--paper)}
+.bul-layout{max-width:1200px;margin:0 auto;padding:32px 48px;display:grid;grid-template-columns:1fr 280px;gap:32px}
+.issue-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--line);font-size:12px;color:var(--ink3)}
+.bsec{margin-bottom:36px}
+.bsec-head{display:flex;align-items:center;gap:9px;margin-bottom:18px;padding-bottom:11px;border-bottom:2px solid var(--ink)}
+.bsec-ic{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.bsec-label{font-family:'DM Serif Display',serif;font-size:21px;color:var(--ink)}
+.bprob{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:18px 20px;margin-bottom:10px;cursor:pointer;transition:border-color .15s}
+.bprob:hover{border-color:var(--line2)}
+.bp-lbl{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.bp-title{font-size:15px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:8px}
+.bp-ctx{font-size:13px;color:var(--ink3);line-height:1.65;margin-bottom:10px}
+.why-box{background:var(--green-l);border-radius:var(--r);padding:10px 13px;font-size:12px;color:#085041;margin-bottom:10px;line-height:1.55}
+.bp-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.bm{font-size:12px;color:var(--ink3)}.bm strong{color:var(--ink)}
+.bp-foot{display:flex;gap:7px;align-items:center;padding-top:10px;border-top:1px solid var(--line)}
+.spotlight-dk{background:var(--ink);border-radius:var(--rl);padding:22px;margin-bottom:10px}
+.sp-top{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.sp-logo{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
+.sp-nm{font-size:15px;font-weight:500;color:var(--paper);margin-bottom:2px}
+.sp-tl{font-size:12px;color:rgba(247,245,240,.5)}
+.sp-body{font-size:12px;color:rgba(247,245,240,.72);line-height:1.65;margin-bottom:12px}
+.sp-proof{background:rgba(247,245,240,.06);border-radius:var(--r);padding:10px 12px;margin-bottom:12px}
+.sp-proof-lbl{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(247,245,240,.3);margin-bottom:6px}
+.sp-proof-item{font-size:12px;color:rgba(247,245,240,.72);margin-bottom:3px}
+.sp-foot{display:flex;gap:7px}
+.btn-wh{font-size:12px;padding:7px 14px;border-radius:var(--r);border:1px solid rgba(247,245,240,.2);background:none;color:var(--paper);cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-gm{font-size:12px;padding:7px 14px;border-radius:var(--r);border:none;background:var(--green-m);color:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500}
+.new-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.nsu{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:13px 15px;display:flex;gap:10px}
+.nsu-logo{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
+.nsu-nm{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.nsu-ds{font-size:11px;color:var(--ink3);line-height:1.5}
+.nsu-co{font-size:10px;color:var(--ink3);margin-top:4px}
+.insight{background:var(--paper2);border:1px solid var(--line);border-radius:var(--rl);padding:18px 20px;margin-bottom:10px}
+.ins-tag{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.ins-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:8px;line-height:1.4}
+.ins-body{font-size:13px;color:var(--ink3);line-height:1.7;margin-bottom:11px}
+.ins-stats{display:flex;gap:18px;background:var(--white);border-radius:var(--r);border:1px solid var(--line);padding:10px 12px}
+.is-n{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink)}
+.is-l{font-size:10px;color:var(--ink3);margin-top:2px}
+.bul-sb{display:flex;flex-direction:column;gap:12px}
+.sb-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:16px 18px}
+.sb-t{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.stbar{margin-bottom:7px}
+.stbar-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--ink3);margin-bottom:3px}
+.stbar-tr{height:3px;background:var(--paper3);border-radius:2px;overflow:hidden}
+.stbar-fl{height:100%;border-radius:2px;background:var(--green)}
+.arc-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.arc-item:last-child{border-bottom:none}
+.arc-l{font-size:13px;color:var(--ink2);transition:color .15s}.arc-item:hover .arc-l{color:var(--green)}
+.arc-m{font-size:11px;color:var(--ink3)}
+.sub-dk{background:var(--ink);border-radius:var(--rl);padding:18px}
+.sd-h{font-family:'DM Serif Display',serif;font-size:18px;color:var(--paper);margin-bottom:7px}
+.sd-d{font-size:12px;color:rgba(247,245,240,.5);margin-bottom:12px;line-height:1.55}
+.sd-in{width:100%;padding:8px 11px;border-radius:var(--r);border:none;font-size:12px;font-family:'DM Sans',sans-serif;margin-bottom:7px;outline:none}
+.sd-btn{width:100%;padding:8px;border-radius:var(--r);border:none;background:var(--green-m);color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* 
+  BEEHIIV EMBED NOTE:
+  To connect your real Beehiiv newsletter:
+  1. Create account at beehiiv.com (free)
+  2. Go to Settings > Embeds
+  3. Copy the embed code
+  4. Replace the .sub-box form in the hero AND .sub-dk sidebar 
+     with your Beehiiv embed code
+*/
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="bul-hero">
+  <div class="bh-inner">
+    <div>
+      <div style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:11px">Weekly Bulletin</div>
+      <h1 class="bh-h">NeedBridge <em>Weekly</em></h1>
+      <p class="bh-d">New corporate problems, solver spotlights, sector insights, and new joiners — every Monday. Read by 2,840 innovation professionals across 47 countries.</p>
+    </div>
+    <div class="sub-box">
+      <div class="sub-lbl">Subscribe free</div>
+      <!-- REPLACE THIS WITH YOUR BEEHIIV EMBED CODE -->
+      <input class="sub-in" type="email" placeholder="your@company.com">
+      <button class="btn btn-primary" style="width:100%;font-size:13px;padding:10px" onclick="subscribeNewsletter()">Subscribe →</button>
+      <div class="sub-note">Free · No spam · Unsubscribe anytime</div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="bul-tabs">
+      <button class="btab on" onclick="showIssue('current',this)">Issue #24 — 12 May 2026</button>
+      <button class="btab" onclick="showIssue('archive',this)">Archive</button>
+    </div>
+  </div>
+</div>
+
+<div id="issue-current" style="display:block">
+<div class="bul-layout">
+  <div>
+    <div class="issue-meta">
+      <span style="font-weight:500">Issue #24</span>
+      <span class="badge badge-green">Latest</span>
+      <span style="margin-left:auto">Monday, 12 May 2026</span>
+      <span>2,840 readers</span>
+    </div>
+
+    <div class="bsec">
+      <div class="bsec-head">
+        <div class="bsec-ic" style="background:var(--green-l)">📋</div>
+        <span class="bsec-label">This week's open problems</span>
+        <span class="badge badge-gray" style="margin-left:auto">3 listings</span>
+      </div>
+
+      <div class="bprob" onclick="location.href='problems.html'">
+        <div class="bp-lbl">🌱 Cleantech · Turkey</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div class="bp-title" style="flex:1;margin-right:10px">A large Turkish glassmaker is looking for a 500 kW solar + storage hybrid system</div>
+          <span class="badge badge-red">Urgent</span>
+        </div>
+        <div class="bp-ctx">One of Turkey's largest glass manufacturers wants to cover 40% of its Mersin factory's daily consumption from renewables. EPC+O&M under one contract.</div>
+        <div class="why-box">💡 <strong>Why this matters:</strong> Test project — success means 4 more sites in 2027. First-mover advantage is real.</div>
+        <div class="bp-meta"><span class="bm">Budget: <strong>€280,000</strong></span><span class="bm">Deadline: <strong>Jun 15</strong></span><span class="bm">Pilot: <strong>Yes</strong></span></div>
+        <div class="bp-foot"><button class="btn btn-primary btn-sm">Propose solution →</button><span class="badge badge-gray">14 applications</span></div>
+      </div>
+
+      <div class="bprob" onclick="location.href='problems.html'">
+        <div class="bp-lbl">⚙️ Machinery · EMEA</div>
+        <div class="bp-title" style="margin-bottom:8px">A European composites manufacturer needs NIR-based textile waste sorting machinery</div>
+        <div class="bp-ctx">Sorting mixed nylon/polyester waste by fibre type using NIR spectroscopy. Min 800 kg/h throughput. Must be industrial-grade.</div>
+        <div class="why-box">💡 <strong>Why this matters:</strong> EU circular economy regulation tightening. Early movers own the EMEA market.</div>
+        <div class="bp-meta"><span class="bm">Budget: <strong>€175,000</strong></span><span class="bm">Deadline: <strong>Jul 15</strong></span><span class="bm">Region: <strong>EMEA</strong></span></div>
+        <div class="bp-foot"><button class="btn btn-primary btn-sm">Propose solution →</button><span class="badge badge-gray">6 applications</span></div>
+      </div>
+
+      <div class="bprob" onclick="location.href='problems.html'">
+        <div class="bp-lbl">🛡️ Defence · Turkey</div>
+        <div class="bp-title" style="margin-bottom:8px">Turkish defence manufacturer seeks GPS-denied autonomous navigation software</div>
+        <div class="bp-ctx">Autonomous navigation module for urban GPS-denied environments. ROS2 compatible, lidar+camera fusion. Turkish company or consortium preferred.</div>
+        <div class="bp-meta"><span class="bm">Budget: <strong>€220,000</strong></span><span class="bm">Deadline: <strong>Aug 30</strong></span><span class="bm">Pilot: <strong>Yes</strong></span></div>
+        <div class="bp-foot"><button class="btn btn-primary btn-sm">Propose solution →</button><span class="badge badge-gray">4 applications</span></div>
+      </div>
+    </div>
+
+    <div class="bsec">
+      <div class="bsec-head">
+        <div class="bsec-ic" style="background:var(--ink);color:var(--paper)">⭐</div>
+        <span class="bsec-label">Solver spotlight</span>
+      </div>
+      <div class="spotlight-dk">
+        <div class="sp-top">
+          <div class="sp-logo" style="background:#e8f6ff;color:#0c6087">AS</div>
+          <div>
+            <div class="sp-nm">AquaSense <span class="badge badge-dark" style="font-size:9px;vertical-align:middle">✓ Verified</span></div>
+            <div class="sp-tl">Online water quality sensors · UK · Global</div>
+          </div>
+        </div>
+        <div class="sp-body">AquaSense builds fixed online sensors measuring micropollutants, microplastics, and pharmaceutical residues at ppb level — continuously, in real time. SCADA/MODBUS native. Founded 2018, 41-person team, 22 installations across 9 countries.</div>
+        <div class="sp-proof">
+          <div class="sp-proof-lbl">Proof points</div>
+          <div class="sp-proof-item">✓ 22 active installations in municipal and industrial water treatment</div>
+          <div class="sp-proof-item">✓ SCADA/MODBUS native — zero custom integration needed</div>
+          <div class="sp-proof-item">✓ Detects ibuprofen, estrogen, microplastics at 0.1 ppb</div>
+        </div>
+        <div class="sp-foot">
+          <button class="btn-wh" onclick="location.href='solvers.html'">View profile</button>
+          <button class="btn-gm" onclick="location.href='join.html?role=seeker'">Connect with AquaSense</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bsec">
+      <div class="bsec-head">
+        <div class="bsec-ic" style="background:var(--green-l)">✨</div>
+        <span class="bsec-label">New this week</span>
+        <span class="badge badge-green" style="margin-left:auto">12 solvers joined</span>
+      </div>
+      <div class="new-grid">
+        <div class="nsu"><div class="nsu-logo" style="background:#e8f2ec;color:#1a6b4a">WR</div><div><div class="nsu-nm">WattRoute <span class="badge badge-new" style="font-size:9px">New</span></div><div class="nsu-ds">Industrial microgrid energy management platform.</div><div class="nsu-co">🇩🇰 Denmark · Cleantech</div></div></div>
+        <div class="nsu"><div class="nsu-logo" style="background:#f0eeff;color:#5b3fbe">FS</div><div><div class="nsu-nm">FiberSort Systems <span class="badge badge-new" style="font-size:9px">New</span></div><div class="nsu-ds">NIR textile waste sorting. 500–2,000 kg/h.</div><div class="nsu-co">🇧🇪 Belgium · Machinery</div></div></div>
+        <div class="nsu"><div class="nsu-logo" style="background:#fdeaea;color:#b83232">MT</div><div><div class="nsu-nm">MedTrack AI <span class="badge badge-new" style="font-size:9px">New</span></div><div class="nsu-ds">AI-powered medical device maintenance prediction.</div><div class="nsu-co">🇮🇱 Israel · HealthTech</div></div></div>
+        <div class="nsu"><div class="nsu-logo" style="background:#fff0eb;color:#a0441a">NS</div><div><div class="nsu-nm">NavSys Defense <span class="badge badge-new" style="font-size:9px">New</span></div><div class="nsu-ds">GPS-denied autonomous navigation software.</div><div class="nsu-co">🇹🇷 Turkey · Defence</div></div></div>
+      </div>
+    </div>
+
+    <div class="bsec">
+      <div class="bsec-head">
+        <div class="bsec-ic" style="background:var(--amber-l)">📊</div>
+        <span class="bsec-label">Sector insight</span>
+      </div>
+      <div class="insight">
+        <div class="ins-tag">🌱 Cleantech & Energy — May 2026</div>
+        <div class="ins-title">Why industrial waste heat recovery is the fastest-growing category on NeedBridge</div>
+        <div class="ins-body">Three forces converge: energy costs for industrial operators up 34% YoY, EU CSRD requiring emission reduction documentation, and new heat pump technology dropping capex by ~40% since 2023. This makes mid-scale projects (€80K–€200K) viable for the first time. 8 new waste heat listings in the last 30 days — up from 2 a year ago. Solvers who can show a completed reference project get meetings within 10 days.</div>
+        <div class="ins-stats">
+          <div><div class="is-n">8</div><div class="is-l">New listings / 30 days</div></div>
+          <div><div class="is-n">2–4yr</div><div class="is-l">Typical payback now</div></div>
+          <div><div class="is-n">–40%</div><div class="is-l">Heat pump capex since 2023</div></div>
+        </div>
+      </div>
+      <div class="insight">
+        <div class="ins-tag">🛡️ Defence · Turkey</div>
+        <div class="ins-title">Turkey's defence procurement is opening to startups — but only on specific terms</div>
+        <div class="ins-body">SSB-aligned procurement increasingly favours domestic or domestically-partnered companies. The opportunity is real — but Solvers without a Turkish legal entity or consortium partner are being screened out early. Startups looking to enter should consider Turkish partnerships before applying to defence listings.</div>
+        <div class="ins-stats">
+          <div><div class="is-n">28</div><div class="is-l">Open defence listings</div></div>
+          <div><div class="is-n">4</div><div class="is-l">New this month</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bul-sb">
+    <div class="sub-dk">
+      <div class="sd-h">Get it in your inbox</div>
+      <div class="sd-d">Every Monday. New problems, solver spotlights, and sector insights for your category.</div>
+      <!-- REPLACE WITH BEEHIIV EMBED -->
+      <input class="sd-in" type="email" placeholder="your@company.com">
+      <button class="sd-btn" onclick="subscribeNewsletter()">Subscribe free →</button>
+    </div>
+    <div class="sb-card">
+      <div class="sb-t">This issue</div>
+      <div style="font-size:12px;color:var(--ink3);line-height:1.9">
+        <div>📋 <strong style="color:var(--ink)">3</strong> new problems</div>
+        <div>⭐ <strong style="color:var(--ink)">1</strong> solver spotlight</div>
+        <div>✨ <strong style="color:var(--ink)">12</strong> new solvers joined</div>
+        <div>📊 <strong style="color:var(--ink)">2</strong> sector insights</div>
+        <div>💰 <strong style="color:var(--ink)">€675K</strong> total problem budget</div>
+      </div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-t">Activity this week</div>
+      <div class="stbar"><div class="stbar-lbl"><span>Cleantech</span><span>41</span></div><div class="stbar-tr"><div class="stbar-fl" style="width:82%"></div></div></div>
+      <div class="stbar"><div class="stbar-lbl"><span>Software</span><span>35</span></div><div class="stbar-tr"><div class="stbar-fl" style="width:70%"></div></div></div>
+      <div class="stbar"><div class="stbar-lbl"><span>Defence</span><span>28</span></div><div class="stbar-tr"><div class="stbar-fl" style="width:56%"></div></div></div>
+      <div class="stbar"><div class="stbar-lbl"><span>Machinery</span><span>22</span></div><div class="stbar-tr"><div class="stbar-fl" style="width:44%"></div></div></div>
+      <div class="stbar"><div class="stbar-lbl"><span>RegTech</span><span>19</span></div><div class="stbar-tr"><div class="stbar-fl" style="width:38%"></div></div></div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-t">Archive</div>
+      <div class="arc-item"><span class="arc-l">Issue #23 — May 5</span><span class="arc-m">2,790 readers</span></div>
+      <div class="arc-item"><span class="arc-l">Issue #22 — Apr 28</span><span class="arc-m">2,750 readers</span></div>
+      <div class="arc-item"><span class="arc-l">Issue #21 — Apr 21</span><span class="arc-m">2,700 readers</span></div>
+      <div class="arc-item"><span class="arc-l">Issue #20 — Apr 14</span><span class="arc-m">2,640 readers</span></div>
+      <div class="arc-item"><span class="arc-l">Issue #19 — Apr 7</span><span class="arc-m">2,590 readers</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="issue-archive" style="display:none">
+<div style="max-width:1200px;margin:0 auto;padding:32px 48px">
+  <div style="font-size:15px;color:var(--ink3);margin-bottom:22px">All 24 issues of NeedBridge Weekly</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px" id="archive-grid"></div>
+</div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('bulletin');
+document.getElementById('footer-root').innerHTML = FOOTER();
+
+const grid = document.getElementById('archive-grid');
+for(let n=24;n>=1;n--){
+  const d = document.createElement('div');
+  d.className = 'card';
+  d.style.cursor = 'pointer';
+  d.onclick = () => showIssue('current', document.querySelector('.btab'));
+  d.innerHTML = `<div style="font-size:11px;color:var(--ink3);margin-bottom:5px">Issue #${n}</div>
+    <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">NeedBridge Weekly</div>
+    <div style="font-size:12px;color:var(--ink3);margin-bottom:8px">May ${Math.max(1,26-n)}, 2026</div>
+    <div style="font-size:11px;color:var(--ink3)">${(2840-(24-n)*20).toLocaleString()} readers</div>`;
+  grid.appendChild(d);
+}
+
+function showIssue(id, btn){
+  document.getElementById('issue-current').style.display = id==='current'?'block':'none';
+  document.getElementById('issue-archive').style.display = id==='archive'?'block':'none';
+  document.querySelectorAll('.btab').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+}
+
+function subscribeNewsletter(){
+  /* 
+    TODO: Replace with your Beehiiv subscription endpoint or embed.
+    For now shows a simple alert.
+  */
+  alert('Thanks! You\'re subscribed to NeedBridge Weekly. Check your inbox for a confirmation email.');
+}
+</script>
+</body>
+</html>

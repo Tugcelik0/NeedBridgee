@@ -1,21 +1,19 @@
 const NAV = (active) => `
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    </div>
+    <div class="logo-mark">N</div>
     NeedBridge
   </a>
   <div class="nav-links">
-    <a href="gazette.html" class="nav-link ${active==='gazette'?'active':''}">Problem Gazetesi</a>
-    <a href="startups.html" class="nav-link ${active==='startups'?'active':''}">Startup Vitrini</a>
-    <a href="bulletin.html" class="nav-link ${active==='bulletin'?'active':''}">Haftalık Bülten</a>
-    <a href="pricing.html" class="nav-link ${active==='pricing'?'active':''}">Üyelik</a>
-    <a href="#" class="nav-link">Hakkımızda</a>
+    <button class="nav-link ${active==='problems'?'active':''}" onclick="location.href='problems.html'">Problem Board</button>
+    <button class="nav-link ${active==='solvers'?'active':''}" onclick="location.href='solvers.html'">Solver Directory</button>
+    <button class="nav-link ${active==='how'?'active':''}" onclick="location.href='how-it-works.html'">How It Works</button>
+    <button class="nav-link ${active==='bulletin'?'active':''}" onclick="location.href='bulletin.html'">Weekly Bulletin</button>
+    <button class="nav-link ${active==='pricing'?'active':''}" onclick="location.href='pricing.html'">Pricing</button>
   </div>
   <div class="nav-right">
-    <button class="btn-ghost">Giriş yap</button>
-    <button class="btn-primary">Ücretsiz kayıt →</button>
+    <button class="btn btn-ghost" onclick="location.href='join.html'">Sign in</button>
+    <button class="btn btn-primary btn-sm" onclick="location.href='join.html'">Join free →</button>
   </div>
 </nav>`;
 
@@ -25,41 +23,39 @@ const FOOTER = () => `
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <div class="logo-mark" style="width:24px;height:24px">
-            <svg viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
+          <div class="logo-mark" style="width:24px;height:24px;font-size:12px">N</div>
           NeedBridge
         </div>
-        <p class="footer-desc">Şirketlerin çözmek istediği problemler var. Çözümleri de var. Aradaki mesafe biziz.</p>
-        <div style="margin-top:20px;display:flex;gap:10px">
-          <span class="badge badge-gray" style="font-size:10px">🌍 Global</span>
-          <span class="badge badge-gray" style="font-size:10px">47 ülke</span>
+        <p class="footer-desc">Where corporate problems meet startup solutions. Global. Anonymous. Trusted.</p>
+        <div style="margin-top:16px;display:flex;gap:8px">
+          <span class="badge badge-gray">🌍 Global</span>
+          <span class="badge badge-gray">Est. 2026</span>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Platform</div>
-        <a href="gazette.html" class="footer-link">Problem Gazetesi</a>
-        <a href="startups.html" class="footer-link">Startup Vitrini</a>
-        <a href="bulletin.html" class="footer-link">Haftalık Bülten</a>
-        <a href="pricing.html" class="footer-link">Üyelik planları</a>
+        <a href="problems.html" class="footer-link">Problem Board</a>
+        <a href="solvers.html" class="footer-link">Solver Directory</a>
+        <a href="bulletin.html" class="footer-link">Weekly Bulletin</a>
+        <a href="pricing.html" class="footer-link">Pricing</a>
       </div>
       <div>
-        <div class="footer-col-title">Kurumlar için</div>
-        <a href="#" class="footer-link">Problem ilanı aç</a>
-        <a href="#" class="footer-link">Startup'ları keşfet</a>
-        <a href="#" class="footer-link">Teknopark hesabı</a>
-        <a href="#" class="footer-link">Başarı hikayeleri</a>
+        <div class="footer-col-title">For Seekers</div>
+        <a href="how-it-works.html#seekers" class="footer-link">How it works</a>
+        <a href="join.html?role=seeker" class="footer-link">Post a problem</a>
+        <a href="pricing.html#seekers" class="footer-link">Seeker plans</a>
+        <a href="how-it-works.html#trust" class="footer-link">Trust & safety</a>
       </div>
       <div>
-        <div class="footer-col-title">Startup'lar için</div>
-        <a href="#" class="footer-link">Profil oluştur</a>
-        <a href="#" class="footer-link">İlanlara başvur</a>
-        <a href="#" class="footer-link">Pipeline takibi</a>
-        <a href="#" class="footer-link">Hızlandırıcı ortakları</a>
+        <div class="footer-col-title">For Solvers</div>
+        <a href="how-it-works.html#solvers" class="footer-link">How it works</a>
+        <a href="join.html?role=solver" class="footer-link">Create profile</a>
+        <a href="pricing.html#solvers" class="footer-link">Solver plans</a>
+        <a href="how-it-works.html#trust" class="footer-link">Anonymity & escrow</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 NeedBridge Technologies. All rights reserved.</div>
+      <div class="footer-copy">© 2026 NeedBridge. All rights reserved.</div>
       <div class="footer-legal">
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
@@ -68,3 +64,30 @@ const FOOTER = () => `
     </div>
   </div>
 </footer>`;
+
+// LinkedIn share helper
+function shareOnLinkedIn(text, url) {
+  const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url || window.location.href)}&summary=${encodeURIComponent(text || '')}`;
+  window.open(shareUrl, '_blank', 'width=600,height=600');
+}
+
+// FAQ toggle
+function initFAQ() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+}
+
+// Pricing toggle
+let isAnnual = false;
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  document.getElementById('tog-thumb').className = 'toggle-thumb' + (isAnnual ? ' right' : '');
+  document.getElementById('lbl-monthly').className = 'toggle-lbl' + (isAnnual ? '' : ' on');
+  document.getElementById('lbl-annual').className = 'toggle-lbl' + (isAnnual ? ' on' : '');
+  document.querySelectorAll('[data-monthly]').forEach(el => {
+    el.textContent = isAnnual ? el.dataset.annual : el.dataset.monthly;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initFAQ);

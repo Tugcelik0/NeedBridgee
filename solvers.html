@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solver Directory — NeedBridge</title>
+<meta name="description" content="Browse startups and innovators solving corporate problems. Hardware, software, cleantech, defence, water, RegTech and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{background:var(--paper2);border-bottom:1px solid var(--line);padding:52px 48px}
+.ph-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
+h1.ph-h{font-family:'DM Serif Display',serif;font-size:42px;line-height:1.1;letter-spacing:-.02em;margin-bottom:10px}
+h1.ph-h em{font-style:italic;color:var(--green)}
+.ph-d{font-size:14px;color:var(--ink3);line-height:1.7;max-width:480px}
+.ph-stats{display:flex;gap:24px;align-items:flex-end}
+.phs-n{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink)}
+.phs-l{font-size:10px;color:var(--ink3);margin-top:2px}
+.filter-bar{background:var(--white);border-bottom:1px solid var(--line);padding:14px 48px;position:sticky;top:60px;z-index:50}
+.fi-inner{max-width:1200px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fi{padding:8px 14px;border:1px solid var(--line2);border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--white);outline:none;width:200px}
+.fi:focus{border-color:var(--green)}
+.fchip{font-size:12px;padding:5px 13px;border-radius:20px;border:1px solid var(--line2);background:none;color:var(--ink3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fc{font-size:12px;color:var(--ink3);margin-left:auto;white-space:nowrap}
+.grid-wrap{max-width:1200px;margin:0 auto;padding:24px 48px}
+.solver-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:10px}
+.sc{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);overflow:hidden;display:flex;flex-direction:column;transition:border-color .18s,transform .15s;cursor:pointer}
+.sc:hover{border-color:var(--line2);transform:translateY(-2px)}
+.sc.isnew{border-top:2px solid var(--green-m)}
+.sc-cover{height:5px}
+.sc-body{padding:18px 20px;flex:1}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.sc-logo{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
+.sc-badges{display:flex;flex-direction:column;gap:4px;align-items:flex-end}
+.sc-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.sc-tagline{font-size:12px;color:var(--ink3);margin-bottom:9px;line-height:1.45}
+.sc-cats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px}
+.sc-cat{font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px}
+.sc-desc{font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:11px}
+.sc-meta{display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.sm{font-size:11px;color:var(--ink3)}.sm strong{color:var(--ink)}
+.sc-foot{padding:12px 20px;border-top:1px solid var(--line);display:flex;gap:7px;align-items:center;background:var(--paper2)}
+.sc-ver{font-size:10px;color:var(--green);font-weight:500;margin-left:auto}
+/* PAYWALL */
+.pw-wrap{position:relative;overflow:hidden;border-radius:var(--rl)}
+.pw-blur{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;filter:blur(3px);pointer-events:none;user-select:none}
+.pw-over{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(247,245,240,0) 0%,rgba(247,245,240,.95) 30%,rgba(247,245,240,1) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:28px;z-index:2}
+.pw-box{text-align:center}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,14,12,.55);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--paper);border-radius:var(--rxl);width:100%;max-width:640px;box-shadow:0 24px 64px rgba(0,0,0,.18);overflow:hidden;transform:translateY(20px);transition:transform .2s}
+.modal-bg.open .modal{transform:translateY(0)}
+.mh{padding:26px 30px 22px;border-bottom:1px solid var(--line)}
+.mh-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.mh-logo{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;flex-shrink:0}
+.mh-nm{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.mh-tl{font-size:13px;color:var(--ink3)}
+.m-close{width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);background:none;color:var(--ink3);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:auto}
+.mbody{padding:24px 30px}
+.msec{margin-bottom:18px}
+.msec-t{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.mtext{font-size:13px;color:var(--ink2);line-height:1.75}
+.proof-list{display:flex;flex-direction:column;gap:7px}
+.proof-item{font-size:12px;color:var(--ink2);display:flex;align-items:flex-start;gap:8px}
+.proof-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:6px}
+.connect-box{background:var(--paper2);border-radius:var(--rl);padding:18px 20px}
+.ct{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);margin-bottom:5px}
+.cs{font-size:12px;color:var(--ink3);margin-bottom:14px;line-height:1.6}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div>
+      <div style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px">Solver Directory</div>
+      <h1 class="ph-h">1,840 solvers.<br>Every solution type. <em>Global.</em></h1>
+      <p class="ph-d">Browse startups and innovators by solution category, technology, and region. First 10 visible free. Join as a Seeker to see all and connect.</p>
+    </div>
+    <div>
+      <div class="ph-stats" style="margin-bottom:14px">
+        <div><div class="phs-n">1,840</div><div class="phs-l">Solvers</div></div>
+        <div><div class="phs-n">47</div><div class="phs-l">Countries</div></div>
+        <div><div class="phs-n">48</div><div class="phs-l">New this week</div></div>
+      </div>
+      <a href="join.html?role=solver" class="btn btn-primary">Add your startup →</a>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="fi-inner">
+    <input class="fi" id="search" placeholder="Search solvers, technologies..." oninput="render()">
+    <button class="fchip on" onclick="setCat('all',this)">All</button>
+    <button class="fchip" onclick="setCat('cleantech',this)">🌱 Cleantech</button>
+    <button class="fchip" onclick="setCat('hardware',this)">🔧 Hardware</button>
+    <button class="fchip" onclick="setCat('software',this)">💻 Software</button>
+    <button class="fchip" onclick="setCat('machinery',this)">⚙️ Machinery</button>
+    <button class="fchip" onclick="setCat('defence',this)">🛡️ Defence</button>
+    <button class="fchip" onclick="setCat('water',this)">💧 Water</button>
+    <button class="fchip" style="background:var(--green-l);color:var(--green);border-color:rgba(26,107,74,.3)" onclick="setCat('new',this)">✨ New this week</button>
+    <span class="fc" id="fc">1,840 solvers</span>
+  </div>
+</div>
+
+<div class="grid-wrap">
+  <div class="free-banner">🎉 <strong>Early access — fully free until October 2026.</strong> No credit card needed.</div>
+  <div class="solver-grid" id="solver-grid"></div>
+  <div class="pw-wrap" id="pw-wrap">
+    <div class="pw-blur" id="pw-blur"></div>
+    <div class="pw-over">
+      <div class="pw-box">
+        <div style="font-size:22px;margin-bottom:8px">🔒</div>
+        <div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px">Join as a Seeker to see all 1,840 solvers</div>
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:14px">Free until October 2026. Browse and connect — no payment needed.</div>
+        <a href="join.html?role=seeker" class="btn btn-primary">Join free as a Seeker →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-bg" onclick="bgClose(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('solvers');
+document.getElementById('footer-root').innerHTML = FOOTER();
+
+const SOLVERS = [
+  {id:1,cat:'cleantech',name:'SolarGrid Engineering',tagline:'Industrial solar & BESS EPC for manufacturing sites',logo:'SG',lb:'#e8f2ec',lt:'#1a6b4a',cover:'#1a6b4a',cats:['🌱 Cleantech','⚡ Energy Storage'],desc:'3 completed EPC projects in Turkish industrial facilities. Tüpraş and Şişecam reference. Specialising in hybrid solar+BESS for energy-intensive manufacturing.',country:'🇹🇷 Turkey',founded:'2021',team:'18',region:'TR / EMEA',tags:['Solar PV','BESS','EPC','O&M'],verified:true,isNew:false,proof:['3 industrial EPC projects completed','Tüpraş and Şişecam references','Currently open to 2 new projects']},
+  {id:2,cat:'hardware',name:'VisionCore GmbH',tagline:'Machine vision quality control for precision manufacturing',logo:'VC',lb:'#e6f1fb',lt:'#185fa5',cover:'#185fa5',cats:['🔧 Hardware','🏭 Manufacturing'],desc:'Sub-micron inline inspection systems. OPC-UA native. Deployed in 14 automotive and aerospace production lines across Germany and Austria.',country:'🇩🇪 Germany',founded:'2019',team:'32',region:'DACH / Global',tags:['Machine Vision','OPC-UA','Automotive','Aerospace'],verified:true,isNew:false,proof:['14 automotive/aerospace deployments in DACH','Sub-micron accuracy (±0.01mm)','OPC-UA native — no custom integration']},
+  {id:3,cat:'software',name:'ChainTemp',tagline:'Cold chain IoT monitoring and anomaly detection SaaS',logo:'CT',lb:'#fdf3e3',lt:'#c47c1a',cover:'#c47c1a',cats:['💻 SaaS','❄️ Cold Chain'],desc:'Real-time temperature monitoring for 200+ vehicle fleets in food, pharma, and retail logistics. TMS/WMS integrations out of the box. Active in 8 countries.',country:'🇳🇱 Netherlands',founded:'2022',team:'12',region:'Europe / Global',tags:['IoT','Cold Chain','SaaS','TMS Integration'],verified:true,isNew:true,proof:['200+ vehicles monitored across 8 countries','TMS/WMS integrations pre-built','Sub-2-minute anomaly detection']},
+  {id:4,cat:'machinery',name:'FiberSort Systems',tagline:'NIR-based automated textile waste sorting machinery',logo:'FS',lb:'#f0eeff',lt:'#5b3fbe',cover:'#5b3fbe',cats:['⚙️ Machinery','♻️ Circular Economy'],desc:'Industrial machines sorting mixed textile waste by fibre composition using NIR spectroscopy. 500–2,000 kg/h. EU Circular Economy certified.',country:'🇧🇪 Belgium',founded:'2020',team:'24',region:'EMEA',tags:['NIR Spectroscopy','Textile','Recycling'],verified:false,isNew:true,proof:['500–2,000 kg/h industrial throughput','94%+ classification accuracy','EU Circular Economy certified supplier']},
+  {id:5,cat:'water',name:'AquaSense',tagline:'Online water quality sensors for treatment infrastructure',logo:'AS',lb:'#e8f6ff',lt:'#0c6087',cover:'#0c6087',cats:['💧 Water','📡 Sensors'],desc:'Fixed online sensors measuring micropollutants, microplastics, and pharmaceuticals at ppb level — continuously, in real time. SCADA/MODBUS native. 22 deployments in 9 countries.',country:'🇬🇧 UK',founded:'2018',team:'41',region:'Global',tags:['Water Quality','Sensor','SCADA','Micropollutants'],verified:true,isNew:false,proof:['22 active installations in 9 countries','SCADA/MODBUS native','0.1 ppb sensitivity for ibuprofen, estrogen, microplastics']},
+  {id:6,cat:'cleantech',name:'HeatBridge',tagline:'Industrial waste heat recovery engineering and EPC',logo:'HB',lb:'#eaf6e0',lt:'#3b6d11',cover:'#3b6d11',cats:['🌱 Cleantech','🌡️ Heat Recovery'],desc:'Feasibility and EPC for industrial waste heat recovery projects. Heat pump, heat exchanger, and ORC system integration. 11 completed projects in food, glass, and ceramics.',country:'🇹🇷 Turkey',founded:'2020',team:'15',region:'TR / MENA',tags:['Waste Heat','Heat Pump','ORC','EPC'],verified:true,isNew:false,proof:['11 completed projects across 3 sectors','Average ROI: 2.5 years','Full EPC capability (design to O&M)']},
+  {id:7,cat:'software',name:'SiteEye',tagline:'BIM-integrated construction site progress monitoring',logo:'SE',lb:'#fff0eb',lt:'#a0441a',cover:'#a0441a',cats:['💻 SaaS','🏗️ ConTech'],desc:'Drone + fixed camera footage automatically compared against BIM models. Deviation detection, progress reports, and delay prediction for large-scale infrastructure projects.',country:'🇸🇬 Singapore',founded:'2021',team:'28',region:'Global',tags:['BIM','Drone','Construction','Computer Vision'],verified:true,isNew:true,proof:['Active on 14 mega-project sites','Autodesk BIM 360 / Revit native','Deviation detection accuracy >96%']},
+  {id:8,cat:'hardware',name:'TagFlow',tagline:'RFID asset tracking for healthcare and hospitality',logo:'TF',lb:'#fdeaea',lt:'#b83232',cover:'#b83232',cats:['🔧 Hardware','🏥 Healthcare'],desc:'Wash-resistant RFID systems for textile tracking in hospitals, hotels, and laundries. Full package: tags + readers + management software. 40+ installations across EMEA.',country:'🇵🇱 Poland',founded:'2019',team:'19',region:'EMEA',tags:['RFID','Healthcare','Textile Tracking'],verified:false,isNew:false,proof:['40+ installations across EMEA','200+ wash-cycle resistant tags','HIS/PMS API integration pre-built']},
+  {id:9,cat:'defence',name:'NavSys Defense',tagline:'GPS-denied autonomous navigation software',logo:'NS',lb:'#eef1fe',lt:'#3C3489',cover:'#534AB7',cats:['🛡️ Defence','🤖 Autonomous Systems'],desc:'GPS-denied, urban-environment autonomous navigation module. ROS2 compatible, lidar+camera fusion. 2 national defence project references.',country:'🇹🇷 Turkey',founded:'2020',team:'21',region:'TR / EMEA',tags:['Autonomous','Navigation','ROS2','Defence'],verified:false,isNew:true,proof:['2 national defence project references','ROS2 + Gazebo simulation environment','GPS-denied accuracy <1m drift in 500m urban course']},
+  {id:10,cat:'software',name:'CompliAI',tagline:'AI-powered AML and regulatory compliance platform',logo:'CA',lb:'#FAEEDA',lt:'#633806',cover:'#BA7517',cats:['⚖️ RegTech','🤖 AI Compliance'],desc:'AML, KYC, and GDPR compliance automation using ML. BDDK, EBA, and FATF compliant. Explainable AI built-in for audit trails. Active in 6 countries.',country:'🇬🇧 UK',founded:'2021',team:'16',region:'Europe / MENA',tags:['AML','KYC','ML','Explainable AI'],verified:true,isNew:false,proof:['Active in 6 countries across Europe & MENA','34% average false positive reduction','BDDK, EBA, FATF certified']},
+];
+
+const FREE_LIMIT = 10;
+let activeCat = 'all';
+
+function render(){
+  const q = document.getElementById('search').value.toLowerCase();
+  let data = SOLVERS.filter(s => {
+    if(activeCat==='new') return s.isNew;
+    if(activeCat!=='all' && s.cat!==activeCat) return false;
+    if(q && ![s.name,s.tagline,...s.tags].some(x=>x.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  document.getElementById('fc').textContent = data.length + ' solvers';
+  const free = data.slice(0, FREE_LIMIT);
+  const locked = data.slice(FREE_LIMIT);
+  document.getElementById('solver-grid').innerHTML = free.map(s => cardHTML(s)).join('');
+  const pw = document.getElementById('pw-wrap');
+  const pwb = document.getElementById('pw-blur');
+  if(locked.length > 0){
+    pwb.innerHTML = locked.slice(0,3).map(s => cardHTML(s)).join('');
+    pw.style.display = 'block';
+  } else {
+    pw.style.display = 'none';
+  }
+}
+
+function cardHTML(s){
+  return `<div class="sc${s.isNew?' isnew':''}" onclick="openModal(${s.id})">
+    <div class="sc-cover" style="background:${s.cover}"></div>
+    <div class="sc-body">
+      <div class="sc-top">
+        <div class="sc-logo" style="background:${s.lb};color:${s.lt}">${s.logo}</div>
+        <div class="sc-badges">
+          ${s.isNew?'<span class="badge badge-new" style="font-size:9px">✨ New</span>':''}
+          ${s.verified?'<span class="badge badge-dark" style="font-size:9px">✓ Verified</span>':''}
+        </div>
+      </div>
+      <div class="sc-name">${s.name}</div>
+      <div class="sc-tagline">${s.tagline}</div>
+      <div class="sc-cats">${s.cats.map(c=>`<span class="sc-cat" style="background:${s.lb};color:${s.lt}">${c}</span>`).join('')}</div>
+      <div class="sc-desc">${s.desc}</div>
+      <div class="sc-meta">
+        <span class="sm">${s.country}</span>
+        <span class="sm">Est. <strong>${s.founded}</strong></span>
+        <span class="sm"><strong>${s.team}</strong> team</span>
+      </div>
+      <div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+    <div class="sc-foot">
+      <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();openModal(${s.id})">View profile</button>
+      <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openModal(${s.id})">Connect</button>
+      ${s.verified?`<span class="sc-ver">✓ Verified</span>`:''}
+    </div>
+  </div>`;
+}
+
+function openModal(id){
+  const s = SOLVERS.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('modal-content').innerHTML = `
+    <div class="mh">
+      <div class="mh-top">
+        <div class="mh-logo" style="background:${s.lb};color:${s.lt}">${s.logo}</div>
+        <div style="flex:1">
+          <div class="mh-nm">${s.name} ${s.verified?'<span class="badge badge-dark" style="font-size:9px;vertical-align:middle">✓ Verified</span>':''}</div>
+          <div class="mh-tl">${s.tagline}</div>
+          <div class="sc-cats" style="margin-top:8px">${s.cats.map(c=>`<span class="sc-cat" style="background:${s.lb};color:${s.lt}">${c}</span>`).join('')}</div>
+        </div>
+        <button class="m-close" onclick="closeModal()">✕</button>
+      </div>
+    </div>
+    <div class="mbody">
+      <div class="msec">
+        <div class="msec-t">About</div>
+        <div class="mtext">${s.desc}</div>
+      </div>
+      <div class="msec">
+        <div class="msec-t">Proof points</div>
+        <div class="proof-list">${s.proof.map(p=>`<div class="proof-item"><div class="proof-dot"></div><span>${p}</span></div>`).join('')}</div>
+      </div>
+      <div class="msec">
+        <div class="msec-t">Details</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="card-muted" style="padding:10px 12px"><div style="font-size:10px;color:var(--ink3);margin-bottom:3px">Country</div><div style="font-size:13px;font-weight:500">${s.country}</div></div>
+          <div class="card-muted" style="padding:10px 12px"><div style="font-size:10px;color:var(--ink3);margin-bottom:3px">Founded</div><div style="font-size:13px;font-weight:500">${s.founded}</div></div>
+          <div class="card-muted" style="padding:10px 12px"><div style="font-size:10px;color:var(--ink3);margin-bottom:3px">Team</div><div style="font-size:13px;font-weight:500">${s.team} people</div></div>
+          <div class="card-muted" style="padding:10px 12px"><div style="font-size:10px;color:var(--ink3);margin-bottom:3px">Region</div><div style="font-size:13px;font-weight:500">${s.region}</div></div>
+        </div>
+      </div>
+      <div class="msec"><div class="msec-t">Tags</div><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+      <div class="connect-box">
+        <div class="ct">Connect with ${s.name}</div>
+        <div class="cs">Send a connection request. Your company name stays anonymous until you approve a meeting. Available to Seekers with an active plan.</div>
+        <div style="display:flex;gap:8px">
+          <a href="join.html?role=seeker" class="btn btn-primary">Join as Seeker to connect →</a>
+          <button class="btn btn-ghost" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function bgClose(e){ if(e.target===document.getElementById('modal-bg')) closeModal(); }
+function setCat(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.fchip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+render();
+</script>
+</body>
+</html>

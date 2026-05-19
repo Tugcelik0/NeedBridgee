@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Problem Board — NeedBridge</title>
+<meta name="description" content="Browse real corporate procurement problems. Software, hardware, cleantech, defence and more. Join as a Solver to see full details and apply.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero{background:var(--ink);padding:52px 48px;color:var(--paper)}
+.ph-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
+.ph-eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,245,240,.4);margin-bottom:12px}
+h1.ph-h{font-family:'DM Serif Display',serif;font-size:42px;line-height:1.1;letter-spacing:-.02em;color:var(--paper);margin-bottom:10px}
+h1.ph-h em{font-style:italic;color:var(--green-m)}
+.ph-d{font-size:14px;color:rgba(247,245,240,.6);line-height:1.7;max-width:480px}
+.ph-stats{display:flex;gap:28px}
+.phs-n{font-family:'DM Serif Display',serif;font-size:26px;color:var(--paper)}
+.phs-l{font-size:10px;color:rgba(247,245,240,.35);margin-top:2px}
+.filter-bar{background:var(--white);border-bottom:1px solid var(--line);padding:14px 48px;position:sticky;top:60px;z-index:50}
+.fi-inner{max-width:1200px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fi{padding:8px 14px;border:1px solid var(--line2);border-radius:var(--r);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--white);outline:none;width:220px}
+.fi:focus{border-color:var(--green)}
+.fchip{font-size:12px;padding:5px 13px;border-radius:20px;border:1px solid var(--line2);background:none;color:var(--ink3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fchip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fc{font-size:12px;color:var(--ink3);margin-left:auto;white-space:nowrap}
+.layout{max-width:1200px;margin:0 auto;padding:24px 48px;display:grid;grid-template-columns:1fr 280px;gap:24px}
+.listing{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:20px 22px;margin-bottom:10px;transition:border-color .2s,transform .15s;cursor:pointer}
+.listing:hover{border-color:var(--line2);transform:translateY(-1px)}
+.ls-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.ls-co{display:flex;gap:10px;align-items:center}
+.ls-av{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
+.ls-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.ls-sec{font-size:11px;color:var(--ink3)}
+.tp{font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.tp-clean{background:var(--green-l);color:var(--green)}
+.tp-hw{background:var(--amber-l);color:var(--amber)}
+.tp-sw{background:var(--blue-l);color:var(--blue)}
+.tp-mach{background:#fff0eb;color:#a0441a}
+.tp-water{background:#e8f6ff;color:#0c6087}
+.tp-def{background:#EEEDFE;color:#3C3489}
+.tp-reg{background:#FAEEDA;color:#633806}
+.tp-health{background:#FCEBEB;color:#791F1F}
+.ls-title{font-size:14px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:8px}
+.ls-desc{font-size:12px;color:var(--ink3);line-height:1.65;margin-bottom:12px}
+.ls-meta{display:flex;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.lm{font-size:11px;color:var(--ink3)}.lm strong{color:var(--ink)}
+.ls-foot{display:flex;gap:7px;align-items:center;padding-top:12px;border-top:1px solid var(--line)}
+.ls-apps{font-size:11px;color:var(--ink3);margin-left:auto}
+.pilot-tag{font-size:10px;background:var(--blue-l);color:var(--blue);padding:2px 7px;border-radius:4px}
+.sb-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:16px 18px;margin-bottom:12px}
+.sb-t{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.sb-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:12px;color:var(--ink2)}
+.sb-row:last-child{border-bottom:none}.sb-row strong{color:var(--ink)}
+.rchips{display:flex;flex-wrap:wrap;gap:5px}
+.rchip{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--line2);cursor:pointer;color:var(--ink3);background:none;transition:all .15s}
+.rchip.on{background:var(--green-l);color:var(--green);border-color:rgba(26,107,74,.3)}
+.nl-dk{background:var(--ink);border-radius:var(--rl);padding:18px}
+.nl-dk-h{font-family:'DM Serif Display',serif;font-size:17px;color:var(--paper);margin-bottom:7px}
+.nl-dk-d{font-size:12px;color:rgba(247,245,240,.5);margin-bottom:12px;line-height:1.55}
+.nl-dk-in{width:100%;padding:8px 11px;border-radius:var(--r);border:none;font-size:12px;font-family:'DM Sans',sans-serif;margin-bottom:7px;outline:none}
+.nl-dk-btn{width:100%;padding:8px;border-radius:var(--r);border:none;background:var(--green-m);color:#fff;font-size:12px;font-weight:500;cursor:pointer}
+/* PAYWALL */
+.paywall-wrap{position:relative;overflow:hidden;border-radius:var(--rl);margin-bottom:10px}
+.paywall-blur{filter:blur(3px);pointer-events:none;user-select:none}
+.paywall-over{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(247,245,240,0) 0%,rgba(247,245,240,.95) 35%,rgba(247,245,240,1) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:24px;z-index:2}
+.paywall-box{text-align:center}
+.paywall-icon{font-size:22px;margin-bottom:8px}
+.paywall-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:5px}
+.paywall-sub{font-size:12px;color:var(--ink3);margin-bottom:14px}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,14,12,.55);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:var(--paper);border-radius:var(--rxl);width:100%;max-width:700px;box-shadow:0 24px 64px rgba(0,0,0,.18);overflow:hidden;transform:translateY(20px);transition:transform .2s}
+.modal-bg.open .modal{transform:translateY(0)}
+.mh{background:var(--ink);padding:26px 30px 22px;color:var(--paper)}
+.mh-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.mh-co{display:flex;gap:11px;align-items:center}
+.mh-av{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.mh-nm{font-size:14px;font-weight:500;color:var(--paper);margin-bottom:2px}
+.mh-sc{font-size:11px;color:rgba(247,245,240,.5)}
+.m-close{width:30px;height:30px;border-radius:50%;border:1px solid rgba(247,245,240,.2);background:none;color:rgba(247,245,240,.7);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.m-close:hover{background:rgba(247,245,240,.1)}
+.m-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.3;color:var(--paper);margin-bottom:14px}
+.m-badges{display:flex;gap:7px;flex-wrap:wrap}
+.mbdg{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px}
+.mb-type{background:rgba(247,245,240,.12);color:var(--paper)}
+.mb-urg{background:var(--red-l);color:var(--red)}
+.mb-open{background:var(--green-l);color:var(--green)}
+.mb-rev{background:var(--amber-l);color:var(--amber)}
+.mb-pilot{background:rgba(255,255,255,.1);color:rgba(247,245,240,.8)}
+.mbody{padding:26px 30px}
+.mstats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--rl);overflow:hidden;margin-bottom:22px;background:var(--white)}
+.ms{padding:12px 14px;border-right:1px solid var(--line)}
+.ms:last-child{border-right:none}
+.ms-n{font-family:'DM Serif Display',serif;font-size:17px;color:var(--ink)}
+.ms-l{font-size:10px;color:var(--ink3);margin-top:2px}
+.msec{margin-bottom:20px}
+.msec-t{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.mtext{font-size:13px;color:var(--ink2);line-height:1.75}
+.why-box{background:var(--green-l);border:1px solid rgba(26,107,74,.15);border-radius:var(--r);padding:12px 14px;font-size:12px;color:#085041;line-height:1.65;margin-bottom:20px}
+.req-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
+.req-item{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--ink2)}
+.req-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:6px}
+.mtl{display:flex;flex-direction:column;gap:0;margin-bottom:20px}
+.tls{display:flex;gap:11px}
+.tls-l{display:flex;flex-direction:column;align-items:center;width:18px;flex-shrink:0}
+.tld{width:13px;height:13px;border-radius:50%;flex-shrink:0}
+.tld.done{background:var(--green)}
+.tld.now{background:#EF9F27;border:2px solid #BA7517}
+.tld.future{background:var(--paper2);border:1.5px solid var(--line)}
+.tlline{width:1.5px;flex:1;min-height:14px;background:var(--line);margin-top:2px}
+.tlc{flex:1;padding-bottom:12px}
+.tl-nm{font-size:12px;font-weight:500;color:var(--ink)}
+.tl-dt{font-size:10px;color:var(--ink3);margin-top:2px}
+.apply-box{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:20px 22px}
+.apply-t{font-family:'DM Serif Display',serif;font-size:19px;color:var(--ink);margin-bottom:5px}
+.apply-s{font-size:12px;color:var(--ink3);margin-bottom:16px;line-height:1.6}
+.apply-ft{display:flex;gap:10px;align-items:center;margin-top:14px}
+.apply-note{font-size:11px;color:var(--ink3);line-height:1.5}
+.success-msg{background:var(--green-l);border:1px solid rgba(26,107,74,.2);border-radius:var(--r);padding:12px 14px;font-size:12px;color:#085041;display:none;margin-top:12px;line-height:1.6}
+.success-msg.show{display:block}
+.li-share{display:inline-flex;align-items:center;gap:6px;background:#0077B5;color:#fff;border:none;padding:7px 14px;border-radius:var(--r);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:10px}
+.li-share svg{width:14px;height:14px;fill:#fff}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div>
+      <div class="ph-eyebrow">Problem Board</div>
+      <h1 class="ph-h">Real problems.<br><em>Open for solutions.</em></h1>
+      <p class="ph-d">Companies publish their real procurement needs anonymously. Every listing has a defined budget, deadline, and solution type. First 10 visible free — join as a Solver to see all.</p>
+    </div>
+    <div class="ph-stats">
+      <div><div class="phs-n">214</div><div class="phs-l">Open problems</div></div>
+      <div><div class="phs-n">€31.4M</div><div class="phs-l">Total budget</div></div>
+      <div><div class="phs-n">47</div><div class="phs-l">Countries</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="fi-inner">
+    <input class="fi" id="search" placeholder="Search problems, sectors, technologies..." oninput="render()">
+    <button class="fchip on" onclick="setCat('all',this)">All</button>
+    <button class="fchip" onclick="setCat('cleantech',this)">🌱 Cleantech</button>
+    <button class="fchip" onclick="setCat('defence',this)">🛡️ Defence</button>
+    <button class="fchip" onclick="setCat('hardware',this)">🔧 Hardware</button>
+    <button class="fchip" onclick="setCat('software',this)">💻 Software</button>
+    <button class="fchip" onclick="setCat('machinery',this)">⚙️ Machinery</button>
+    <button class="fchip" onclick="setCat('water',this)">💧 Water</button>
+    <button class="fchip" onclick="setCat('regtech',this)">⚖️ RegTech</button>
+    <span class="fc" id="fc">214 problems</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div>
+    <div class="free-banner">🎉 <strong>Early access — fully free until October 2026.</strong> No credit card needed.</div>
+    <div id="listings"></div>
+    <div class="paywall-wrap" id="paywall">
+      <div class="paywall-blur" id="paywall-blur"></div>
+      <div class="paywall-over">
+        <div class="paywall-box">
+          <div class="paywall-icon">🔒</div>
+          <div class="paywall-title">Join as a Solver to see all 214 problems</div>
+          <div class="paywall-sub">Free until October 2026. Browse, apply, and connect — no payment needed.</div>
+          <a href="join.html?role=solver" class="btn btn-primary">Join free as a Solver →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sb-card">
+      <div class="sb-t">By category</div>
+      <div class="sb-row"><span>🌱 Cleantech & Energy</span><strong>41</strong></div>
+      <div class="sb-row"><span>🛡️ Defence</span><strong>28</strong></div>
+      <div class="sb-row"><span>🔧 Hardware / IoT</span><strong>35</strong></div>
+      <div class="sb-row"><span>💻 Software / SaaS</span><strong>67</strong></div>
+      <div class="sb-row"><span>⚙️ Machinery</span><strong>48</strong></div>
+      <div class="sb-row"><span>💧 Water & Waste</span><strong>19</strong></div>
+      <div class="sb-row"><span>⚖️ RegTech</span><strong>19</strong></div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-t">Region</div>
+      <div class="rchips">
+        <button class="rchip on">Global</button><button class="rchip">EMEA</button>
+        <button class="rchip">Turkey</button><button class="rchip">Germany</button>
+        <button class="rchip">UK</button><button class="rchip">Middle East</button>
+        <button class="rchip">APAC</button><button class="rchip">USA</button>
+      </div>
+    </div>
+    <div class="sb-card">
+      <div class="sb-t">Budget range</div>
+      <input type="range" min="10" max="500" value="500" id="bslider" style="width:100%;margin-bottom:6px" oninput="updateBudget(this.value)">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink3)"><span>€10K</span><span id="bval">€500K+</span></div>
+    </div>
+    <div class="nl-dk">
+      <div class="nl-dk-h">Weekly digest</div>
+      <div class="nl-dk-d">Get new problems in your category every Monday morning.</div>
+      <input class="nl-dk-in" type="email" placeholder="your@company.com">
+      <button class="nl-dk-btn">Subscribe free →</button>
+    </div>
+    <div class="sb-card" style="background:var(--ink);border-color:var(--ink)">
+      <div class="sb-t" style="color:rgba(247,245,240,.35)">Are you a Seeker?</div>
+      <div style="font-size:13px;color:rgba(247,245,240,.65);margin-bottom:14px;line-height:1.6">Post your procurement problem. Reach 1,840 solvers across 47 countries. Free.</div>
+      <a href="join.html?role=seeker" class="btn btn-primary" style="display:block;text-align:center;font-size:13px;padding:10px">Post a problem →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-bg" onclick="bgClose(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<div id="footer-root"></div>
+<script src="components.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = NAV('problems');
+document.getElementById('footer-root').innerHTML = FOOTER();
+
+const PROBLEMS = [
+  {id:1,cat:'cleantech',title:'500 kW solar + storage hybrid system for factory site',co:'S. · Glass & Packaging',sector:'Manufacturing · Turkey',av:'S.',avbg:'#e8f2ec',avco:'#1a6b4a',tp:'cleantech',tpl:'🌱 Cleantech',tpc:'tp-clean',status:'urgent',budget:280000,deadline:'Jun 15, 2026',region:'TR',apps:14,pilot:true,tags:['Solar PV','BESS','EPC','O&M'],desc:'Factory needs a grid-connected hybrid energy system covering 40% of daily 2,400 kWh consumption from renewables. EPC+O&M under a single contract.',full:'We want to cover 40% of our Mersin factory\'s daily 2,400 kWh consumption from renewables. We need a single EPC contractor for design, procurement, installation, and O&M under one contract.',why:'Test project — if successful, the group plans 4 more sites in 2027. First-mover advantage is real.',reqs:['Rooftop + open-area solar installation (min 500 kWp)','Min 1 MWh BESS','Grid-tied system design','OPC-UA or Modbus SCADA integration','5-year O&M contract included'],tl:[{n:'Listing published',d:'May 1, 2026',s:'done'},{n:'Application deadline',d:'Jun 15, 2026',s:'now'},{n:'Technical evaluation',d:'Jun–Jul 2026',s:'future'},{n:'Pilot agreement',d:'Jul 2026',s:'future'},{n:'Project kick-off',d:'Aug 2026',s:'future'}]},
+  {id:2,cat:'hardware',title:'Vision-based inline quality control device for welding line',co:'F. · Automotive',sector:'Automotive · TR / Germany',av:'F.',avbg:'#e6f1fb',avco:'#185fa5',tp:'hardware',tpl:'🔧 Hardware / IoT',tpc:'tp-hw',status:'open',budget:95000,deadline:'Jun 30, 2026',region:'TR/DE',apps:21,pilot:true,tags:['Machine Vision','OPC-UA','Industry 4.0'],desc:'Micron-precision inline geometry and weld quality measurement on body welding line. System must measure without stopping the line. OPC-UA integration mandatory.',full:'We need a camera/laser-based system for micron-precision inline geometry and weld quality measurement on our Gölcük body line. Must work without stopping the line and integrate via OPC-UA with our MES.',why:'Our sampling-based approach catches defective parts too late. Inline measurement will reduce scrap cost by ~60%.',reqs:['Inline measurement without line stoppage (45 parts/hr)','Geometry tolerance ±0.05mm','OPC-UA native integration','IP67 or higher protection class','3-year local service guarantee'],tl:[{n:'Listing published',d:'May 15, 2026',s:'done'},{n:'Application deadline',d:'Jun 30, 2026',s:'now'},{n:'Factory visit & test',d:'Jul 2026',s:'future'},{n:'Pilot installation',d:'Aug 2026',s:'future'},{n:'Full rollout',d:'Oct 2026',s:'future'}]},
+  {id:3,cat:'software',title:'Cold chain temperature deviation early-warning SaaS',co:'U. · Food & FMCG',sector:'FMCG · Turkey',av:'U.',avbg:'#fdf3e3',avco:'#c47c1a',tp:'software',tpl:'💻 Software / SaaS',tpc:'tp-sw',status:'open',budget:48000,deadline:'Jul 1, 2026',region:'TR',apps:9,pilot:false,tags:['IoT','Cold Chain','SaaS','Anomaly Detection'],desc:'Real-time anomaly detection for -18°C product transport across 72 vehicles with automatic driver and operations alerts. TMS integration required.',full:'We need a SaaS solution that detects temperature anomalies in real time across our 72-vehicle distribution fleet during -18°C transport and sends automatic alerts to drivers and operations. Must integrate with our TMS via REST API.',why:'We had to destroy €180K of product in the last 6 months due to cold chain violations. An early warning system will prevent most of this.',reqs:['IoT sensor per vehicle (72 vehicles)','Real-time anomaly detection (max 2 min delay)','SMS + push notifications','REST API TMS integration','GDPR-compliant data storage (EU data centre)'],tl:[{n:'Listing published',d:'May 20, 2026',s:'done'},{n:'Application deadline',d:'Jul 1, 2026',s:'now'},{n:'Demo & evaluation',d:'Jul 2026',s:'future'},{n:'Contract',d:'Aug 2026',s:'future'}]},
+  {id:4,cat:'machinery',title:'Automated fiber sorting machine for waste textile recycling',co:'K. · Textile & Composites',sector:'Composites · EMEA',av:'K.',avbg:'#f0eeff',avco:'#534AB7',tp:'machinery',tpl:'⚙️ Machinery',tpc:'tp-mach',status:'open',budget:175000,deadline:'Jul 15, 2026',region:'EMEA',apps:6,pilot:true,tags:['NIR Spectroscopy','Textile Recycling','Circular Economy'],desc:'NIR spectroscopy-based industrial machine for classifying and separating nylon/polyester mixed waste textile by fiber type. Min 800 kg/h capacity.',full:'We need an industrial machine that uses NIR spectroscopy to classify and separate mixed nylon/polyester waste textile by fiber type. Minimum 800 kg/h throughput. Must be industrial-grade, not a lab prototype.',why:'EU Circular Economy regulation is tightening. This machine ensures legal compliance and significant cost savings.',reqs:['NIR spectroscopy-based auto classification','Min 800 kg/h throughput (nylon/polyester)','Min 94% classification accuracy','PLC control system with HMI','CE certification mandatory','3-month pilot option at our facility'],tl:[{n:'Listing published',d:'May 1, 2026',s:'done'},{n:'Application deadline',d:'Jul 15, 2026',s:'now'},{n:'Technical evaluation & factory visit',d:'Aug 2026',s:'future'},{n:'Pilot installation (3 months)',d:'Sep 2026',s:'future'},{n:'Purchase decision',d:'Dec 2026',s:'future'}]},
+  {id:5,cat:'water',title:'Drinking water treatment microcontaminant online sensor',co:'I. · Public Utility',sector:'Water Management · Turkey',av:'I.',avbg:'#e8f6ff',avco:'#0c6087',tp:'water',tpl:'💧 Water & Waste',tpc:'tp-water',status:'review',budget:62000,deadline:'Jun 20, 2026',region:'TR',apps:11,pilot:false,tags:['Microcontaminant','Sensor','SCADA','Online Monitoring'],desc:'Fixed online sensor measuring pharmaceutical residues and microplastics at ppb level at treatment plant exit, feeding data to SCADA via Modbus/TCP.',full:'We need a fixed-installation online sensor measuring pharmaceutical residues and microplastics at ppb level continuously at our treatment plant exit. Data must feed into our SCADA system via Modbus/TCP.',why:'EU Water Framework Directive adds new microcontaminant monitoring obligations. We are moving to proactive compliance.',reqs:['Ibuprofen, estrogen, PFAS, microplastics measurement (ppb)','Fixed, online, continuous measurement','Modbus/TCP or OPC-UA SCADA integration','IP68 protection class','Annual calibration & maintenance contract'],tl:[{n:'Listing published',d:'May 10, 2026',s:'done'},{n:'Applications under review',d:'Jun 20, 2026',s:'now'},{n:'Technical evaluation',d:'Jul 2026',s:'future'},{n:'Installation',d:'Aug 2026',s:'future'}]},
+  {id:6,cat:'cleantech',title:'Waste heat recovery system for greenhouse heating',co:'B. · AgriTech',sector:'Horticulture · TR / Netherlands',av:'B.',avbg:'#eaf6e0',avco:'#3b6d11',tp:'cleantech',tpl:'🌱 Cleantech',tpc:'tp-clean',status:'open',budget:130000,deadline:'Aug 1, 2026',region:'TR/NL',apps:4,pilot:true,tags:['Waste Heat','Heat Pump','AgriTech','Energy Efficiency'],desc:'Recovery of compressor waste heat from cold storage units via heat pumps or heat exchangers for greenhouse heating. Feasibility + EPC in a single proposal.',full:'We want to recover compressor waste heat from our cold storage units and use it for greenhouse heating via heat pumps or heat exchangers. Antalya-based operation with Netherlands partnership. Wants feasibility + EPC in one proposal.',why:'Our current greenhouse heating costs €95K/year. Waste heat recovery will reduce this by 60–70%. Project pays back in 2.5 years.',reqs:['Compressor waste heat utilisation (heat pump / exchanger)','Greenhouse heating capacity: 4,800 m²','Feasibility + technical design in one package','EPC model (turnkey)','3-month pilot option (1 greenhouse)'],tl:[{n:'Listing published',d:'May 1, 2026',s:'done'},{n:'Application deadline',d:'Aug 1, 2026',s:'now'},{n:'Site visit & feasibility',d:'Aug–Sep 2026',s:'future'},{n:'Pilot greenhouse installation',d:'Oct 2026',s:'future'},{n:'Full rollout',d:'Mar 2027',s:'future'}]},
+  {id:7,cat:'defence',title:'GPS-denied autonomous navigation software for unmanned ground vehicle',co:'A. · Defence & Aerospace',sector:'Defence Industry · Turkey',av:'A.',avbg:'#eef1fe',avco:'#3C3489',tp:'defence',tpl:'🛡️ Defence',tpc:'tp-def',status:'open',budget:220000,deadline:'Aug 30, 2026',region:'TR',apps:4,pilot:true,tags:['Autonomous','Navigation','Defence','ROS2'],desc:'Autonomous navigation module operating without GPS in urban environments, testable in simulation. ROS2 compatible, lidar + camera fusion required.',full:'We need a software module enabling autonomous navigation without GPS in urban environments. Must run on ROS2, support lidar+camera sensor fusion, and be testable in simulation (Gazebo or equivalent). Turkish company or Turkish-partnered consortium required.',why:'For integration into our SSB-approved UGV platform. Domestic solution producers are our priority.',reqs:['GPS-denied autonomous navigation','ROS2-compatible software architecture','Lidar + camera sensor fusion','Simulation environment (Gazebo or equivalent)','Compliance with SSB technical requirements','Turkish company or Turkish-partnered consortium'],tl:[{n:'Listing published',d:'May 1, 2026',s:'done'},{n:'Application deadline',d:'Aug 30, 2026',s:'now'},{n:'Technical presentation & simulation',d:'Sep 2026',s:'future'},{n:'Platform integration test',d:'Oct 2026',s:'future'},{n:'Contract',d:'Nov 2026',s:'future'}]},
+  {id:8,cat:'regtech',title:'Real-time AML transaction monitoring engine',co:'B. · Banking',sector:'Finance · Turkey',av:'B.',avbg:'#FAEEDA',avco:'#633806',tp:'regtech',tpl:'⚖️ RegTech',tpc:'tp-reg',status:'open',budget:85000,deadline:'Aug 1, 2026',region:'TR',apps:8,pilot:false,tags:['AML','ML','RegTech','BDDK'],desc:'ML-based real-time anti-money laundering engine to replace our rule-based system. BDDK and MASAK compliant. Core banking API integration mandatory.',full:'We need an ML-based real-time AML engine to replace our current rule-based system. Must comply with BDDK and MASAK regulations. Core banking API integration is mandatory. Data must remain in Turkey.',why:'Our current system generates 34% false positives, consuming most of our compliance team\'s time. ML will improve accuracy and reduce operational load.',reqs:['Real-time transaction scoring (max 200ms latency)','Lower false positive rate than current system','BDDK, MASAK, and FATF-compliant rule engine','Core banking API integration (ISO 20022)','Explainable AI (XAI) mandatory for audit','Data must stay in Turkey (local cloud)'],tl:[{n:'Listing published',d:'May 1, 2026',s:'done'},{n:'Application deadline',d:'Aug 1, 2026',s:'now'},{n:'Technical demo & sandbox test',d:'Aug 2026',s:'future'},{n:'Security & compliance audit',d:'Sep 2026',s:'future'},{n:'Contract & go-live',d:'Oct 2026',s:'future'}]},
+  {id:9,cat:'software',title:'BIM-integrated real-time construction site progress tracking',co:'L. · Construction',sector:'Infrastructure · Global',av:'L.',avbg:'#fff0eb',avco:'#a0441a',tp:'software',tpl:'💻 Software / SaaS',tpc:'tp-sw',status:'open',budget:55000,deadline:'Jul 10, 2026',region:'Global',apps:17,pilot:false,tags:['BIM','Drone Analytics','ConTech','Progress Tracking'],desc:'SaaS comparing drone + fixed camera footage against BIM model automatically, converting deviations into progress reports for mega project sites.',full:'We need a SaaS that automatically compares drone + fixed camera footage against our BIM model, detects deviations, and generates weekly progress reports for project managers.',why:'We currently have a 3-person team doing manual progress measurement on each site. Automation will make the cost independent of site size.',reqs:['Drone footage vs BIM model auto comparison','Fixed camera (CCTV) integration','Deviation detection and reporting (PDF + dashboard)','Autodesk BIM 360 / Revit integration','Weekly automated report via email','Multi-project & multi-site management'],tl:[{n:'Listing published',d:'May 10, 2026',s:'done'},{n:'Application deadline',d:'Jul 10, 2026',s:'now'},{n:'Demo & evaluation',d:'Jul 2026',s:'future'},{n:'Pilot (1 site)',d:'Aug 2026',s:'future'}]},
+  {id:10,cat:'hardware',title:'Hospital laundry RFID textile tracking system',co:'A. · Healthcare',sector:'Healthcare · Turkey',av:'A.',avbg:'#fdeaea',avco:'#b83232',tp:'hardware',tpl:'🔧 Hardware / IoT',tpc:'tp-hw',status:'open',budget:38000,deadline:'Jul 30, 2026',region:'TR',apps:8,pilot:true,tags:['RFID','Healthcare','Textile Tracking'],desc:'RFID system reducing textile loss rate by 80% across 8 hospitals. Wash-resistant tags + reader infrastructure + management software package.',full:'We need to reduce textile loss in our 8 hospitals\' laundries by 80% using RFID. Wash-resistant UHF RFID tags + entry/exit reader infrastructure + management software in a single package.',why:'Annual textile loss cost: €220K. RFID system pays back in 1.5 years while also improving hygiene tracking.',reqs:['Wash-resistant UHF RFID tags (min 200 wash cycles)','Laundry entry/exit RFID reader gates','Textile management software (stock, loss, service tracking)','Centralised management for 8 hospitals','HIS system integration (API)','Pilot option for 3 hospitals'],tl:[{n:'Listing published',d:'May 1, 2026',s:'done'},{n:'Application deadline',d:'Jul 30, 2026',s:'now'},{n:'Technical evaluation',d:'Aug 2026',s:'future'},{n:'Pilot (3 hospitals)',d:'Sep 2026',s:'future'},{n:'Full rollout',d:'Nov 2026',s:'future'}]},
+];
+
+const STATUS = {
+  urgent:'<span class="badge badge-red">Urgent</span>',
+  open:'<span class="badge badge-green">Open</span>',
+  review:'<span class="badge badge-amber">Under review</span>'
+};
+const MSTATUS = {urgent:'mb-urg',open:'mb-open',review:'mb-rev'};
+
+let activeCat='all', budgetMax=500;
+const FREE_LIMIT = 10;
+
+function fmt(n){return '€'+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+
+function render(){
+  const q=document.getElementById('search').value.toLowerCase();
+  let data=PROBLEMS.filter(l=>{
+    if(activeCat!=='all'&&l.cat!==activeCat)return false;
+    if(l.budget/1000>budgetMax&&budgetMax<500)return false;
+    if(q&&![l.title,l.co,...l.tags].some(x=>x.toLowerCase().includes(q)))return false;
+    return true;
+  });
+  document.getElementById('fc').textContent=data.length+' problems';
+  const free=data.slice(0,FREE_LIMIT);
+  const locked=data.slice(FREE_LIMIT);
+  document.getElementById('listings').innerHTML=free.map(l=>cardHTML(l)).join('');
+  const pw=document.getElementById('paywall');
+  const pwb=document.getElementById('paywall-blur');
+  if(locked.length>0){
+    pwb.innerHTML=locked.slice(0,3).map(l=>cardHTML(l)).join('');
+    pw.style.display='block';
+  } else {
+    pw.style.display='none';
+  }
+}
+
+function cardHTML(l){
+  return `<div class="listing" onclick="openModal(${l.id})">
+    <div class="ls-top">
+      <div class="ls-co">
+        <div class="ls-av" style="background:${l.avbg};color:${l.avco}">${l.av}</div>
+        <div><div class="ls-name">${l.co}</div><div class="ls-sec">${l.sector}</div></div>
+      </div>
+      <div style="display:flex;gap:5px;align-items:center">
+        ${l.pilot?'<span class="pilot-tag">Pilot OK</span>':''}
+        ${STATUS[l.status]}
+      </div>
+    </div>
+    <div><span class="tp ${l.tpc}">${l.tpl}</span></div>
+    <div class="ls-title">${l.title}</div>
+    <div class="ls-desc">${l.desc}</div>
+    <div class="ls-meta">
+      <span class="lm">Budget: <strong>${fmt(l.budget)}</strong></span>
+      <span class="lm">Deadline: <strong>${l.deadline}</strong></span>
+      <span class="lm">Region: <strong>${l.region}</strong></span>
+    </div>
+    <div class="tags" style="margin-bottom:0">${l.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <div class="ls-foot">
+      <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openModal(${l.id})">Details & Apply</button>
+      <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation()">Save</button>
+      <span class="ls-apps">👤 ${l.apps} applications</span>
+    </div>
+  </div>`;
+}
+
+function openModal(id){
+  const l=PROBLEMS.find(x=>x.id===id);
+  if(!l)return;
+  const tlHTML=l.tl.map((t,i)=>`
+    <div class="tls">
+      <div class="tls-l">
+        <div class="tld ${t.s}"></div>
+        ${i<l.tl.length-1?'<div class="tlline"></div>':''}
+      </div>
+      <div class="tlc">
+        <div class="tl-nm">${t.n}</div>
+        <div class="tl-dt">${t.d}</div>
+      </div>
+    </div>`).join('');
+  const ms=MSTATUS[l.status]||'mb-open';
+  const stxt=l.status==='urgent'?'🔴 Urgent':l.status==='open'?'Open':'Under review';
+  document.getElementById('modal-content').innerHTML=`
+    <div class="mh">
+      <div class="mh-top">
+        <div class="mh-co">
+          <div class="mh-av" style="background:${l.avbg};color:${l.avco}">${l.av}</div>
+          <div><div class="mh-nm">${l.co}</div><div class="mh-sc">${l.sector}</div></div>
+        </div>
+        <button class="m-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="m-title">${l.title}</div>
+      <div class="m-badges">
+        <span class="mbdg mb-type">${l.tpl}</span>
+        <span class="mbdg ${ms}">${stxt}</span>
+        ${l.pilot?'<span class="mbdg mb-pilot">✓ Pilot accepted</span>':''}
+      </div>
+    </div>
+    <div class="mbody">
+      <div class="mstats">
+        <div class="ms"><div class="ms-n">${fmt(l.budget)}</div><div class="ms-l">Budget</div></div>
+        <div class="ms"><div class="ms-n">${l.deadline}</div><div class="ms-l">Deadline</div></div>
+        <div class="ms"><div class="ms-n">${l.region}</div><div class="ms-l">Region</div></div>
+        <div class="ms"><div class="ms-n">${l.apps}</div><div class="ms-l">Applications</div></div>
+      </div>
+      <div class="msec"><div class="msec-t">Problem description</div><div class="mtext">${l.full}</div></div>
+      <div class="why-box">💡 <strong>Why this matters:</strong> ${l.why}</div>
+      <div class="msec"><div class="msec-t">Technical requirements</div>
+        <div class="req-list">${l.reqs.map(r=>`<div class="req-item"><div class="req-dot"></div><span>${r}</span></div>`).join('')}</div>
+      </div>
+      <div class="msec"><div class="msec-t">Tags</div><div class="tags">${l.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+      <div class="msec"><div class="msec-t">Process timeline</div><div class="mtl">${tlHTML}</div></div>
+      <div class="apply-box">
+        <div class="apply-t">Propose your solution</div>
+        <div class="apply-s">You are applying to this problem. Your identity stays hidden until the Seeker formally approves a meeting.</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Company / Startup name</label><input class="form-input" type="text" placeholder="e.g. TechFlow GmbH"></div>
+          <div class="form-group"><label class="form-label">Website</label><input class="form-input" type="text" placeholder="https://"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your price (€)</label><input class="form-input" type="number" placeholder="e.g. 85000"></div>
+          <div class="form-group"><label class="form-label">Delivery timeline</label><input class="form-input" type="text" placeholder="e.g. 12 weeks"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Solution summary</label><textarea class="form-textarea" placeholder="How will you solve this problem?"></textarea></div>
+        <div class="form-group"><label class="form-label">Reference project / Demo link</label><input class="form-input" type="text" placeholder="https://"></div>
+        <div class="form-group"><label class="form-label">Can you offer a pilot?</label>
+          <select class="form-select"><option>Yes, we can offer a free pilot</option><option>Yes, paid pilot available</option><option>We prefer direct purchase</option></select>
+        </div>
+        <div class="apply-ft">
+          <button class="btn btn-primary" onclick="submitApply(this)">Submit proposal →</button>
+          <div class="apply-note">Seeker responds within 5 business days.<br>Your identity is hidden until meeting is approved.</div>
+        </div>
+        <div class="success-msg" id="smsg">✓ Proposal submitted! The Seeker will get back to you within 5 business days. Track your application in your pipeline dashboard.</div>
+        <button class="li-share" onclick="shareOnLinkedIn('I just posted a problem on NeedBridge — looking for innovative solutions. Check it out:','https://needbridge.io/problems.html')">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          Share on LinkedIn
+        </button>
+      </div>
+    </div>`;
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow='';
+}
+function bgClose(e){if(e.target===document.getElementById('modal-bg'))closeModal();}
+function submitApply(btn){
+  btn.textContent='Submitting...';btn.disabled=true;
+  setTimeout(()=>{btn.textContent='✓ Submitted';const m=document.getElementById('smsg');if(m)m.classList.add('show');},800);
+}
+function setCat(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.fchip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');render();
+}
+function updateBudget(v){
+  budgetMax=parseInt(v);
+  document.getElementById('bval').textContent=v>=500?'€500K+':'€'+parseInt(v)+'K';
+  render();
+}
+document.querySelectorAll('.rchip').forEach(c=>c.addEventListener('click',function(){
+  document.querySelectorAll('.rchip').forEach(x=>x.classList.remove('on'));
+  this.classList.add('on');
+}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+render();
+</script>
+</body>
+</html>

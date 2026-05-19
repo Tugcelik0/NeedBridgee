@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join NeedBridge — Free Early Access</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.join-wrap{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.join-left{background:var(--ink);padding:64px 56px;display:flex;flex-direction:column;justify-content:space-between}
+.jl-top{}
+.jl-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--paper);display:flex;align-items:center;gap:9px;margin-bottom:48px;text-decoration:none}
+.jl-h{font-family:'DM Serif Display',serif;font-size:36px;line-height:1.15;color:var(--paper);margin-bottom:14px;letter-spacing:-.01em}
+.jl-h em{font-style:italic;color:var(--green-m)}
+.jl-d{font-size:15px;color:rgba(247,245,240,.6);line-height:1.7;margin-bottom:36px}
+.jl-feats{display:flex;flex-direction:column;gap:12px}
+.jl-feat{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:rgba(247,245,240,.75)}
+.jl-feat-ic{width:28px;height:28px;border-radius:7px;background:rgba(247,245,240,.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.jl-feat-t{font-weight:500;color:var(--paper);margin-bottom:2px;font-size:13px}
+.jl-feat-d{font-size:12px;color:rgba(247,245,240,.5);line-height:1.5}
+.jl-bottom{border-top:1px solid rgba(247,245,240,.08);padding-top:24px;font-size:12px;color:rgba(247,245,240,.35)}
+.join-right{background:var(--paper);padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.jr-tag{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.jr-h{font-family:'DM Serif Display',serif;font-size:30px;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
+.jr-sub{font-size:14px;color:var(--ink3);margin-bottom:28px;line-height:1.65}
+.role-tabs{display:flex;gap:4px;margin-bottom:24px;background:var(--paper2);padding:4px;border-radius:var(--r)}
+.rtab{flex:1;padding:8px;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--ink3);transition:all .15s;font-family:'DM Sans',sans-serif;text-align:center}
+.rtab.on{background:var(--white);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:24px}
+.free-pill{display:inline-flex;align-items:center;gap:6px;background:var(--green-l);color:var(--green);font-size:11px;font-weight:500;padding:4px 12px;border-radius:20px;margin-bottom:18px}
+.form-submit{width:100%;padding:12px;border-radius:var(--r);border:none;background:var(--green);color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .15s;margin-top:4px}
+.form-submit:hover{background:var(--green-m)}
+.form-note{font-size:11px;color:var(--ink3);text-align:center;margin-top:10px;line-height:1.5}
+.divider{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--ink3);margin:16px 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line)}
+.li-join{width:100%;padding:11px;border-radius:var(--r);border:1px solid #c0d8e8;background:#e8f4fb;color:#0077B5;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
+.li-join svg{width:16px;height:16px;fill:#0077B5}
+.success-state{text-align:center;padding:32px 0;display:none}
+.ss-icon{font-size:36px;margin-bottom:14px}
+.ss-h{font-family:'DM Serif Display',serif;font-size:24px;color:var(--ink);margin-bottom:8px}
+.ss-d{font-size:14px;color:var(--ink3);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="join-wrap">
+  <div class="join-left">
+    <div class="jl-top">
+      <a href="index.html" class="jl-logo">
+        <div class="logo-mark" style="width:26px;height:26px;font-size:13px">N</div>
+        NeedBridge
+      </a>
+      <h2 class="jl-h">The platform where<br>corporate problems<br><em>meet startup solutions.</em></h2>
+      <p class="jl-d">Join as a Seeker to post procurement problems. Join as a Solver to offer your solutions. Free until October 2026.</p>
+      <div class="jl-feats">
+        <div class="jl-feat">
+          <div class="jl-feat-ic">🎭</div>
+          <div><div class="jl-feat-t">Full anonymity</div><div class="jl-feat-d">Company names and solver identities protected until both sides agree to a meeting.</div></div>
+        </div>
+        <div class="jl-feat">
+          <div class="jl-feat-ic">🔒</div>
+          <div><div class="jl-feat-t">Pilot escrow</div><div class="jl-feat-d">Pilot payments held securely. Released automatically on delivery.</div></div>
+        </div>
+        <div class="jl-feat">
+          <div class="jl-feat-ic">⏱️</div>
+          <div><div class="jl-feat-t">90-day protection</div><div class="jl-feat-d">If a Seeker goes silent for 90 days, the platform alerts them — protecting Solvers from wasted effort.</div></div>
+        </div>
+        <div class="jl-feat">
+          <div class="jl-feat-ic">🌍</div>
+          <div><div class="jl-feat-t">Global reach</div><div class="jl-feat-d">1,840 solvers across 47 countries. Problems from companies in every major industry.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="jl-bottom">Free until October 2026 · No credit card needed · Cancel anytime</div>
+  </div>
+
+  <div class="join-right">
+    <div>
+      <div class="jr-tag">Early access</div>
+      <h1 class="jr-h">Create your account</h1>
+      <div class="jr-sub">Free until October 2026. No credit card needed.</div>
+
+      <div class="role-tabs">
+        <button class="rtab on" id="tab-solver" onclick="setRole('solver')">🚀 I'm a Solver</button>
+        <button class="rtab" id="tab-seeker" onclick="setRole('seeker')">🏢 I'm a Seeker</button>
+      </div>
+
+      <div class="form-card" id="join-form">
+        <div class="free-pill">🎉 Free until October 2026</div>
+        <div class="form-group">
+          <label class="form-label">Full name</label>
+          <input class="form-input" type="text" id="f-name" placeholder="Jane Smith">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Work email</label>
+          <input class="form-input" type="email" id="f-email" placeholder="jane@company.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company / Startup name</label>
+          <input class="form-input" type="text" id="f-company" placeholder="Acme Corp">
+        </div>
+        <div class="form-group" id="solver-cat-group">
+          <label class="form-label">Primary solution category</label>
+          <select class="form-select" id="f-cat">
+            <option value="">Select a category...</option>
+            <option>Cleantech & Energy</option>
+            <option>Defence & Security</option>
+            <option>Hardware & IoT</option>
+            <option>Software & SaaS</option>
+            <option>Machinery & Equipment</option>
+            <option>Water & Waste</option>
+            <option>RegTech & Compliance</option>
+            <option>HealthTech</option>
+            <option>AgriTech</option>
+            <option>FinTech</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group" id="seeker-sector-group" style="display:none">
+          <label class="form-label">Your industry</label>
+          <select class="form-select" id="f-sector">
+            <option value="">Select your industry...</option>
+            <option>Manufacturing</option>
+            <option>Energy & Utilities</option>
+            <option>Automotive</option>
+            <option>Construction & Infrastructure</option>
+            <option>Food & FMCG</option>
+            <option>Healthcare</option>
+            <option>Defence & Aerospace</option>
+            <option>Financial Services</option>
+            <option>Public Sector</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <select class="form-select" id="f-country">
+            <option value="">Select country...</option>
+            <option>Turkey</option><option>Germany</option><option>United Kingdom</option>
+            <option>Netherlands</option><option>United States</option><option>France</option>
+            <option>Belgium</option><option>Poland</option><option>Israel</option>
+            <option>Singapore</option><option>Denmark</option><option>Other</option>
+          </select>
+        </div>
+        <button class="form-submit" onclick="submitJoin()">Create free account →</button>
+        <div class="form-note">By joining you agree to our <a href="#" style="color:var(--green)">Terms of Service</a> and <a href="#" style="color:var(--green)">Privacy Policy</a>.</div>
+        <div class="divider">or</div>
+        <button class="li-join" onclick="alert('LinkedIn OAuth — connect your LinkedIn account here.')">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          Continue with LinkedIn
+        </button>
+      </div>
+
+      <div class="success-state" id="success-state">
+        <div class="ss-icon">🎉</div>
+        <div class="ss-h">You're on the list!</div>
+        <div class="ss-d">Welcome to NeedBridge early access. We'll send you an activation link within 24 hours.<br><br>In the meantime, explore the <a href="problems.html" style="color:var(--green)">Problem Board</a> or browse the <a href="solvers.html" style="color:var(--green)">Solver Directory</a>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="components.js"></script>
+<script>
+let selectedRole = 'solver';
+
+const urlParams = new URLSearchParams(window.location.search);
+if(urlParams.get('role') === 'seeker') setRole('seeker');
+if(urlParams.get('email')) document.getElementById('f-email').value = decodeURIComponent(urlParams.get('email'));
+
+function setRole(r){
+  selectedRole = r;
+  document.getElementById('tab-solver').classList.toggle('on', r==='solver');
+  document.getElementById('tab-seeker').classList.toggle('on', r==='seeker');
+  document.getElementById('solver-cat-group').style.display = r==='solver'?'block':'none';
+  document.getElementById('seeker-sector-group').style.display = r==='seeker'?'block':'none';
+}
+
+function submitJoin(){
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  if(!name || !email || !company){
+    alert('Please fill in all required fields.');
+    return;
+  }
+  /* 
+    TODO: Replace this with your actual backend or Tally/Typeform embed.
+    For now, this shows the success state.
+    
+    To use Tally: go to tally.so, create a form, and replace the form-card 
+    div content with the Tally embed code.
+  */
+  document.getElementById('join-form').style.display = 'none';
+  document.getElementById('success-state').style.display = 'block';
+}
+</script>
+</body>
+</html>
