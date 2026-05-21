@@ -7,12 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.pricing-hero{padding:72px 48px;text-align:center;max-width:640px;margin:0 auto}
-.pr-tag{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
-.pr-h{font-family:'DM Serif Display',serif;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin-bottom:14px}
-.pr-h em{font-style:italic;color:var(--green)}
-.pr-d{font-size:16px;color:var(--ink3);line-height:1.7}
-.free-alert{background:var(--green);color:#fff;border-radius:var(--rl);padding:14px 22px;display:flex;align-items:center;gap:12px;font-size:13px;max-width:840px;margin:0 auto 40px}
+.pr-hero{padding:72px 48px;text-align:center;max-width:640px;margin:0 auto}
+.free-alert{background:var(--green);color:#fff;border-radius:var(--rl);padding:14px 22px;display:flex;align-items:center;gap:12px;font-size:13px;max-width:840px;margin:0 auto 36px}
 .fa-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:500;white-space:nowrap;margin-left:auto;flex-shrink:0}
 .role-switch{display:flex;gap:4px;justify-content:center;margin-bottom:36px}
 .rsw{padding:9px 22px;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--line2);background:none;color:var(--ink3);transition:all .15s;font-family:'DM Sans',sans-serif}
@@ -20,15 +16,7 @@
 .plans-wrap{max-width:1000px;margin:0 auto;padding:0 48px 64px}
 .plan-grid{display:none;grid-template-columns:repeat(3,1fr);gap:14px}
 .plan-grid.on{display:grid}
-.compare-section{background:var(--paper2);padding:64px 48px}
-.compare-inner{max-width:1000px;margin:0 auto}
-.compare-h{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:24px}
-table.ct{width:100%;border-collapse:collapse;font-size:13px}
-table.ct th{padding:10px 14px;text-align:left;font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);background:var(--white);border-bottom:1px solid var(--line)}
-table.ct td{padding:10px 14px;border-bottom:1px solid var(--line);color:var(--ink2)}
-table.ct tr:last-child td{border-bottom:none}
-table.ct .chk{color:var(--green);font-weight:500}
-table.ct .xmk{color:var(--paper3)}
+.faq-section{max-width:680px;margin:0 auto;padding:60px 48px}
 .tp-section{background:var(--ink);padding:60px 48px}
 .tp-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
 .tp-h{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.15;color:var(--paper);margin-bottom:12px}
@@ -39,133 +27,131 @@ table.ct .xmk{color:var(--paper3)}
 .tp-pi{font-size:17px;flex-shrink:0;margin-top:1px}
 .tp-pt{font-size:12px;font-weight:500;color:var(--paper);margin-bottom:2px}
 .tp-pd{font-size:11px;color:rgba(247,245,240,.5);line-height:1.5}
-.faq-section{max-width:680px;margin:0 auto;padding:60px 48px}
 </style>
 </head>
 <body>
 <div id="nav-root"></div>
 
-<div class="pricing-hero">
-  <div class="pr-tag">Pricing</div>
-  <h1 class="pr-h">Start free.<br><em>Grow together.</em></h1>
-  <p class="pr-d">Free for everyone until October 2026. After that, a simple model: Seekers always post for free. Solvers pay to connect.</p>
+<div class="pr-hero">
+  <div class="sec-tag" data-i18n="pr_tag">Pricing</div>
+  <h1 class="sec-h" style="font-size:46px;margin-bottom:14px">
+    <span data-i18n="pr_h">Start free.</span><br>
+    <em data-i18n="pr_em">Grow together.</em>
+  </h1>
+  <p class="sec-d" style="margin:0 auto" data-i18n="pr_desc"></p>
 </div>
 
 <div style="padding:0 48px"><div class="free-alert">
-  <div>🎉 <strong>Early access offer:</strong> Every feature is free until October 2026. No credit card required.</div>
-  <span class="fa-pill">Free until Oct 2026</span>
+  <div data-i18n="pr_free_alert">🎉 Early access: every feature is free until October 2026. No credit card required.</div>
+  <span class="fa-pill" data-i18n="hero_early">Free until Oct 2026</span>
 </div></div>
 
 <div class="toggle-wrap">
-  <span class="toggle-lbl on" id="lbl-monthly">Monthly</span>
+  <span class="toggle-lbl on" id="lbl-monthly" data-i18n="pr_monthly">Monthly</span>
   <button class="toggle-track" onclick="toggleBilling()"><div class="toggle-thumb" id="tog-thumb"></div></button>
-  <span class="toggle-lbl" id="lbl-annual">Annual <span class="save-pill">Save 20%</span></span>
+  <span class="toggle-lbl" id="lbl-annual">
+    <span data-i18n="pr_annual">Annual</span>
+    <span class="save-pill" data-i18n="pr_save">Save 20%</span>
+  </span>
 </div>
 
 <div class="role-switch">
-  <button class="rsw on" onclick="swPlan('solver',this)">🚀 Solver plans</button>
-  <button class="rsw" onclick="swPlan('seeker',this)">🏢 Seeker plans</button>
+  <button class="rsw on" onclick="swPlan('solver',this)" data-i18n="pr_solver_tab">🚀 Solver plans</button>
+  <button class="rsw" onclick="swPlan('seeker',this)" data-i18n="pr_seeker_tab">🏢 Seeker plans</button>
 </div>
 
 <div class="plans-wrap">
   <div id="pl-solver" class="plan-grid on">
     <div class="plan">
-      <div class="plan-tag">Free</div>
+      <div class="plan-tag" id="sp1-tag">Free</div>
       <div class="plan-name">Explorer</div>
-      <div class="plan-desc">Browse problems and build your profile. No commitment.</div>
+      <div class="plan-desc" id="sp1-desc">Browse problems and build your profile. No commitment.</div>
       <div class="plan-price">€0</div>
-      <div class="plan-period">Always free</div>
+      <div class="plan-period" id="sp1-period">Always free</div>
       <hr class="plan-divider">
-      <div class="plan-feat"><div class="pfc"></div>Google-indexed public profile</div>
-      <div class="plan-feat"><div class="pfc"></div>Browse all problem listings</div>
-      <div class="plan-feat"><div class="pfc"></div>3 applications per month</div>
-      <div class="plan-feat"><div class="pfc"></div>Weekly bulletin subscription</div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Unlimited applications</span></div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Pipeline dashboard</span></div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Verified supplier badge</span></div>
-      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=solver'">Get started free</button></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp1-f1">Google-indexed public profile</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp1-f2">Browse all problem listings</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp1-f3">3 applications per month</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp1-f4">Weekly bulletin subscription</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x" id="sp1-f5">Unlimited applications</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x" id="sp1-f6">Pipeline dashboard</span></div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=solver'" id="sp1-cta">Get started free</button></div>
     </div>
     <div class="plan featured">
-      <div class="plan-tag">Most popular</div>
+      <div class="plan-tag" id="sp2-tag">Most popular</div>
       <div class="plan-name">Starter</div>
-      <div class="plan-desc">Connect with companies. Track your pipeline. Close your first deal.</div>
-      <div class="plan-price" data-monthly="€20" data-annual="€16">€20</div>
-      <div class="plan-period" data-monthly="/ month · billed monthly" data-annual="/ month · billed annually">/ month · billed monthly</div>
+      <div class="plan-desc" id="sp2-desc">Connect with companies. Track your pipeline.</div>
+      <div class="plan-price" id="sp2-price">€20</div>
+      <div class="plan-period" id="sp2-period">/ month · billed monthly</div>
       <hr class="plan-divider">
-      <div class="plan-feat"><div class="pfc"></div>Everything in Explorer</div>
-      <div class="plan-feat"><div class="pfc"></div>Unlimited applications</div>
-      <div class="plan-feat"><div class="pfc"></div>View full company profiles</div>
-      <div class="plan-feat"><div class="pfc"></div>Pipeline tracking dashboard</div>
-      <div class="plan-feat"><div class="pfc"></div>Category match email alerts</div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Priority listing placement</span></div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Verified supplier badge</span></div>
-      <div class="plan-cta"><button class="cta-white" onclick="location.href='join.html?role=solver&plan=starter'">Start free trial →</button></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp2-f1">Everything in Explorer</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp2-f2">Unlimited applications</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp2-f3">Full company profile access</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp2-f4">Pipeline tracking dashboard</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp2-f5">Category match alerts</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x" id="sp2-f6">Priority listing placement</span></div>
+      <div class="plan-cta"><button class="cta-white" onclick="location.href='join.html?role=solver&plan=starter'" id="sp2-cta">Start free trial →</button></div>
     </div>
     <div class="plan">
-      <div class="plan-tag">Premium</div>
+      <div class="plan-tag" id="sp3-tag">Premium</div>
       <div class="plan-name">Growth</div>
-      <div class="plan-desc">Maximum visibility. For solvers actively closing corporate deals.</div>
-      <div class="plan-price" data-monthly="€49" data-annual="€39">€49</div>
-      <div class="plan-period" data-monthly="/ month · billed monthly" data-annual="/ month · billed annually">/ month · billed monthly</div>
+      <div class="plan-desc" id="sp3-desc">Maximum visibility. For solvers actively closing deals.</div>
+      <div class="plan-price" id="sp3-price">€49</div>
+      <div class="plan-period" id="sp3-period">/ month · billed monthly</div>
       <hr class="plan-divider">
-      <div class="plan-feat"><div class="pfc"></div>Everything in Starter</div>
-      <div class="plan-feat"><div class="pfc"></div>Priority listing placement</div>
-      <div class="plan-feat"><div class="pfc"></div>✓ Verified supplier badge</div>
-      <div class="plan-feat"><div class="pfc"></div>24-hour early access to new listings</div>
-      <div class="plan-feat"><div class="pfc"></div>Success commission reduced to 1%</div>
-      <div class="plan-feat"><div class="pfc"></div>Case study publication support</div>
-      <div class="plan-feat"><div class="pfc"></div>Dedicated onboarding call</div>
-      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=solver&plan=growth'">Upgrade to Growth</button></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp3-f1">Everything in Starter</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp3-f2">Priority listing placement</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp3-f3">✓ Verified supplier badge</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp3-f4">24h early access to new listings</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="sp3-f5">Success commission reduced to 1%</span></div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=solver&plan=growth'" id="sp3-cta">Upgrade to Growth</button></div>
     </div>
   </div>
 
   <div id="pl-seeker" class="plan-grid">
     <div class="plan">
-      <div class="plan-tag">Free — Always</div>
+      <div class="plan-tag" id="kp1-tag">Free — Always</div>
       <div class="plan-name">Explorer</div>
-      <div class="plan-desc">Post problems and review proposals. Free forever.</div>
+      <div class="plan-desc" id="kp1-desc">Post problems and review proposals. Free forever.</div>
       <div class="plan-price">€0</div>
-      <div class="plan-period">Always free</div>
+      <div class="plan-period" id="kp1-period">Always free</div>
       <hr class="plan-divider">
-      <div class="plan-feat"><div class="pfc"></div>Browse all solver profiles</div>
-      <div class="plan-feat"><div class="pfc"></div>1 active listing at a time</div>
-      <div class="plan-feat"><div class="pfc"></div>3 connection requests per month</div>
-      <div class="plan-feat"><div class="pfc"></div>View all incoming proposals</div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Anonymous listing option</span></div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Unlimited connections</span></div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">Innovation dashboard</span></div>
-      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=seeker'">Post a problem free</button></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp1-f1">Browse all solver profiles</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp1-f2">1 active listing at a time</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp1-f3">3 connection requests / month</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp1-f4">View all incoming proposals</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x" id="kp1-f5">Anonymous listing option</span></div>
+      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x" id="kp1-f6">Innovation dashboard</span></div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html?role=seeker'" id="kp1-cta">Post a problem free</button></div>
     </div>
     <div class="plan featured">
-      <div class="plan-tag">Most popular</div>
+      <div class="plan-tag" id="kp2-tag">Most popular</div>
       <div class="plan-name">Sourcing</div>
-      <div class="plan-desc">Actively source startups. Manage procurement in one place.</div>
-      <div class="plan-price" data-monthly="€20" data-annual="€16">€20</div>
-      <div class="plan-period" data-monthly="/ month · billed monthly" data-annual="/ month · billed annually">/ month · billed monthly</div>
+      <div class="plan-desc" id="kp2-desc">Actively source startups. Manage procurement in one place.</div>
+      <div class="plan-price" id="kp2-price">€20</div>
+      <div class="plan-period" id="kp2-period">/ month · billed monthly</div>
       <hr class="plan-divider">
-      <div class="plan-feat"><div class="pfc"></div>Everything in Explorer</div>
-      <div class="plan-feat"><div class="pfc"></div>Unlimited solver connections</div>
-      <div class="plan-feat"><div class="pfc"></div>Unlimited listings</div>
-      <div class="plan-feat"><div class="pfc"></div>Anonymous listing option</div>
-      <div class="plan-feat"><div class="pfc"></div>Innovation dashboard & reporting</div>
-      <div class="plan-feat"><div class="pfc"></div>Role management (Owner + Approver)</div>
-      <div class="plan-feat"><div class="pfx"></div><span class="plan-feat-x">API / ERP integration</span></div>
-      <div class="plan-cta"><button class="cta-white" onclick="location.href='join.html?role=seeker&plan=sourcing'">Start free trial →</button></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp2-f1">Everything in Explorer</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp2-f2">Unlimited solver connections</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp2-f3">Unlimited listings</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp2-f4">Anonymous listing option</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp2-f5">Innovation dashboard & reporting</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp2-f6">Role management (Owner + Approver)</span></div>
+      <div class="plan-cta"><button class="cta-white" onclick="location.href='join.html?role=seeker&plan=sourcing'" id="kp2-cta">Start free trial →</button></div>
     </div>
     <div class="plan">
-      <div class="plan-tag">Enterprise</div>
+      <div class="plan-tag" id="kp3-tag">Enterprise</div>
       <div class="plan-name">Enterprise</div>
-      <div class="plan-desc">For holding groups with multiple subsidiary accounts.</div>
-      <div class="plan-price">Custom</div>
-      <div class="plan-period">Volume pricing available</div>
+      <div class="plan-desc" id="kp3-desc">For holding groups with multiple subsidiaries.</div>
+      <div class="plan-price" id="kp3-price">Custom</div>
+      <div class="plan-period" id="kp3-period">Volume pricing available</div>
       <hr class="plan-divider">
-      <div class="plan-feat"><div class="pfc"></div>Everything in Sourcing</div>
-      <div class="plan-feat"><div class="pfc"></div>Multiple subsidiary accounts</div>
-      <div class="plan-feat"><div class="pfc"></div>Consolidated holding dashboard</div>
-      <div class="plan-feat"><div class="pfc"></div>API / ERP integration</div>
-      <div class="plan-feat"><div class="pfc"></div>Dedicated account manager</div>
-      <div class="plan-feat"><div class="pfc"></div>White-label option</div>
-      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html'">Contact us</button></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp3-f1">Everything in Sourcing</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp3-f2">Multiple subsidiary accounts</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp3-f3">Consolidated group dashboard</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp3-f4">API / ERP integration</span></div>
+      <div class="plan-feat"><div class="pfc"></div><span id="kp3-f5">Dedicated account manager</span></div>
+      <div class="plan-cta"><button class="cta-ghost" onclick="location.href='join.html'" id="kp3-cta">Contact us</button></div>
     </div>
   </div>
 </div>
@@ -173,39 +159,122 @@ table.ct .xmk{color:var(--paper3)}
 <div class="tp-section">
   <div class="tp-inner">
     <div>
-      <div style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,245,240,.35);margin-bottom:10px">Special programmes</div>
-      <h2 class="tp-h">Technopark & accelerator<br><em>partner accounts</em></h2>
-      <p class="tp-d">Technology development zones, university incubators, and accelerator programmes can add their entire portfolio to NeedBridge under a single partner account — free or at heavily subsidised rates.</p>
-      <button class="btn btn-primary" onclick="location.href='join.html?role=partner'">Apply for partner status →</button>
+      <div style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,245,240,.35);margin-bottom:10px" id="tp-tag">Special programmes</div>
+      <h2 class="tp-h" id="tp-h">Technopark & accelerator<br><em>partner accounts</em></h2>
+      <p class="tp-d" id="tp-d">Technology development zones, university incubators, and accelerators can add their entire portfolio under a single partner account — free or at subsidised rates.</p>
+      <button class="btn btn-primary" onclick="location.href='join.html?role=partner'" id="tp-btn">Apply for partner status →</button>
     </div>
     <div class="tp-perks">
-      <div class="tp-perk"><div class="tp-pi">🏛️</div><div><div class="tp-pt">Bulk portfolio upload</div><div class="tp-pd">Add all portfolio startups at once. Individual verified profiles + consolidated partner dashboard.</div></div></div>
-      <div class="tp-perk"><div class="tp-pi">📊</div><div><div class="tp-pt">Partner analytics</div><div class="tp-pd">See which portfolio startups receive corporate interest, applications, and pipeline activity.</div></div></div>
-      <div class="tp-perk"><div class="tp-pi">🌍</div><div><div class="tp-pt">Global exposure</div><div class="tp-pd">Your portfolio is visible to corporate demand across 47 countries.</div></div></div>
-      <div class="tp-perk"><div class="tp-pi">📧</div><div><div class="tp-pt">Co-branded bulletin spot</div><div class="tp-pd">Partner startups featured in the weekly bulletin — read by 2,840+ innovators.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">🏛️</div><div><div class="tp-pt" id="tp1t">Bulk portfolio upload</div><div class="tp-pd" id="tp1d">Add all portfolio startups at once with individual verified profiles.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">📊</div><div><div class="tp-pt" id="tp2t">Partner analytics</div><div class="tp-pd" id="tp2d">Track which portfolio startups receive corporate interest and pipeline activity.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">🌍</div><div><div class="tp-pt" id="tp3t">Global exposure</div><div class="tp-pd" id="tp3d">Your portfolio visible to corporate demand worldwide.</div></div></div>
+      <div class="tp-perk"><div class="tp-pi">📧</div><div><div class="tp-pt" id="tp4t">Co-branded bulletin spot</div><div class="tp-pd" id="tp4d">Partner startups featured in the weekly bulletin.</div></div></div>
     </div>
   </div>
 </div>
 
 <div class="faq-section">
-  <h2 class="sec-h" style="margin-bottom:24px">Frequently asked</h2>
-  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">What happens after the 3-month free period?<div class="faq-arr">+</div></div><div class="faq-a">After October 2026, Seekers always post for free. Solvers keep a permanent free Explorer tier (3 applications/month). Paid plans unlock unlimited applications, pipeline tools, and verified badges. All data and profiles are preserved from the free period.</div></div>
-  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Is there a commission on deals?<div class="faq-arr">+</div></div><div class="faq-a">Yes — a 1.5% success commission paid by the Solver when a deal closes. Growth plan subscribers pay 1%. For deals under €100K, a minimum flat fee of €1,500 applies. Seekers pay zero commission — ever.</div></div>
-  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">How does the commitment deposit work?<div class="faq-arr">+</div></div><div class="faq-a">Seekers can optionally deposit €500–€2,000 when posting a problem. If they complete at least 2 meetings with applicants within 90 days, the deposit is fully refunded. If not, NeedBridge retains it — protecting Solvers from dead listings.</div></div>
-  <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Do technopark accounts cost anything?<div class="faq-arr">+</div></div><div class="faq-a">Technopark and accelerator partner accounts are free or heavily subsidised depending on portfolio size and geographic region. Apply through the partner programme — decisions within 5 business days.</div></div>
+  <h2 class="sec-h" style="margin-bottom:24px" id="faq-h">Frequently asked</h2>
+  <div id="faq-list"></div>
 </div>
 
 <div id="footer-root"></div>
+<script src="i18n.js"></script>
 <script src="components.js"></script>
 <script>
-document.getElementById('nav-root').innerHTML = NAV('pricing');
-document.getElementById('footer-root').innerHTML = FOOTER();
+renderNav('pricing');
+renderFooter();
+
+let isAnnual = false;
+function toggleBilling(){
+  isAnnual = !isAnnual;
+  document.getElementById('tog-thumb').className = 'toggle-thumb'+(isAnnual?' right':'');
+  document.getElementById('lbl-monthly').className = 'toggle-lbl'+(isAnnual?'':' on');
+  document.getElementById('lbl-annual').className = 'toggle-lbl'+(isAnnual?' on':'');
+  updatePrices();
+}
+function updatePrices(){
+  const sfx = isAnnual ?
+    (currentLang==='tr' ? '/ ay · yıllık faturalandırma' : '/ month · billed annually') :
+    (currentLang==='tr' ? '/ ay · aylık faturalandırma' : '/ month · billed monthly');
+  document.getElementById('sp2-price').textContent = isAnnual?'€16':'€20';
+  document.getElementById('sp3-price').textContent = isAnnual?'€39':'€49';
+  document.getElementById('kp2-price').textContent = isAnnual?'€16':'€20';
+  if(document.getElementById('sp2-period')) document.getElementById('sp2-period').textContent = sfx;
+  if(document.getElementById('sp3-period')) document.getElementById('sp3-period').textContent = sfx;
+  if(document.getElementById('kp2-period')) document.getElementById('kp2-period').textContent = sfx;
+}
+
 function swPlan(r,btn){
   document.querySelectorAll('.rsw').forEach(b=>b.classList.remove('on'));
   document.querySelectorAll('.plan-grid').forEach(g=>g.classList.remove('on'));
   btn.classList.add('on');
   document.getElementById('pl-'+r).classList.add('on');
 }
+
+const FAQS = {
+  en: [
+    ['What happens after the 3-month free period?','After October 2026, Seekers always post for free. Solvers keep a permanent free Explorer tier (3 applications/month). Paid plans unlock unlimited applications, pipeline tools, and verified badges. All data is preserved.'],
+    ['Is there a commission on deals?','Yes — a 1.5% success commission paid by the Solver when a deal closes. Growth plan subscribers pay 1%. Seekers pay zero commission — ever.'],
+    ['How does the commitment deposit work?','Seekers can optionally deposit €500–€2,000 when posting. If they complete at least 2 meetings within 90 days, it\'s refunded. If not, NeedBridge retains it — protecting Solvers from dead listings.'],
+    ['How does escrow work?','When a Seeker and Solver agree on a pilot, the Seeker deposits the fee into escrow. When the Solver delivers, it\'s released automatically. If delivery fails, the fee is returned.'],
+    ['Do technopark accounts cost anything?','Technopark and accelerator partner accounts are free or subsidised depending on portfolio size. Apply through the partner programme — decisions within 5 business days.'],
+  ],
+  tr: [
+    ['3 aylık ücretsiz dönem bittikten sonra ne olur?','Ekim 2026 sonrasında Seeker\'lar her zaman ücretsiz ilan açar. Solver\'lar kalıcı ücretsiz Explorer planını korur (ayda 3 başvuru). Ücretli planlar sınırsız başvuru, pipeline araçları ve doğrulanmış rozet açar. Tüm veriler korunur.'],
+    ['Anlaşmalardan komisyon alınıyor mu?','Evet — anlaşma kapandığında Solver tarafından %1,5 başarı komisyonu alınır. Growth plan aboneleri %1 öder. Seeker\'lar sıfır komisyon öder — hiçbir zaman.'],
+    ['Taahhüt depozitosu nasıl çalışır?','Seeker\'lar ilan açarken isteğe bağlı €500–€2.000 depozito yatırabilir. 90 gün içinde en az 2 görüşme yapılırsa iade edilir. Yapılmazsa NeedBridge\'de kalır — Solver\'ları ölü ilanlardan korur.'],
+    ['Escrow nasıl çalışır?','Pilot kararlaştırıldığında Seeker bedeli escrow\'a yatırır. Solver teslim ettiğinde otomatik serbest bırakılır. Teslim olmazsa Seeker\'a iade edilir.'],
+    ['Teknopark hesapları ücretli mi?','Teknopark ve hızlandırıcı ortak hesapları portföy büyüklüğüne göre ücretsiz veya sübvansiyonlu. Ortak programı aracılığıyla başvurun — 5 iş günü içinde karar verilir.'],
+  ]
+};
+
+function renderFAQ() {
+  const l = currentLang;
+  document.getElementById('faq-h').textContent = l==='tr'?'Sık sorulan sorular':'Frequently asked';
+  document.getElementById('faq-list').innerHTML = FAQS[l].map(([s,c])=>`
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">${s}<div class="faq-arr">+</div></div>
+      <div class="faq-a">${c}</div>
+    </div>`).join('');
+}
+
+function updateCopy() {
+  const l = currentLang;
+  const isTR = l === 'tr';
+  document.getElementById('tp-tag').textContent = isTR?'Özel programlar':'Special programmes';
+  document.getElementById('tp-h').innerHTML = isTR?'Teknopark & hızlandırıcı<br><em>ortak hesapları</em>':'Technopark & accelerator<br><em>partner accounts</em>';
+  document.getElementById('tp-d').textContent = isTR?'Teknoloji geliştirme bölgeleri, üniversite kuluçka merkezleri ve hızlandırıcılar tüm portföylerini tek bir ortak hesap altında ekleyebilir — ücretsiz veya indirimli.':'Technology development zones, university incubators, and accelerators can add their entire portfolio under a single partner account — free or at subsidised rates.';
+  document.getElementById('tp-btn').textContent = isTR?'Ortak başvurusu yap →':'Apply for partner status →';
+  document.getElementById('tp1t').textContent = isTR?'Toplu portföy yükleme':'Bulk portfolio upload';
+  document.getElementById('tp1d').textContent = isTR?'Tüm portföy girişimlerini tek seferde ekleyin.':'Add all portfolio startups at once with individual verified profiles.';
+  document.getElementById('tp2t').textContent = isTR?'Ortak analitiği':'Partner analytics';
+  document.getElementById('tp2d').textContent = isTR?'Hangi portföy girişimlerinin kurumsal ilgi aldığını görün.':'Track which portfolio startups receive corporate interest.';
+  document.getElementById('tp3t').textContent = isTR?'Global görünürlük':'Global exposure';
+  document.getElementById('tp3d').textContent = isTR?'Portföyünüz dünya genelinde kurumsal talebe açılır.':'Your portfolio visible to corporate demand worldwide.';
+  document.getElementById('tp4t').textContent = isTR?'Ortak markalı bülten spotu':'Co-branded bulletin spot';
+  document.getElementById('tp4d').textContent = isTR?'Ortak girişimler haftalık bültende öne çıkar.':'Partner startups featured in the weekly bulletin.';
+
+  // Plan copy
+  const p = {
+    sp1: { tag:isTR?'Ücretsiz':'Free', desc:isTR?'İlanları inceleyin, profil oluşturun.':'Browse problems and build your profile.', period:isTR?'Her zaman ücretsiz':'Always free', f1:isTR?'Herkese açık profil':'Google-indexed public profile', f2:isTR?'Tüm ilanları görüntüle':'Browse all problem listings', f3:isTR?'Ayda 3 başvuru':'3 applications per month', f4:isTR?'Haftalık bülten':'Weekly bulletin subscription', f5:isTR?'Sınırsız başvuru':'Unlimited applications', f6:isTR?'Pipeline paneli':'Pipeline dashboard', cta:isTR?'Ücretsiz başla':'Get started free'},
+    sp2: { tag:isTR?'En popüler':'Most popular', desc:isTR?'Şirketlerle bağlantı kurun, pipeline takibi yapın.':'Connect with companies. Track your pipeline.', f1:isTR?'Explorer\'daki her şey':'Everything in Explorer', f2:isTR?'Sınırsız başvuru':'Unlimited applications', f3:isTR?'Şirket profillerini tam görüntüle':'Full company profile access', f4:isTR?'Pipeline takip paneli':'Pipeline tracking dashboard', f5:isTR?'Kategori eşleştirme bildirimleri':'Category match alerts', f6:isTR?'Öncelikli ilan yerleşimi':'Priority listing placement', cta:isTR?'Ücretsiz dene →':'Start free trial →'},
+    sp3: { tag:isTR?'Premium':'Premium', desc:isTR?'Maksimum görünürlük. Aktif anlaşma kapatan Solver\'lar için.':'Maximum visibility. For solvers actively closing deals.', f1:isTR?'Starter\'daki her şey':'Everything in Starter', f2:isTR?'Öncelikli ilan yerleşimi':'Priority listing placement', f3:isTR?'✓ Doğrulanmış tedarikçi rozeti':'✓ Verified supplier badge', f4:isTR?'Yeni ilanlara 24 saat erken erişim':'24h early access to new listings', f5:isTR?'Komisyon %1\'e düşer':'Success commission reduced to 1%', cta:isTR?'Growth\'a geç':'Upgrade to Growth'},
+    kp1: { tag:isTR?'Ücretsiz — Her zaman':'Free — Always', desc:isTR?'İlan açın ve teklifleri inceleyin. Sonsuza kadar ücretsiz.':'Post problems and review proposals. Free forever.', period:isTR?'Her zaman ücretsiz':'Always free', f1:isTR?'Tüm Solver profillerini görüntüle':'Browse all solver profiles', f2:isTR?'Aynı anda 1 aktif ilan':'1 active listing at a time', f3:isTR?'Ayda 3 bağlantı isteği':'3 connection requests / month', f4:isTR?'Gelen teklifleri görüntüle':'View all incoming proposals', f5:isTR?'Anonim ilan seçeneği':'Anonymous listing option', f6:isTR?'İnovasyon paneli':'Innovation dashboard', cta:isTR?'Ücretsiz ilan aç':'Post a problem free'},
+    kp2: { tag:isTR?'En popüler':'Most popular', desc:isTR?'Aktif girişim araması yapın.':'Actively source startups.', f1:isTR?'Explorer\'daki her şey':'Everything in Explorer', f2:isTR?'Sınırsız bağlantı':'Unlimited solver connections', f3:isTR?'Sınırsız ilan':'Unlimited listings', f4:isTR?'Anonim ilan seçeneği':'Anonymous listing option', f5:isTR?'İnovasyon paneli ve raporlama':'Innovation dashboard & reporting', f6:isTR?'Rol yönetimi':'Role management (Owner + Approver)', cta:isTR?'Ücretsiz dene →':'Start free trial →'},
+    kp3: { tag:isTR?'Kurumsal':'Enterprise', desc:isTR?'Çoklu yan kuruluş hesabı olan holding grupları için.':'For holding groups with multiple subsidiaries.', price:isTR?'Özel':'Custom', period:isTR?'Toplu fiyat mevcuttur':'Volume pricing available', f1:isTR?'Sourcing\'deki her şey':'Everything in Sourcing', f2:isTR?'Çoklu yan kuruluş hesabı':'Multiple subsidiary accounts', f3:isTR?'Konsolide grup paneli':'Consolidated group dashboard', f4:isTR?'API / ERP entegrasyonu':'API / ERP integration', f5:isTR?'Özel hesap yöneticisi':'Dedicated account manager', cta:isTR?'Bize ulaşın':'Contact us'}
+  };
+  Object.entries(p).forEach(([k,v])=>{
+    Object.entries(v).forEach(([fk,fv])=>{
+      const el = document.getElementById(`${k}-${fk}`);
+      if(el) el.textContent = fv;
+    });
+  });
+  updatePrices();
+}
+
+document.addEventListener('langChanged', () => { renderFAQ(); updateCopy(); });
+document.addEventListener('DOMContentLoaded', () => { renderFAQ(); updateCopy(); });
 </script>
 </body>
 </html>
